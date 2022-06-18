@@ -1,0 +1,78 @@
+.menu {
+    width: 20%;
+    background-color: #ffe497;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    align-items: center;
+}
+
+.user-icon {
+    background-image: url(../../images/user.png);
+}
+
+.user-image {
+    margin-top: 8%;
+    height: 18vmin;
+    width: 12vmin;
+    border-radius: 50%;
+    border: solid;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.user-name {
+    margin-top: 5%;
+    font-size: 25px;
+}
+
+.menu-lists {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    margin-top: 5%;
+}
+
+.menu-list {
+    height: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.menu-image {
+    width: 12%;
+    height: 100%;
+    margin-left: 15px;
+    ;
+    margin-right: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.home-icon {
+    background-image: url(../../images/home.png);
+}
+
+.account-icon {
+    background-image: url(../../images/account.png);
+}
+
+.dashboard-icon {
+    background-image: url(../../images/books.png);
+}
+
+.settings-icon {
+    background-image: url(../../images/settings.png);
+}

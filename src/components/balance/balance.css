@@ -1,0 +1,51 @@
+.bal-container{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 90vh;
+    margin-top: 10vh;
+    margin-left: 20vw;
+}
+.bal{
+    width: 70%;
+    padding: 2% 0;
+    background-color: white;
+    display: flex;
+    margin: 2% 0 0 5%;
+}
+.bal-user{
+    margin-left:20px;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    height: 8vmin;
+    justify-content: center;
+    align-items: center;
+}
+.bal-user-image{
+    height: 6vmin;
+    width:  6vmin;
+    border-radius: 50%;
+    border:solid;
+    background-size: 70%;
+    background-image: url(../../images/user.png);
+    background-repeat: no-repeat;
+    background-position: center;    
+}
+.bal-user-name{
+    margin-left:20px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.bal-details{
+    margin-top: 5%;
+    width: 60%;
+}
+.bal-detail{
+    margin: 2% 5% 2% 8%;
+    height: 30px;
+    width: 80%;
+    font-size: 18px;
+    font-weight: 400;
+}

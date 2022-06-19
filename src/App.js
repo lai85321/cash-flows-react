@@ -1,14 +1,16 @@
 import "./App.css";
-import Menu from "./components/menu/menu";
-import Nav from "./components/nav/nav";
-import Account from "./components/account/account";
+
+import { Routes, Route } from "react-router-dom";
+import AccountPage from "./layouts/accountPage";
+import AddAccountPage from "./layouts/addAccountPage";
 
 function App() {
   return (
     <div style={{ backgroundColor: "#fef4de" }}>
-      <Menu />
-      <Nav />
-      <Account />
+      <Routes>
+        <Route path="/" element={<AccountPage />} />
+        <Route path="/addAccount" element={<AddAccountPage />} />
+      </Routes>
     </div>
   );
 }

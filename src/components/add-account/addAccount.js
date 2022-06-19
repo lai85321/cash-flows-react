@@ -2,13 +2,19 @@ import "./addAccount.css";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Select from "react-select";
+import { Link } from "react-router-dom";
 
 const AddAccount = () => {
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
   const typeBtns = ["Income", "Expense"];
   const tags = ["food", "cloth", "health"];
-
+  const userOptions = [
+    { value: "1", label: "User 1" },
+    { value: "2", label: "User 2" },
+  ];
+  const payOptions = [{ value: "equally", label: "equally" }];
   const [startDate, setStartDate] = useState(new Date());
   const [amount, setAmount] = useState("");
   const [tag, setTag] = useState("food");
@@ -27,7 +33,7 @@ const AddAccount = () => {
       note: note,
       tagId: tagId,
       date: startDate,
-      split: 0,
+      split: split,
     };
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
       method: "POST",
@@ -94,7 +100,7 @@ const AddAccount = () => {
                 }}
               ></textarea>
             </div>
-            <div style={{ marginTop: "30px" }}>
+            <div style={{ marginTop: "25px" }}>
               <div className="add-account-input">
                 <label className="add-label">Tag</label>
                 <div className="add-tag-container">
@@ -110,7 +116,7 @@ const AddAccount = () => {
                 </div>
               </div>
             </div>
-            <div style={{ marginTop: "30px" }}>
+            <div style={{ marginTop: "10px" }}>
               <label
                 className={`add-split ${split !== 0 && "chosenBtn"}`}
                 onClick={() => setSplit(split ^ 1)}
@@ -118,7 +124,10 @@ const AddAccount = () => {
                 Split Account
               </label>
               <div className={`split-detail ${split === 0 && "none"}`}>
-                Paid by you
+                <div style={{ margin: "2% 0%" }}>Paid by</div>{" "}
+                <Select className="selector" options={userOptions} />
+                <div style={{ margin: "2% 0%" }}>and split </div>
+                <Select className="selector" options={payOptions} />
               </div>
             </div>
           </div>
@@ -133,7 +142,7 @@ const AddAccount = () => {
             <div className="add-check">
               {checkBtns.map((item, index) => (
                 <div key={index} className={item.class} onClick={item.onClick}>
-                  {item.text}
+                  <Link to="/">{item.text}</Link>
                 </div>
               ))}
             </div>

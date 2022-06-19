@@ -4,6 +4,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const AddAccount = () => {
+  const REACT_APP_HOST = process.env.REACT_APP_HOST;
+  const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
   const typeBtns = ["Income", "Expense"];
   const tags = [
     "food",
@@ -17,19 +19,32 @@ const AddAccount = () => {
   ];
 
   const [startDate, setStartDate] = useState(new Date());
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState("");
   const [tag, setTag] = useState("food");
   const [type, setType] = useState("Income");
-  const [note, setNote] = useState();
+  const [note, setNote] = useState("");
   const submitAccount = () => {
+    const typeId = typeBtns.findIndex((item) => item === type);
+    const tagId = tags.findIndex((item) => item === tag);
     const body = {
-      type: type,
+      bookId: 1,
+      userId: 1,
+      typeId: typeId,
       amount: amount,
       note: note,
-      tag: tag,
+      tagId: tagId,
       date: startDate,
+      split: 0,
     };
-    console.log(body);
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   };
   const checkBtns = [
     {

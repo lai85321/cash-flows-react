@@ -1,20 +1,21 @@
 import "./account-list.css";
 const AmountList = (props) => {
   //const {date, total, amount, details }=props
-  const data = {
-    date: "6/17",
-    total: 300,
-    details: [
-      {
-        amount: 100,
-        detail: "早餐",
-      },
-      {
-        amount: 200,
-        detail: "午餐",
-      },
-    ],
-  };
+  // const data = {
+  //   date: "6/17",
+  //   total: 300,
+  //   details: [
+  //     {
+  //       amount: 100,
+  //       detail: "早餐",
+  //     },
+  //     {
+  //       amount: 200,
+  //       detail: "午餐",
+  //     },
+  //   ],
+  // };
+
   return (
     <div className="list">
       <div className="header">

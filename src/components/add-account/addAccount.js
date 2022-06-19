@@ -32,7 +32,7 @@ const AddAccount = () => {
       note: note,
       tagId: tagId,
       date: startDate,
-      split: 0,
+      split: split,
     };
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
       method: "POST",

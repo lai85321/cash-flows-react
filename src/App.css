@@ -10,6 +10,7 @@ hr {
   width: 95%
 }
 
-Link{
+a{
   text-decoration:none;
+  color: inherit;
 }

@@ -4,8 +4,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddAccount = () => {
+  let navigate = useNavigate();
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
   const typeBtns = ["Income", "Expense"];
@@ -28,10 +30,10 @@ const AddAccount = () => {
     const body = {
       bookId: 1,
       userId: 1,
-      typeId: typeId,
+      typeId: typeId + 1,
       amount: amount,
       note: note,
-      tagId: tagId,
+      tagId: tagId + 1,
       date: startDate,
       split: split,
     };
@@ -43,7 +45,10 @@ const AddAccount = () => {
       body: JSON.stringify(body),
     })
       .then((response) => response.json())
-      .then((json) => console.log(json));
+      .then((json) => {
+        console.log(json);
+        navigate("/", { replace: true });
+      });
   };
   const checkBtns = [
     {
@@ -142,7 +147,11 @@ const AddAccount = () => {
             <div className="add-check">
               {checkBtns.map((item, index) => (
                 <div key={index} className={item.class} onClick={item.onClick}>
-                  <Link to="/">{item.text}</Link>
+                  {item.text === "Cancel" ? (
+                    <Link to="/">{item.text}</Link>
+                  ) : (
+                    item.text
+                  )}
                 </div>
               ))}
             </div>

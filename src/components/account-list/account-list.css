@@ -1,7 +1,7 @@
 .list{
     margin-top: 2%;
     width: 80%;
-    border: solid;
+    background-color: white;
 }
 .header{
     display: flex;
@@ -24,14 +24,24 @@
 .item{
     display: flex;
     flex-direction: row;
-    width: 40%;
-    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
 }
 .tag{
-    height: 10px;
-    width: 10px;
-    border: solid;
+    height: 20px;
+    width: 10%;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
-.detail{
-    margin-left: 20px;
+
+.food {
+    background-image: url(../../images/food.png);
+}
+
+.cloth {
+    background-image: url(../../images/cloth.png);
+}
+
+.health {
+    background-image: url(../../images/health.png);
 }

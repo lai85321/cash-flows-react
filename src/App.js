@@ -1,14 +1,14 @@
 import "./App.css";
 import Menu from "./components/menu/menu";
 import Nav from "./components/nav/nav";
-import AddAccount from "./components/add-account/addAccount";
+import Account from "./components/account/account";
 
 function App() {
   return (
     <div style={{ backgroundColor: "#fef4de" }}>
       <Menu />
       <Nav />
-      <AddAccount />
+      <Account />
     </div>
   );
 }

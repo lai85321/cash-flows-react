@@ -1,17 +1,41 @@
 import "./account.css";
 import AmountList from "../account-list/account-list";
+import { useEffect, useState } from "react";
+
+const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
+
 const Account = () => {
-  const counters = Array.from({ length: 3 }, (_, index) => index);
-  // const detailData = [{
-  //     date, total, amount, detail
-  // }]
+  const userId = 1;
+  const bookId = 1;
+  const [data, setData] = useState([]);
+  console.log(data);
+  const fetchAccountList = (userId, bookId) => {
+    fetch(
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(20);
+        console.log(response);
+        setData(response.data);
+      });
+  };
+  useEffect(() => {
+    fetchAccountList(userId, bookId);
+  }, []);
   return (
     <div className="account">
       <div className="left">
         <div className="chart">Chart</div>
         <div className="lists">
-          {counters.map((item, index) => (
-            <AmountList />
+          {data.map((item, index) => (
+            <AmountList
+              date={item.date}
+              total={item.total}
+              details={item.details}
+            />
           ))}
         </div>
       </div>

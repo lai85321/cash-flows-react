@@ -105,6 +105,24 @@
     padding: 2% 4%;
     border-radius: 10px;
 }
+.add-split{
+    background-color: #fef4de;
+    margin-bottom: 5%;
+    margin-left: 15%;
+    padding: 2% 4%;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+}
+.split-detail{
+    margin-left: 25%;
+    margin-top: 8%;
+    font-size: 18px;
+}
+.none{
+    display: none;
+}
 .add-right{
     display: flex;
     flex-direction: column;

@@ -5,22 +5,14 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const AddAccount = () => {
   const typeBtns = ["Income", "Expense"];
-  const tags = [
-    "food",
-    "cloth",
-    "health",
-    "tag1",
-    "tag2",
-    "tag3",
-    "tag4",
-    "tag5",
-  ];
+  const tags = ["food", "cloth", "health"];
 
   const [startDate, setStartDate] = useState(new Date());
   const [amount, setAmount] = useState();
   const [tag, setTag] = useState("food");
   const [type, setType] = useState("Income");
   const [note, setNote] = useState();
+  const [split, setSplit] = useState(0);
   const submitAccount = () => {
     const body = {
       type: type,
@@ -100,6 +92,17 @@ const AddAccount = () => {
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+            <div style={{ marginTop: "30px" }}>
+              <label
+                className={`add-split ${split !== 0 && "chosenBtn"}`}
+                onClick={() => setSplit(split ^ 1)}
+              >
+                Split Account
+              </label>
+              <div className={`split-detail ${split === 0 && "none"}`}>
+                Paid by you
               </div>
             </div>
           </div>

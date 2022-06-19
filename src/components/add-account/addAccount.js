@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 
 const AddAccount = () => {
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
@@ -141,7 +142,7 @@ const AddAccount = () => {
             <div className="add-check">
               {checkBtns.map((item, index) => (
                 <div key={index} className={item.class} onClick={item.onClick}>
-                  {item.text}
+                  <Link to="/">{item.text}</Link>
                 </div>
               ))}
             </div>

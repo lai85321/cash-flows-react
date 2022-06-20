@@ -17,8 +17,6 @@ const Account = () => {
         return response.json();
       })
       .then((response) => {
-        console.log(20);
-        console.log(response);
         setData(response.data);
       });
   };

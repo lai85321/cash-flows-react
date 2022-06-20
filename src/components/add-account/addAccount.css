@@ -117,8 +117,8 @@
    
 }
 .split-detail{
-    margin: 4% 0% 2% 22%;
-    font-size: 18px;
+    margin: 4% 0% 2% 18%;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -13,8 +13,9 @@ const AddAccount = () => {
   const typeBtns = ["Income", "Expense"];
   const tags = ["food", "cloth", "health"];
   const userOptions = [
-    { value: "1", label: "User 1" },
-    { value: "2", label: "User 2" },
+    { value: "1", label: "Andy" },
+    { value: "2", label: "Bella" },
+    { value: "3", label: "Cindy" },
   ];
   const payOptions = [{ value: "equally", label: "equally" }];
   const [startDate, setStartDate] = useState(new Date());
@@ -23,7 +24,8 @@ const AddAccount = () => {
   const [type, setType] = useState("Income");
   const [note, setNote] = useState("");
   const [split, setSplit] = useState(0);
-
+  const [user, setUser] = useState(null);
+  const [pay, setPay] = useState(null);
   const submitAccount = () => {
     const typeId = typeBtns.findIndex((item) => item === type);
     const tagId = tags.findIndex((item) => item === tag);
@@ -36,6 +38,8 @@ const AddAccount = () => {
       tagId: tagId + 1,
       date: startDate,
       split: split,
+      paidId: user.value,
+      paymethod: pay.value,
     };
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
       method: "POST",
@@ -130,9 +134,19 @@ const AddAccount = () => {
               </label>
               <div className={`split-detail ${split === 0 && "none"}`}>
                 <div style={{ margin: "2% 0%" }}>Paid by</div>{" "}
-                <Select className="selector" options={userOptions} />
+                <Select
+                  className="selector"
+                  onChange={setUser}
+                  options={userOptions}
+                />
+                {console.log(user)}
                 <div style={{ margin: "2% 0%" }}>and split </div>
-                <Select className="selector" options={payOptions} />
+                <Select
+                  className="selector"
+                  options={payOptions}
+                  onChange={setPay}
+                />
+                {console.log(pay)}
               </div>
             </div>
           </div>

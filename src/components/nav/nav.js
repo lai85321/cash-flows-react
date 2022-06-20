@@ -9,7 +9,9 @@ function Nav() {
           <Link to="/">
             <div className="nav-list">Account</div>
           </Link>
-          <div className="nav-list">Balance</div>
+          <Link to="/balance">
+            <div className="nav-list">Balance</div>
+          </Link>
           <div className="nav-list">Dashboard</div>
         </div>
       </div>

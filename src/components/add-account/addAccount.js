@@ -2,10 +2,10 @@ import "./addAccount.css";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Select from "react-select";
+// import Select from "react-select";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import { PaidModal, SplitModal } from "../modal/modal";
 const AddAccount = () => {
   let navigate = useNavigate();
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
@@ -13,22 +13,25 @@ const AddAccount = () => {
   const typeBtns = ["Income", "Expense"];
   const tags = ["food", "cloth", "health"];
   const userOptions = [
-    { value: "1", label: "Andy" },
-    { value: "2", label: "Bella" },
-    { value: "3", label: "Cindy" },
+    { id: "1", label: "Andy" },
+    { id: "2", label: "Bella" },
+    { id: "3", label: "Cindy" },
   ];
-  const payOptions = [{ value: "equally", label: "equally" }];
+  const splitOptions = [{ value: "equally", label: "equally" }];
   const [startDate, setStartDate] = useState(new Date());
   const [amount, setAmount] = useState("");
   const [tag, setTag] = useState("food");
-  const [type, setType] = useState("Income");
+  const [type, setType] = useState("Expense");
   const [note, setNote] = useState("");
   const [split, setSplit] = useState(0);
-  const [user, setUser] = useState(null);
-  const [pay, setPay] = useState(null);
+  // const [user, setUser] = useState(null);
+  // const [pay, setPay] = useState(null);
+  const [paidBtnShow, setPaidBtnShow] = useState("Person");
+  const [splitBtnShow, setSplitBtnShow] = useState("Split");
   const submitAccount = () => {
     const typeId = typeBtns.findIndex((item) => item === type);
     const tagId = tags.findIndex((item) => item === tag);
+    const paidIdx = userOptions.findIndex((item) => item.label === paidBtnShow);
     const body = {
       bookId: 1,
       userId: 1,
@@ -38,9 +41,12 @@ const AddAccount = () => {
       tagId: tagId + 1,
       date: startDate,
       split: split,
-      paidId: user.value,
-      paymethod: pay.value,
+      paidId: split && +userOptions[paidIdx].id,
+      // paymethod: pay.value,
+      // paidId: 1,
+      paymethod: splitBtnShow,
     };
+    console.log(body);
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
       method: "POST",
       headers: {
@@ -134,19 +140,22 @@ const AddAccount = () => {
               </label>
               <div className={`split-detail ${split === 0 && "none"}`}>
                 <div style={{ margin: "2% 0%" }}>Paid by</div>{" "}
-                <Select
-                  className="selector"
-                  onChange={setUser}
-                  options={userOptions}
+                <PaidModal
+                  details={userOptions}
+                  paidBtnShow={paidBtnShow}
+                  setPaidBtnShow={setPaidBtnShow}
                 />
-                {console.log(user)}
                 <div style={{ margin: "2% 0%" }}>and split </div>
-                <Select
+                {/* <Select
                   className="selector"
                   options={payOptions}
                   onChange={setPay}
+                /> */}
+                <SplitModal
+                  details={splitOptions}
+                  splitBtnShow={splitBtnShow}
+                  setSplitBtnShow={setSplitBtnShow}
                 />
-                {console.log(pay)}
               </div>
             </div>
           </div>

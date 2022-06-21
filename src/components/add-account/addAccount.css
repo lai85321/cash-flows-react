@@ -117,11 +117,11 @@
    
 }
 .split-detail{
-    margin: 4% 0% 2% 18%;
-    font-size: 14px;
+    margin: 4% 12% 2% 18%;
+    font-size: 16px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .none{
     display: none;

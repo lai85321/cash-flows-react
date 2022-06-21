@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import AccountPage from "./layouts/accountPage";
 import AddAccountPage from "./layouts/addAccountPage";
 import BalancePage from "./layouts/balancePage";
+import Modal from "./components/modal/modal";
 function App() {
   return (
     <div style={{ backgroundColor: "#fef4de" }}>

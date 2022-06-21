@@ -8,7 +8,6 @@ const Account = () => {
   const userId = 1;
   const bookId = 1;
   const [data, setData] = useState([]);
-  console.log(data);
   const fetchAccountList = (userId, bookId) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}`

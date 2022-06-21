@@ -18,8 +18,16 @@
 .chart{
     width: 80%;
     height: 35%;
-    border: solid;
+    background-color: white;
     text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.lineChart{
+
+    width: 90% !important;
+    height: 90% !important;
 }
 .lists{
     display: flex;

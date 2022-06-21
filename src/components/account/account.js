@@ -1,13 +1,15 @@
 import "./account.css";
 import AmountList from "../account-list/account-list";
+import React from "react";
 import { useEffect, useState } from "react";
-
+import SingleDailyChart from "../chart/chart";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 const Account = () => {
   const userId = 1;
   const bookId = 1;
   const [data, setData] = useState([]);
+  const [chartData, setChartData] = useState([]);
   const fetchAccountList = (userId, bookId) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}`
@@ -22,10 +24,38 @@ const Account = () => {
   useEffect(() => {
     fetchAccountList(userId, bookId);
   }, []);
+
+  const fetchChartData = (bookId) => {
+    fetch(
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard?bookId=${bookId}`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        setChartData(response.data);
+      });
+  };
+  useEffect(() => {
+    fetchChartData(bookId);
+  }, []);
+
+  const dates = chartData.map((item, index) => item.date);
+
+  const totals = chartData.map((item, index) => item.total);
+
   return (
     <div className="account">
       <div className="left">
-        <div className="chart">Chart</div>
+        <div className="chart">
+          <div style={{ width: "80%", height: "80%" }}>
+            <SingleDailyChart
+              className="lineChart"
+              dates={dates}
+              totals={totals}
+            />
+          </div>
+        </div>
         <div className="lists">
           {data.map((item, index) => (
             <AmountList

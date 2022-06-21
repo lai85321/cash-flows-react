@@ -24,8 +24,6 @@ const AddAccount = () => {
   const [type, setType] = useState("Expense");
   const [note, setNote] = useState("");
   const [split, setSplit] = useState(0);
-  // const [user, setUser] = useState(null);
-  // const [pay, setPay] = useState(null);
   const [paidBtnShow, setPaidBtnShow] = useState("Person");
   const [splitBtnShow, setSplitBtnShow] = useState("Split");
   const submitAccount = () => {
@@ -42,8 +40,6 @@ const AddAccount = () => {
       date: startDate,
       split: split,
       paidId: split && +userOptions[paidIdx].id,
-      // paymethod: pay.value,
-      // paidId: 1,
       paymethod: splitBtnShow,
     };
     console.log(body);

@@ -12,7 +12,9 @@ function Nav() {
           <Link to="/balance">
             <div className="nav-list">Balance</div>
           </Link>
-          <div className="nav-list">Dashboard</div>
+          <Link to="/dashboard">
+            <div className="nav-list">Dashboard</div>
+          </Link>
         </div>
       </div>
       <Link to="/addAccount">

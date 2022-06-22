@@ -53,3 +53,24 @@
     border: solid;
     text-align: center;
   }
+  .split-options{
+    display: flex;
+    flex-direction: row;
+  }
+  .split-option{
+    width: 20%;
+    padding: 1% 1%;
+    margin: 1% 10% 3% 10% ;
+    background-color:gainsboro ;
+    text-align: center;
+    opacity:0.5
+  }
+  .paid-unequal-none{
+    display: none;
+  }
+  .paid-unequal-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+  }

@@ -17,7 +17,11 @@ const AddAccount = () => {
     { id: "2", label: "Bella" },
     { id: "3", label: "Cindy" },
   ];
-  const splitOptions = [{ value: "equally", label: "equally" }];
+  const paidAmount = [0, 0, 0];
+  const splitOptions = [
+    { value: "equally", label: "equally" },
+    { value: "unequally", label: "unequally" },
+  ];
   const [startDate, setStartDate] = useState(new Date());
   const [amount, setAmount] = useState("");
   const [tag, setTag] = useState("food");
@@ -26,6 +30,7 @@ const AddAccount = () => {
   const [split, setSplit] = useState(0);
   const [paidBtnShow, setPaidBtnShow] = useState("Person");
   const [splitBtnShow, setSplitBtnShow] = useState("Split");
+  const [paid, setPaid] = useState(paidAmount);
   const submitAccount = () => {
     const typeId = typeBtns.findIndex((item) => item === type);
     const tagId = tags.findIndex((item) => item === tag);
@@ -40,7 +45,7 @@ const AddAccount = () => {
       date: startDate,
       split: split,
       paidId: split && +userOptions[paidIdx].id,
-      paymethod: splitBtnShow,
+      splits: paid,
     };
     console.log(body);
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
@@ -142,14 +147,13 @@ const AddAccount = () => {
                   setPaidBtnShow={setPaidBtnShow}
                 />
                 <div style={{ margin: "2% 0%" }}>and split </div>
-                {/* <Select
-                  className="selector"
-                  options={payOptions}
-                  onChange={setPay}
-                /> */}
                 <SplitModal
+                  amount={amount}
+                  users={userOptions}
                   details={splitOptions}
                   splitBtnShow={splitBtnShow}
+                  paid={paid}
+                  setPaid={setPaid}
                   setSplitBtnShow={setSplitBtnShow}
                 />
               </div>

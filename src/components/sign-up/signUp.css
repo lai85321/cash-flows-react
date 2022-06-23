@@ -60,9 +60,14 @@
     top: 100px;
 }
   
-input{
+.signup-input{
     padding: 5px;
     border: none; 
     border:solid 1px #ccc;
     border-radius: 5px;
+}
+
+.signup-error-msg{
+    font-size: 13px;
+    color:#B02B15
 }

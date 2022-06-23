@@ -58,7 +58,7 @@ const AddAccount = () => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        navigate("/", { replace: true });
+        navigate("/account", { replace: true });
       });
   };
   const checkBtns = [

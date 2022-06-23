@@ -7,6 +7,7 @@ const SignIn = () => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("andy@test.com");
   const [password, setPassword] = useState("test");
+  const [errorMsg, setErrorMsg] = useState("");
   const submitSignIn = () => {
     const body = {
       provider: "native",
@@ -24,6 +25,8 @@ const SignIn = () => {
       .then((json) => {
         if (!json.error) {
           navigate("/account", { replace: true });
+        } else {
+          setErrorMsg("Please try again");
         }
       });
   };
@@ -34,6 +37,7 @@ const SignIn = () => {
           <h3 className="signin-title">Login</h3>
           <div className="signin">
             <input
+              className="signin-input"
               type="text"
               id="username"
               value={email}
@@ -45,6 +49,7 @@ const SignIn = () => {
             />
             <div className="tab"></div>
             <input
+              className="signin-input"
               type="password"
               id="password"
               value={password}
@@ -55,6 +60,7 @@ const SignIn = () => {
               required
             />
             <div className="tab"></div>
+            <div className="signin-error-msg">{errorMsg}</div>
             <button
               value="login"
               className="signin-submit"

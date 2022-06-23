@@ -4,11 +4,13 @@
     justify-content: space-between;
     flex-direction: row;
     width: 82vw;
-    height: 10vh;
+    height: 8vh;
     position: fixed;
     top: 0px;
     right: 0px;
     background-color:white;
+    border-bottom:solid 1px;
+    border-color: gainsboro;
 }
 .nav{
     display: flex;
@@ -18,8 +20,8 @@
     margin-left:30px;
 }
 .book-icon{
-    width: 4vw;
-    height: 4vw;
+    width: 3vw;
+    height: 3vw;
     margin-right: 120px;
     background-image: url(../../images/book.png);
     background-size: contain;
@@ -32,12 +34,16 @@
     justify-content: space-evenly;
 }
 .nav-list{
-    font-size: 20px;
+    font-size: 18px;
+    letter-spacing: 1px;
     margin-right: 35px;
 }
 .btn{
     background-color: #ffe497;
     margin-right:30px;
-    padding: 15px;
+    padding: 12px 15px;
     border-radius: 8px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
 }

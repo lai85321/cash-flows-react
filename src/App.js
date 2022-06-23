@@ -10,7 +10,7 @@ import SignUpPage from "./layouts/signUpPage";
 import SignInPage from "./layouts/signInPage";
 function App() {
   return (
-    <div style={{ backgroundColor: "#fef4de" }}>
+    <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signUp" element={<SignUpPage />} />

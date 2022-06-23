@@ -6,7 +6,7 @@ function Nav() {
       <div className="nav">
         <div className="book-icon"></div>
         <div className="nav-lists">
-          <Link to="/">
+          <Link to="/account">
             <div className="nav-list">Account</div>
           </Link>
           <Link to="/balance">

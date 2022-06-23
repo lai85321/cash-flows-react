@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 const SignUp = () => {
   let navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const submitSignUp = () => {
     const body = {
       provider: "native",
-      name: name,
+      name: username,
       email: email,
       password: password,
     };
@@ -37,17 +37,17 @@ const SignUp = () => {
             <input
               type="text"
               id="fullname"
-              value={name}
+              value={username}
               placeholder="Your name"
               required
               onChange={(e) => {
-                setName(e.target.value);
+                setUsername(e.target.value);
               }}
             />
             <div className="tab"></div>
             <input
               type="text"
-              id="username2"
+              id="username"
               value={email}
               placeholder="Email"
               onChange={(e) => {
@@ -58,7 +58,7 @@ const SignUp = () => {
             <div className="tab"></div>
             <input
               type="password"
-              id="password2"
+              id="password"
               value={password}
               placeholder="Password"
               onChange={(e) => {

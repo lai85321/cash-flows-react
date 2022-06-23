@@ -5,7 +5,7 @@
     color: #333333;
 }
 
-.signup-title{
+.signin-title{
     text-align: center;
     width: 200px;
     height: 20px;
@@ -13,25 +13,25 @@
     color: #df5334;
 }
   
-.switch-to-signin{
+.switch-to-signup{
     margin: 20px;
     color: #a3a2a3;
     text-align: center;
 }
   
-.switch-to-signin:hover{
+.switch-to-signup:hover{
     color: black;
     cursor: pointer;
 }
   
-.signup{
+.signin{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.signup-submit{
+.signin-submit{
     color: white;  
     background: #df5334;
     width: 200px;
@@ -42,11 +42,11 @@
     border: 0px;
 }
   
-.signup-submit:hover{
+.signin-submit:hover{
     background: #db6937;
 }
   
-#signup-container{
+#signin-container{
     height: 320px;
     padding: 10px 40px 25px 40px;
     width: 230px;

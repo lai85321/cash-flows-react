@@ -1,21 +1,19 @@
-import "./signUp.css";
+import "./signIn.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
-const SignUp = () => {
+const SignIn = () => {
   let navigate = useNavigate();
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const submitSignUp = () => {
+  const submitSignIn = () => {
     const body = {
       provider: "native",
-      name: username,
       email: email,
       password: password,
     };
-    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/user/signup`, {
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/user/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,54 +27,43 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="signup-page">
-      <div id="signup-container">
-        <div className="signup">
-          <h3 className="signup-title">Sign Up</h3>
-          <div className="signup">
-            <input
-              type="text"
-              id="fullname"
-              value={username}
-              placeholder="Your name"
-              required
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
-            <div className="tab"></div>
+    <div class="signin_page">
+      <div id="signin-container">
+        <div class="signin">
+          <h3 className="signin-title">Login</h3>
+          <div class="signin">
             <input
               type="text"
               id="username"
               value={email}
-              placeholder="Email"
+              placeholder="email"
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
               required
             />
-            <div className="tab"></div>
+            <div class="tab"></div>
             <input
-              type="password"
+              type="text"
               id="password"
               value={password}
-              placeholder="Password"
+              placeholder="password"
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
               required
             />
-            <div className="tab"></div>
+            <div class="tab"></div>
             <button
-              value="signUp"
-              className="signup-submit"
-              onClick={() => submitSignUp()}
+              value="login"
+              class="signin-submit"
+              onClick={() => submitSignIn()}
             >
-              Sign up
+              Sign in
             </button>
           </div>
-          <Link to="/signIn">
-            <h5 className="switch-to-signin"> Sign in</h5>
+          <Link to="/signUp">
+            <h5 className="switch-to-signup">Sign Up</h5>
           </Link>
         </div>
       </div>
@@ -84,4 +71,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

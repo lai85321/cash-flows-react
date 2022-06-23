@@ -9,7 +9,7 @@ function App() {
   return (
     <div style={{ backgroundColor: "#fef4de" }}>
       <Routes>
-        <Route path="/" element={<AccountPage />} />
+        <Route path="/account" element={<AccountPage />} />
         <Route path="/addAccount" element={<AddAccountPage />} />
         <Route path="/balance" element={<BalancePage />} />
         <Route path="/dashboard" element={<DashBoardPage />} />

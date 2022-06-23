@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
+import HomePage from "./layouts/homePage";
 import AccountPage from "./layouts/accountPage";
 import AddAccountPage from "./layouts/addAccountPage";
 import BalancePage from "./layouts/balancePage";
@@ -11,6 +12,7 @@ function App() {
   return (
     <div style={{ backgroundColor: "#fef4de" }}>
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/signIn" element={<SignInPage />} />
         <Route path="/account" element={<AccountPage />} />

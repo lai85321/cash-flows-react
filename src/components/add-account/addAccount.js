@@ -171,7 +171,7 @@ const AddAccount = () => {
               {checkBtns.map((item, index) => (
                 <div key={index} className={item.class} onClick={item.onClick}>
                   {item.text === "Cancel" ? (
-                    <Link to="/">{item.text}</Link>
+                    <Link to="/account">{item.text}</Link>
                   ) : (
                     item.text
                   )}

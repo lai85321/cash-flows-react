@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 const SignIn = () => {
   let navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("andy@test.com");
+  const [password, setPassword] = useState("test");
   const submitSignIn = () => {
     const body = {
       provider: "native",
@@ -22,16 +22,17 @@ const SignIn = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
-        navigate("/account", { replace: true });
+        if (!json.error) {
+          navigate("/account", { replace: true });
+        }
       });
   };
   return (
-    <div class="signin_page">
+    <div className="signin_page">
       <div id="signin-container">
-        <div class="signin">
+        <div className="signin">
           <h3 className="signin-title">Login</h3>
-          <div class="signin">
+          <div className="signin">
             <input
               type="text"
               id="username"
@@ -42,9 +43,9 @@ const SignIn = () => {
               }}
               required
             />
-            <div class="tab"></div>
+            <div className="tab"></div>
             <input
-              type="text"
+              type="password"
               id="password"
               value={password}
               placeholder="password"
@@ -53,10 +54,10 @@ const SignIn = () => {
               }}
               required
             />
-            <div class="tab"></div>
+            <div className="tab"></div>
             <button
               value="login"
-              class="signin-submit"
+              className="signin-submit"
               onClick={() => submitSignIn()}
             >
               Sign in

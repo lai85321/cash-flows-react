@@ -31,47 +31,58 @@ const SignIn = () => {
       });
   };
   return (
-    <div className="signin_page">
-      <div id="signin-container">
-        <div className="signin">
-          <h3 className="signin-title">Login</h3>
-          <div className="signin">
-            <input
-              className="signin-input"
-              type="text"
-              id="username"
-              value={email}
-              placeholder="email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              required
-            />
-            <div className="tab"></div>
-            <input
-              className="signin-input"
-              type="password"
-              id="password"
-              value={password}
-              placeholder="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              required
-            />
-            <div className="tab"></div>
-            <div className="signin-error-msg">{errorMsg}</div>
-            <button
-              value="login"
-              className="signin-submit"
-              onClick={() => submitSignIn()}
-            >
-              Sign in
-            </button>
+    <div>
+      <div className="signin-nav-container">
+        <div className="signin-nav">
+          <div>
+            <Link to="/">
+              <div className="home-logo"></div>
+            </Link>
           </div>
-          <Link to="/signUp">
-            <h5 className="switch-to-signup">Sign Up</h5>
-          </Link>
+        </div>
+      </div>
+      <div className="signin_page">
+        <div id="signin-container">
+          <div className="signin">
+            <h3 className="signin-title">Login</h3>
+            <div className="signin">
+              <input
+                className="signin-input"
+                type="text"
+                id="username"
+                value={email}
+                placeholder="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                required
+              />
+              <div className="tab"></div>
+              <input
+                className="signin-input"
+                type="password"
+                id="password"
+                value={password}
+                placeholder="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                required
+              />
+              <div className="tab"></div>
+              <div className="signin-error-msg">{errorMsg}</div>
+              <button
+                value="login"
+                className="signin-submit"
+                onClick={() => submitSignIn()}
+              >
+                Sign in
+              </button>
+            </div>
+            <Link to="/signUp">
+              <h5 className="switch-to-signup">Sign Up</h5>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

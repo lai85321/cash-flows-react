@@ -1,9 +1,6 @@
 import "./menu.css";
-// import home from '../../images/home.png';
-// import account from '../../images/account.png'
-// import dashboard from '../../images/dashboard.png';
-// import settings from '../../images/settings.png'
 import user from "../../images/user.png";
+import { useState } from "react";
 const sidebarMenu = [
   {
     id: "Home",
@@ -26,14 +23,18 @@ const Menu = () => {
   // useEffect call api 取得 img url
   // useState 幫 img 建立 state
   // setState 設定 img
+
+  const [name, setName] = useState("name");
+  const [pic, setPic] = useState(user);
+
   return (
     <div className="menu">
       <div className="user">
         <div
           className="user-image"
-          style={{ backgroundImage: `url(${user})` }}
+          style={{ backgroundImage: `url(${pic})` }}
         ></div>
-        <div className="user-name">name</div>
+        <div className="user-name">{name}</div>
       </div>
       <div className="menu-lists">
         {sidebarMenu.map((item, index) => {

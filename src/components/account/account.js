@@ -1,9 +1,7 @@
 import "./account.css";
 import AmountList from "../account-list/account-list";
 import React from "react";
-import { useEffect, useState } from "react";
 import SingleDailyChart from "../chart/chart";
-const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 const Account = (props) => {
   const { data, daily, dates, totals } = props;

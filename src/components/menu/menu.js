@@ -1,6 +1,5 @@
 import "./menu.css";
 import user from "../../images/user.png";
-import { useState } from "react";
 const sidebarMenu = [
   {
     id: "Home",
@@ -20,19 +19,17 @@ const sidebarMenu = [
   },
 ];
 const Menu = () => {
-  // useEffect call api 取得 img url
-  // useState 幫 img 建立 state
-  // setState 設定 img
-
-  const [name, setName] = useState("name");
-  const [pic, setPic] = useState(user);
+  const name = localStorage.getItem("username") || "name";
+  console.log(localStorage.getItem("picture"));
+  const picture = JSON.parse(localStorage.getItem("picture")) || user;
+  console.log(picture);
 
   return (
     <div className="menu">
       <div className="user">
         <div
           className="user-image"
-          style={{ backgroundImage: `url(${pic})` }}
+          style={{ backgroundImage: `url(${picture})` }}
         ></div>
         <div className="user-name">{name}</div>
       </div>

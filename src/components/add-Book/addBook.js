@@ -58,8 +58,9 @@ const AddBook = () => {
         <div className="add-book-body">
           <div className="add-book-left">
             <div className="add-book-input">
-              <label className="add-book-label">Amount</label>
+              <label className="add-book-label">Name</label>
               <input
+              placeholder="Enter a book name"
                 className="add-name-input"
                 value={name}
                 onChange={(e) => {
@@ -79,7 +80,9 @@ const AddBook = () => {
               <select className="add-currency-input">
                 <option>請選擇幣別</option>
                 {currency.map((item, idx) => (
-                  <option key={idx}>{item.currency}</option>
+                  <option key={idx}  onChange={(e) => {
+                    setcurrencyId(e.target.value);
+                  }}>{item.currency}</option>
                 ))}
               </select>
             </div>

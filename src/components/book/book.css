@@ -1,0 +1,74 @@
+.book-nav-container{
+    margin-left: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 82vw;
+    height: 8vh;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color:white;
+    border-bottom:solid 1px;
+    border-color: gainsboro;
+}
+.book-nav{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+.add-book-btn{
+    background-color: #ffe497;
+    margin-right:30px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.book-page-logo{
+    width: 3vw;
+    height: 3vw;
+    margin-left: 120px;
+    background-image: url(../../images/cash-flow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.book-container{
+    margin-top: 8vh;
+    margin-left: 20vw;
+    margin-right: 2vw;
+    display: flex;
+    justify-content: center;
+}
+.book-lists{
+    margin-top: 100px;
+    display: flex;
+    width: 90%;
+    flex-wrap:wrap ;
+    justify-content:  flex-start;;
+    border:solid;
+    align-items: center;
+}
+.book-list{
+    width: 300px;
+    height: 200px;
+    margin: 10px 20px;
+    border: solid;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.book-picture{
+    margin:10px 0px;
+    width: 80%;
+    height: 70%;
+    background-color: aquamarine;
+}

@@ -1,7 +1,9 @@
 import "./book.css";
+import book from "../../images/book.png";
 import { Link } from "react-router-dom";
-function Book() {
-    const arr=[1,2,3]
+function Book(props) {
+    const {books}=props 
+    
   return (
     <div >
      <div className="book-nav-container">
@@ -14,10 +16,12 @@ function Book() {
       </div>
       <div className="book-container">
       <div className="book-lists">
-        {arr.map((item,idx)=>{
+        {books.map((item,idx)=>{
+            const image = book.image || book;
             return(<div key={idx} className="book-list">
-                <div className="book-picture"></div>
-                <div className="book-name">book 1</div>
+                <div className="book-picture" style={{ backgroundImage: `url(${image})` }}></div>
+                <div className="book-name">{item.name}</div>
+                
             </div>)})}
       </div>
       </div>

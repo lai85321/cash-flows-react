@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./modal.css";
 
+const REACT_APP_HOST = process.env.REACT_APP_HOST;
+const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
+
 const PaidModal = (props) => {
   const { details, paidBtnShow, setPaidBtnShow } = props;
   const modalStyle = ["modal-none", "modal-block"];
@@ -159,4 +162,71 @@ const SplitModal = (props) => {
     </>
   );
 };
-export { PaidModal, SplitModal };
+const AddMemberModal = (props) => {
+  const {setMemberData} = props
+  const bookId =1 
+  const modalStyle = ["modal-none", "modal-block"];
+  const [modalStyleIdx, setModalStyleIdx] = useState(0);
+  const [email, setEmail] = useState("");
+  const addMember = (bookId, email)=>{
+    const body = {
+      bookId: bookId,
+      email: email
+    }
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/members`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        setMemberData(json.data);
+        setModalStyleIdx(0);
+        setEmail("")
+      });
+  }
+  return (
+    <>
+      <div
+        className="modal-add-member"
+        onClick={() => {
+          setModalStyleIdx(modalStyleIdx ^ 1);
+        }}
+      >
+      </div>
+      <div className={`modal ${modalStyle[modalStyleIdx]}`}>
+        <div className="modal-content">
+          <span
+            className="close"
+            onClick={() => {
+              setModalStyleIdx(0);
+            }}
+          >
+            &times;
+          </span>
+          <div className="modal-window">
+            <div>
+              <p>Add Member</p>
+              <div className="modal-add-member-container">
+              <input
+                className="modal-add-member-input"
+                placeholder="Enter an Email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <button className="modal-add-member-btn" onClick={()=>{addMember(bookId, email)}}>add</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+export { PaidModal, SplitModal, AddMemberModal };

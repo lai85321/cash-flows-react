@@ -3,7 +3,6 @@ import book from "../../images/book.png";
 import { Link } from "react-router-dom";
 function Book(props) {
     const {books}=props 
-    
   return (
     <div >
      <div className="book-nav-container">

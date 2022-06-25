@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 function BookPage() {
-  const userId = 1;
+  const userId = localStorage.getItem("id");
   const [books, setBooks] = useState([]);
   const fetchBookList = (userId) => {
     fetch(

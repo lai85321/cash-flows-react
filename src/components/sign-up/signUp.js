@@ -27,6 +27,7 @@ const SignUp = () => {
       .then((json) => {
         console.log(json);
         if (!json.error) {
+          localStorage.setItem("id", json.data.user.id);
           localStorage.setItem("username", json.data.user.name);
           localStorage.setItem("picture", json.data.user.picture);
           localStorage.setItem("access_token", json.data.access_token);

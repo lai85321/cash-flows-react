@@ -97,6 +97,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
+    max-height: 40%;
 }
 .account-member-header{
     height: 20%;
@@ -137,4 +139,21 @@
 .account-member-name{
    margin-left: 30px;
    font-size: 18px;
+}
+.account-member-footer{
+    height: 30px;
+    width: 100%;
+    margin-top: 30px;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.account-add-member{
+    height: 30px;
+    width: 30px;
+    background-image: url(../../images/add.png);;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
 }

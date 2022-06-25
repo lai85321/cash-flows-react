@@ -3,9 +3,10 @@ import AmountList from "../account-list/account-list";
 import React from "react";
 import SingleDailyChart from "../chart/chart";
 import user from "../../images/user.png";
-
+import { AddMemberModal } from "../modal/modal";
 const Account = (props) => {
-  const { data, daily, dates, totals, memberData } = props;
+  const { data, daily, dates, totals, memberData, setMemberData } = props;
+  
   return (
     <div className="account">
       <div className="left">
@@ -58,6 +59,10 @@ const Account = (props) => {
                 <div className="account-member-picture" style={{ backgroundImage: `url(${picture})` }}></div>
                 <div className="account-member-name">{item.name}</div>
             </div>)})}
+            <div className="account-member-footer">
+              {/* <div className="account-add-member"></div> */}
+              <AddMemberModal setMemberData={setMemberData}/>
+            </div>
           </div>
           </div>
       </div>

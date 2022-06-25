@@ -17,6 +17,7 @@ function AccountPage() {
   const [daily, setDaily] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [memberData, setMemberData] = useState([]);
+  
   const fetchAccountList = (userId, bookId, startTime) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}&startTime=${startTime}`
@@ -71,7 +72,7 @@ function AccountPage() {
     <div>
       <Menu />
       <Nav />
-      <Account daily={daily} data={data} dates={dates} totals={totals} memberData={memberData}/>
+      <Account daily={daily} data={data} dates={dates} totals={totals} memberData={memberData} setMemberData={setMemberData}/>
     </div>
   );
 }

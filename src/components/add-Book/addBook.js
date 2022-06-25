@@ -20,8 +20,7 @@ const AddBook = () => {
       currencyId: currencyId + 1,
       name: name,
     };
-    console.log(body);
-    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/books`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,8 +49,12 @@ const AddBook = () => {
     <div className="add-book-container">
       <div className="add-book-page">
         <div className="add-book-header">
+          <div style={{display:"flex", flexDirection:"row"}}>
           <div className="add-book-header-icon"></div>
           <div className="add-book-header-text">Add New Account</div>
+          </div>
+          <label for="picture" className="add-book-upload-icon"></label>
+          <input type="file" id="picture" style={{display:"none", visibility:"none"}}></input>
         </div>
         <hr></hr>
         <div className="add-account-type"></div>
@@ -70,13 +73,6 @@ const AddBook = () => {
             </div>
             <div className="add-book-input">
               <label className="add-book-currency-label">Currency</label>
-              {/* <textarea
-                className="add-note-input"
-                value={currencyId}
-                onChange={(e) => {
-                  setcurrencyId(e.target.value);
-                }}
-              ></textarea> */}
               <select className="add-currency-input">
                 <option>請選擇幣別</option>
                 {currency.map((item, idx) => (

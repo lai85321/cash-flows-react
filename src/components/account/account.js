@@ -2,9 +2,10 @@ import "./account.css";
 import AmountList from "../account-list/account-list";
 import React from "react";
 import SingleDailyChart from "../chart/chart";
+import user from "../../images/user.png";
 
 const Account = (props) => {
-  const { data, daily, dates, totals } = props;
+  const { data, daily, dates, totals, memberData } = props;
   return (
     <div className="account">
       <div className="left">
@@ -47,7 +48,18 @@ const Account = (props) => {
             </div>
           </div>
         </div>
-        <div className="member">Member</div>
+        <div className="account-member">
+          <div className="account-member-header">Member</div>
+          <div className="account-member-lists">
+            {memberData.map((item, idx)=>{  
+              const picture = item.picture || user;
+              console.log(item.picture)
+              return(<div key={idx} className="account-member-list">
+                <div className="account-member-picture" style={{ backgroundImage: `url(${picture})` }}></div>
+                <div className="account-member-name">{item.name}</div>
+            </div>)})}
+          </div>
+          </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import Nav from "../components/nav/nav";
 import Account from "../components/account/account";
 import { useEffect, useState } from "react";
 
+
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 function AccountPage() {
@@ -13,8 +14,9 @@ function AccountPage() {
   const month = (today.getMonth() + 1).toString();
   const startTime = year.concat("-", month);
   const [data, setData] = useState([]);
-  const [daily, setDailyData] = useState([]);
+  const [daily, setDaily] = useState([]);
   const [chartData, setChartData] = useState([]);
+  const [memberData, setMemberData] = useState([]);
   const fetchAccountList = (userId, bookId, startTime) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}&startTime=${startTime}`
@@ -23,12 +25,8 @@ function AccountPage() {
         return response.json();
       })
       .then((response) => {
-        //setData(response.data);
         setData(response.data);
-        setDailyData(response.data.daily);
-        // setData((data) => ({
-        //   ...response.data,
-        // }));
+        setDaily(response.data.daily);
       });
   };
   useEffect(() => {
@@ -50,6 +48,21 @@ function AccountPage() {
     fetchChartData(bookId);
   }, []);
 
+  const fetchMemberData = (bookId) => {
+    fetch(
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/members?bookId=${bookId}`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        setMemberData(response.data);
+      });
+  };
+  useEffect(() => {
+    fetchMemberData(bookId);
+  }, []);
+
   const dates = chartData.map((item, index) => item.date);
 
   const totals = chartData.map((item, index) => item.total);
@@ -58,7 +71,7 @@ function AccountPage() {
     <div>
       <Menu />
       <Nav />
-      <Account daily={daily} data={data} dates={dates} totals={totals} />
+      <Account daily={daily} data={data} dates={dates} totals={totals} memberData={memberData}/>
     </div>
   );
 }

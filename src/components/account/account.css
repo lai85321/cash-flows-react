@@ -89,9 +89,52 @@
     margin-right: 2%;
     text-align: right;
 }
-.member{
+.account-member{
     height: 40%;
     width: 70%;
-    border: solid;
     margin-top: 10%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.account-member-header{
+    height: 20%;
+    padding: 2% 0%;
+    width: 100%;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 99, 133, 0.47);
+    border:rgba(255, 99, 133); ;
+    border-radius: 2px;
+}
+.account-member-lists{
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    width: 80%;
+    margin-top: 2%;
+}
+.account-member-list{
+    height: 40px;
+    margin: 5% 0% 5% 0% ;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.account-member-picture{
+    margin-top: 8%;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: solid;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.account-member-name{
+   margin-left: 30px;
+   font-size: 18px;
 }

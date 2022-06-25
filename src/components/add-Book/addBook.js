@@ -1,5 +1,5 @@
 import "./addBook.css";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -9,11 +9,22 @@ const AddBook = () => {
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
   const [name, setName] = useState("");
   const [currencyId, setcurrencyId] = useState("");
-  const currency = [
-    { id: 1, currency: "TWD" },
-    { id: 2, currency: "USD" },
-  ];
-
+  const [currencyData,setCurrencyData] =useState([]);
+   
+  const fetchCurrencyList = () => {
+    fetch(
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/currency`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        setCurrencyData(response.data);
+      });
+  };
+  useEffect(() => {
+    fetchCurrencyList();
+  });
   const submitBook = () => {
     const body = {
       userId: 1,
@@ -49,7 +60,7 @@ const AddBook = () => {
     <div className="add-book-container">
       <div className="add-book-page">
         <div className="add-book-header">
-          <div style={{display:"flex", flexDirection:"row"}}>
+          <div style={{display:"flex", flexDirection:"row",width:"50%"}}>
           <div className="add-book-header-icon"></div>
           <div className="add-book-header-text">Add New Account</div>
           </div>
@@ -75,7 +86,7 @@ const AddBook = () => {
               <label className="add-book-currency-label">Currency</label>
               <select className="add-currency-input">
                 <option>請選擇幣別</option>
-                {currency.map((item, idx) => (
+                {currencyData.map((item, idx) => (
                   <option key={idx}  onChange={(e) => {
                     setcurrencyId(e.target.value);
                   }}>{item.currency}</option>

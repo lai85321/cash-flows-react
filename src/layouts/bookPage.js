@@ -19,7 +19,7 @@ function BookPage() {
   };
   useEffect(() => {
     fetchBookList(userId);
-  }, []);
+  }, [userId]);
   return (
     <div>
       <Menu />

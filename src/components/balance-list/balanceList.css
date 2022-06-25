@@ -1,0 +1,35 @@
+.balance-list{
+    margin-top: 2%;
+    width: 80%;
+    background-color: white;
+}
+.balance-list-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 30px;
+}
+.balance-list-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 35px;
+    align-items: center;
+}
+.balance-list-detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 80%;
+}
+.balance-list-settle{
+    background-color: wheat;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 5px;
+}

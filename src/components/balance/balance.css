@@ -1,51 +1,128 @@
-.bal-container{
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    height: 90vh;
+.balance{
     margin-top: 10vh;
     margin-left: 20vw;
-}
-.bal{
-    width: 70%;
-    padding: 2% 0;
-    background-color: white;
-    display: flex;
-    margin: 2% 0 0 5%;
-}
-.bal-user{
-    margin-left:20px;
-    width: 20%;
     display: flex;
     flex-direction: row;
-    height: 8vmin;
-    justify-content: center;
+    justify-content: space-around;
+    width: 80vw;
+    height: 90vh;
+}
+.balance-left{
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    margin-top: 3%;
+    width: 70%;
+    height: 90%;
 }
-.bal-user-image{
-    height: 6vmin;
-    width:  6vmin;
-    border-radius: 50%;
-    border:solid;
-    background-size: 70%;
-    background-image: url(../../images/user.png);
-    background-repeat: no-repeat;
-    background-position: center;    
+
+.balance-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+    margin-right: 3%;
+    width: 25%;
+    height: 100%;
 }
-.bal-user-name{
-    margin-left:20px;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 1px;
+.balance-only-user{
+    height: 40%;
+    width: 85%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    max-height: 40%;
 }
-.bal-details{
-    margin-top: 5%;
-    width: 60%;
+.balance-only-user-header{
+    height: 12%;
+    padding: 2% 0%;
+    width: 100%;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
 }
-.bal-detail{
-    margin: 2% 5% 2% 8%;
-    height: 30px;
+.balance-only-user-contents{
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
     width: 80%;
-    font-size: 18px;
-    font-weight: 400;
+    margin-top: 2%;
+}
+.balance-only-user-content{
+    height: 20%;
+    margin: 2% 0%;
+    display: flex;
+    flex-direction: column;
+}
+.balance-only-user-detail{
+    margin-left: 2%;
+    font-weight: solid;
+    font-weight: 600;
+    font-size: 12px;
+}
+.balance-only-user-btn{
+    display: flex;
+    justify-content: flex-end;
+    margin: 3%;
+}
+.balance-only-user-settle{
+    margin-right: 2%;
+    font-size: 7px;
+    height: 20px;
+    width: 60px;
+    background-color: wheat;
+    border: none;
+    border-radius: 10px;
+    padding: 1px 1px;
+}
+
+.balance-users{
+    margin-top: 10%;
+    height: 40%;
+    width: 85%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    max-height: 40%;
+}
+.balance-users-header{
+    height: 12%;
+    padding: 2% 0%;
+    width: 100%;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+}
+.balance-users-contents{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 2%;
+}
+
+.balance-users-content{
+    margin: 2% 0%  ;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.balance-users-name{
+    font-size: 14px;
+    margin-left: 2% 0% 2% 2%;
+
+    font-weight: bold;
+
+}
+.balance-users-detail{
+    margin:1% 0% 1% 2%;
+    font-weight: 600;
+    font-size: 12px;
 }

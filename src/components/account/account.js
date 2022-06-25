@@ -18,8 +18,6 @@ const Account = (props) => {
           </div>
         </div>
         <div className="lists">
-          {console.log(typeof data)}
-          {console.log(data)}
           {daily.map((item, index) => (
             <AmountList
               key={index}

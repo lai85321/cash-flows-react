@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
   let navigate = useNavigate();
+  const userId = localStorage.getItem("id");
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
   const [name, setName] = useState("");
@@ -27,7 +28,7 @@ const AddBook = () => {
   });
   const submitBook = () => {
     const body = {
-      userId: 1,
+      userId: userId,
       currencyId: currencyId + 1,
       name: name,
     };
@@ -41,7 +42,7 @@ const AddBook = () => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        navigate("/", { replace: true });
+        navigate("/account", { replace: true });
       });
   };
   const checkBtns = [
@@ -88,7 +89,7 @@ const AddBook = () => {
                 <option>請選擇幣別</option>
                 {currencyData.map((item, idx) => (
                   <option key={idx}  onChange={(e) => {
-                    setcurrencyId(e.target.value);
+                    setcurrencyId(idx);
                   }}>{item.currency}</option>
                 ))}
               </select>

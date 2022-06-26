@@ -2,10 +2,6 @@ import "./menu.css";
 import user from "../../images/user.png";
 const sidebarMenu = [
   {
-    id: "Home",
-    icon: `home-icon`,
-  },
-  {
     id: "Account",
     icon: `account-icon`,
   },

@@ -4,7 +4,7 @@ const BalanceList = (props) => {
   return (
     <div className="balance-list">
       <div className="balance-list-header">
-        <div className="balance-list-date">{date}</div>
+        <div className="balance-list-date">{date.slice(4,15)}</div>
       </div>
       <hr></hr>
       {details.map((item, idx) => {

@@ -1,11 +1,13 @@
 import Menu from "../components/menu/menu";
 import Nav from "../components/nav/nav";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Balance from "../components/balance/balance";
+
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 function BalancePage() {
-  const bookId = 1;
-  const userId = 1;
+  let {bookId} = useParams()
+  const userId = localStorage.getItem("id")
   const [balanceList, setBalanceList] = useState([]);
   const [groupBalance, setGroupBalance] = useState([]);
   const [userBalance, setUserBalance] = useState([]);
@@ -21,9 +23,7 @@ function BalancePage() {
         setBalanceList(response.data);
       });
   };
-  useEffect(() => {
-    fetchBalanceList(bookId, userId);
-  }, []);
+
   const fetchGroupBalanceList = (bookId, userId) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance/group?&bookId=${bookId}&userId=${userId}`
@@ -40,8 +40,9 @@ function BalancePage() {
       });
   };
   useEffect(() => {
+    fetchBalanceList(bookId, userId);
     fetchGroupBalanceList(bookId, userId);
-  }, []);
+  }, [bookId, userId]);
   return (
     <div>
       <Menu />

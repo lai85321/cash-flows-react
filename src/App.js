@@ -19,10 +19,10 @@ function App() {
         <Route path="/signIn" element={<SignInPage />} />
         <Route path="/book" element={<BookPage/>}/>
         <Route path="/addBook" element={<AddBookPage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/addAccount" element={<AddAccountPage />} />
-        <Route path="/balance" element={<BalancePage />} />
-        <Route path="/dashboard" element={<DashBoardPage />} />
+        <Route path="/account/:bookId" element={<AccountPage />} />
+        <Route path="/addAccount/:bookId" element={<AddAccountPage />} />
+        <Route path="/balance/:bookId" element={<BalancePage />} />
+        <Route path="/dashboard/:bookId" element={<DashBoardPage />} />
       </Routes>
     </div>
   );

@@ -1,17 +1,21 @@
 import "./menu.css";
 import user from "../../images/user.png";
+import { Link } from "react-router-dom";
 const sidebarMenu = [
   {
     id: "Account",
     icon: `account-icon`,
+    link: `/book`
   },
   {
     id: "Dashboard",
     icon: `dashboard-icon`,
+    link: `/book`
   },
   {
     id: "Settings",
     icon: `settings-icon`,
+    link: `/book`
   },
 ];
 const Menu = () => {
@@ -32,10 +36,12 @@ const Menu = () => {
       <div className="menu-lists">
         {sidebarMenu.map((item, index) => {
           return (
-            <div key={index} className="menu-list">
-              <div className={`menu-image ${item.icon}`}></div>
-              {item.id}
-            </div>
+            <Link to = {item.link}>
+              <div key={index} className="menu-list">
+                <div className={`menu-image ${item.icon}`}></div>
+                {item.id}
+              </div>
+            </Link>
           );
         })}
       </div>

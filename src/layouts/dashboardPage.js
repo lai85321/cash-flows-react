@@ -2,11 +2,11 @@ import Menu from "../components/menu/menu";
 import Nav from "../components/nav/nav";
 import Dashboard from "../components/dashboard/dashboard";
 import { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 function DashboardPage() {
-  const bookId = 1
+  let {bookId} = useParams()
   const today = new Date();
   const year = today.getFullYear().toString();
   const month = (today.getMonth() + 1).toString();
@@ -25,7 +25,7 @@ function DashboardPage() {
   };
   useEffect(() => {
     fetchPieChart(bookId, startTime);
-  }, [startTime]);
+  }, [bookId, startTime]);
   return (
     <div>
       <Menu />

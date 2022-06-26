@@ -2,12 +2,13 @@ import Menu from "../components/menu/menu";
 import Nav from "../components/nav/nav";
 import Account from "../components/account/account";
 import { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 function AccountPage() {
-  const userId = 1;
-  const bookId = 1;
+  let {bookId} = useParams()
+  console.log(bookId)
+  const userId = localStorage.getItem("id")
   const today = new Date();
   const year = today.getFullYear().toString();
   const month = (today.getMonth() + 1).toString();
@@ -31,7 +32,7 @@ function AccountPage() {
   };
   useEffect(() => {
     fetchAccountList(userId, bookId, startTime);
-  }, [startTime]);
+  }, [userId, bookId, startTime]);
 
   const fetchChartData = (bookId) => {
     fetch(
@@ -46,7 +47,8 @@ function AccountPage() {
   };
   useEffect(() => {
     fetchChartData(bookId);
-  }, []);
+    fetchMemberData(bookId);
+  }, [bookId]);
 
   const fetchMemberData = (bookId) => {
     fetch(
@@ -59,9 +61,6 @@ function AccountPage() {
         setMemberData(response.data);
       });
   };
-  useEffect(() => {
-    fetchMemberData(bookId);
-  }, []);
 
   const dates = chartData.map((item, index) => item.date);
 

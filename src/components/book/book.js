@@ -15,13 +15,17 @@ function Book(props) {
       </div>
       <div className="book-container">
       <div className="book-lists">
+      
         {books.map((item,idx)=>{
             const image = book.image || book;
-            return(<div key={idx} className="book-list">
-                <div className="book-picture" style={{ backgroundImage: `url(${image})` }}></div>
-                <div className="book-name">{item.name}</div>
-                
-            </div>)})}
+            return(
+              <Link to={`/account/${item.id}`}>
+                <div key={idx} className="book-list">
+                  <div className="book-picture" style={{ backgroundImage: `url(${image})` }}></div>
+                  <div className="book-name">{item.name}</div>
+                </div>
+              </Link>)})}
+      
       </div>
       </div>
      

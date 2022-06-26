@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import "./modal.css";
 
 const REACT_APP_HOST = process.env.REACT_APP_HOST;
@@ -164,7 +165,7 @@ const SplitModal = (props) => {
 };
 const AddMemberModal = (props) => {
   const {setMemberData} = props
-  const bookId =1 
+  let {bookId} = useParams()
   const modalStyle = ["modal-none", "modal-block"];
   const [modalStyleIdx, setModalStyleIdx] = useState(0);
   const [email, setEmail] = useState("");

@@ -3,13 +3,15 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 // import Select from "react-select";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { PaidModal, SplitModal } from "../modal/modal";
 const AddAccount = () => {
   let navigate = useNavigate();
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
+  let {bookId} = useParams()
+  const userId = localStorage.getItem("id")
   const typeBtns = ["Income", "Expense"];
   const tags = ["food", "cloth", "health"];
   const userOptions = [
@@ -36,8 +38,8 @@ const AddAccount = () => {
     const tagId = tags.findIndex((item) => item === tag);
     const paidIdx = userOptions.findIndex((item) => item.label === paidBtnShow);
     const body = {
-      bookId: 1,
-      userId: 1,
+      bookId: bookId,
+      userId: userId,
       typeId: typeId + 1,
       amount: amount,
       note: note,
@@ -58,7 +60,7 @@ const AddAccount = () => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        navigate("/account", { replace: true });
+        navigate(`/account/${bookId}`, { replace: true });
       });
   };
   const checkBtns = [
@@ -171,7 +173,7 @@ const AddAccount = () => {
               {checkBtns.map((item, index) => (
                 <div key={index} className={item.class} onClick={item.onClick}>
                   {item.text === "Cancel" ? (
-                    <Link to="/account">{item.text}</Link>
+                    <Link to={`/account/${bookId}`}>{item.text}</Link>
                   ) : (
                     item.text
                   )}

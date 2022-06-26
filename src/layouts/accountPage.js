@@ -3,7 +3,6 @@ import Nav from "../components/nav/nav";
 import Account from "../components/account/account";
 import { useEffect, useState } from "react";
 
-
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 function AccountPage() {
@@ -36,7 +35,7 @@ function AccountPage() {
 
   const fetchChartData = (bookId) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard?bookId=${bookId}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleDaily?bookId=${bookId}`
     )
       .then((response) => {
         return response.json();

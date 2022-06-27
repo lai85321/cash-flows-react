@@ -1,5 +1,5 @@
 .menu {
-    width: 15vw;
+    width: 18vw;
     background-color: #ffe497;
     height: 100vh;
     position: fixed;
@@ -47,13 +47,13 @@
     display: flex;
     align-items: center;
     font-weight: bolder;
-    font-size: 22px;
+    font-size: 20px;
     letter-spacing: 1px;
 }
 
 .menu-image {
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
     margin-left: 15px;
     margin-right: 25px;
     background-size: contain;

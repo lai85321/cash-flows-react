@@ -1,5 +1,5 @@
 import "./addBook.css";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -10,12 +10,10 @@ const AddBook = () => {
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
   const [name, setName] = useState("");
   const [currencyId, setcurrencyId] = useState("");
-  const [currencyData,setCurrencyData] =useState([]);
-   
+  const [currencyData, setCurrencyData] = useState([]);
+
   const fetchCurrencyList = () => {
-    fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/currency`
-    )
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/currency`)
       .then((response) => {
         return response.json();
       })
@@ -61,12 +59,16 @@ const AddBook = () => {
     <div className="add-book-container">
       <div className="add-book-page">
         <div className="add-book-header">
-          <div style={{display:"flex", flexDirection:"row",width:"50%"}}>
-          <div className="add-book-header-icon"></div>
-          <div className="add-book-header-text">Add New Account</div>
+          <div style={{ display: "flex", flexDirection: "row", width: "50%" }}>
+            <div className="add-book-header-icon"></div>
+            <div className="add-book-header-text">Add New Account</div>
           </div>
           <label for="picture" className="add-book-upload-icon"></label>
-          <input type="file" id="picture" style={{display:"none", visibility:"none"}}></input>
+          <input
+            type="file"
+            id="picture"
+            style={{ display: "none", visibility: "none" }}
+          ></input>
         </div>
         <hr></hr>
         <div className="add-account-type"></div>
@@ -75,7 +77,7 @@ const AddBook = () => {
             <div className="add-book-input">
               <label className="add-book-label">Name</label>
               <input
-              placeholder="Enter a book name"
+                placeholder="Enter a book name"
                 className="add-name-input"
                 value={name}
                 onChange={(e) => {
@@ -88,9 +90,14 @@ const AddBook = () => {
               <select className="add-currency-input">
                 <option>請選擇幣別</option>
                 {currencyData.map((item, idx) => (
-                  <option key={idx}  onChange={(e) => {
-                    setcurrencyId(idx);
-                  }}>{item.currency}</option>
+                  <option
+                    key={idx}
+                    onChange={(e) => {
+                      setcurrencyId(idx);
+                    }}
+                  >
+                    {item.currency}
+                  </option>
                 ))}
               </select>
             </div>
@@ -101,7 +108,7 @@ const AddBook = () => {
               {checkBtns.map((item, index) => (
                 <div key={index} className={item.class} onClick={item.onClick}>
                   {item.text === "Cancel" ? (
-                    <Link to="/">{item.text}</Link>
+                    <Link to="/book">{item.text}</Link>
                   ) : (
                     item.text
                   )}

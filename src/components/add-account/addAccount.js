@@ -10,8 +10,8 @@ const AddAccount = () => {
   let navigate = useNavigate();
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
-  let {bookId} = useParams()
-  const userId = localStorage.getItem("id")
+  let { bookId } = useParams();
+  const userId = localStorage.getItem("id");
   const typeBtns = ["Income", "Expense"];
   const tags = ["food", "cloth", "health"];
   const userOptions = [
@@ -49,6 +49,7 @@ const AddAccount = () => {
       paidId: split && +userOptions[paidIdx].id,
       splits: paid,
     };
+
     console.log(body);
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
       method: "POST",

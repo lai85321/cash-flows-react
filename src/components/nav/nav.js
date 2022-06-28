@@ -1,7 +1,7 @@
 import "./nav.css";
 import { Link, useParams } from "react-router-dom";
 function Nav() {
-  let {bookId} = useParams()
+  let { bookId } = useParams();
   return (
     <div className="nav-container">
       <div className="nav">
@@ -19,7 +19,7 @@ function Nav() {
         </div>
       </div>
       <Link to={`/addAccount/${bookId}`}>
-        <div className="btn">Add Account</div>
+        <div className="btn">Record Payment</div>
       </Link>
     </div>
   );

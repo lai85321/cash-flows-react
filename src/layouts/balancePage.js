@@ -33,6 +33,18 @@ function BalancePage() {
         setBalanceList(response.data);
       });
   };
+
+  const fetchSettleUpResult = (bookId, splitId) => {
+    fetch(
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance/settle?&bookId=${bookId}&splitId=${splitId}`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        setBalanceList(response.data);
+      });
+  };
   useEffect(() => {
     fetchBalanceList(bookId, userId);
   }, [bookId, userId]);
@@ -44,8 +56,8 @@ function BalancePage() {
         bookId={bookId}
         userId={userId}
         balanceList={balanceList}
-        // balanceListDetails={balanceListDetails}
         fetchGroupBalanceList={fetchGroupBalanceList}
+        fetchSettleUpResult={fetchSettleUpResult}
       />
     </div>
   );

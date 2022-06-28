@@ -1,6 +1,6 @@
 import "./balanceList.css";
 const BalanceList = (props) => {
-  const { date, details } = props;
+  const { bookId, date, details, fetchSettleUpResult } = props;
   return (
     <div className="balance-list">
       <div className="balance-list-header">
@@ -10,9 +10,14 @@ const BalanceList = (props) => {
       {details.map((item, idx) => {
         return (
           <>
-            <div className="balance-list-details">
+            <div className="balance-list-details" key={idx}>
               <div className="balance-list-detail">{item.detail}</div>
-              <button className="balance-list-settle">settle up</button>
+              <button
+                className="balance-list-settle"
+                onClick={() => fetchSettleUpResult(bookId, item.splitId)}
+              >
+                settle up
+              </button>
             </div>
           </>
         );

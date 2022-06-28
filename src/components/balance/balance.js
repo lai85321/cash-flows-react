@@ -1,13 +1,24 @@
 import "./balance.css";
 import BalanceList from "../balance-list/balanceList";
 const Balance = (props) => {
-  const { balanceList, fetchGroupBalanceList, bookId, userId } = props;
+  const {
+    balanceList,
+    fetchGroupBalanceList,
+    fetchSettleUpResult,
+    bookId,
+    userId,
+  } = props;
 
   return (
     <div className="balance">
       <div className="balance-left">
         {balanceList.map((item, idx) => (
-          <BalanceList date={item.date} details={item.details} />
+          <BalanceList
+            bookId={bookId}
+            date={item.date}
+            details={item.details}
+            fetchSettleUpResult={fetchSettleUpResult}
+          />
         ))}
         <button
           className="balance-group-balance-btn"

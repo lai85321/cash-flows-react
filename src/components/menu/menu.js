@@ -3,19 +3,19 @@ import user from "../../images/user.png";
 import { Link } from "react-router-dom";
 const sidebarMenu = [
   {
-    id: "Account",
+    id: "Book",
     icon: `account-icon`,
-    link: `/book`
+    link: `/book`,
   },
   {
-    id: "Dashboard",
+    id: "Overview",
     icon: `dashboard-icon`,
-    link: `/book`
+    link: `/book`,
   },
   {
     id: "Settings",
     icon: `settings-icon`,
-    link: `/book`
+    link: `/setting`,
   },
 ];
 const Menu = () => {
@@ -36,7 +36,7 @@ const Menu = () => {
       <div className="menu-lists">
         {sidebarMenu.map((item, index) => {
           return (
-            <Link to = {item.link}>
+            <Link to={item.link}>
               <div key={index} className="menu-list">
                 <div className={`menu-image ${item.icon}`}></div>
                 {item.id}

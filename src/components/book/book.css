@@ -33,10 +33,10 @@
 }
 
 .book-page-logo{
-    width: 3vw;
-    height: 3vw;
-    margin-left: 120px;
-    background-image: url(../../images/cash-flow.png);
+    width: 85px;
+    height: 45px;
+    margin-left: 50px;
+    background-image: url(../../images/logo.png);
     background-size: contain;
     background-repeat: no-repeat;
 }

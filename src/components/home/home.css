@@ -18,11 +18,11 @@
     height: 100%;
 }
 .home-logo{
-    width: 3vw;
-    height: 3vw;
+    width: 85px;
+    height: 45px;
     margin-right: 120px;
-    background-image: url(../../images/cash-flow.png);
-    background-size: contain;
+    background-image: url(../../images/logo.png);
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .home-signin-signup-btns{
@@ -31,8 +31,8 @@
 
 }
 .home-signin-btn{
-    width: 140px;
-  height: 45px;
+    width: 120px;
+    height: 45px;
     background-color: #ffe497;
     border: none;
     margin-right:30px;
@@ -42,7 +42,7 @@
 }
 
 .home-signup-btn{
-    width: 140px;
+    width: 120px;
     height: 45px;
     background-color: white;
     border-color: white;
@@ -50,8 +50,8 @@
     border: 0.5;
     margin-right:30px;
     border-radius: 45px;
-    padding: 15px;
-    box-shadow: 0 10px 80px #faf0d4;
+    padding: 5px 15px;
+    box-shadow: 0 10px 80px white;
 }
 
 .home-signin-btn:hover{

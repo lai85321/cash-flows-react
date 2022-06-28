@@ -65,11 +65,11 @@
 }
 
 .account-icon {
-    background-image: url(../../images/account.png);
+    background-image: url(../../images/books.png);
 }
 
 .dashboard-icon {
-    background-image: url(../../images/books.png);
+    background-image: url(../../images/account.png);
 }
 
 .settings-icon {

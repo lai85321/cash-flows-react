@@ -6,9 +6,8 @@ import { useParams } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 function AccountPage() {
-  let {bookId} = useParams()
-  console.log(bookId)
-  const userId = localStorage.getItem("id")
+  let { bookId } = useParams();
+  const userId = localStorage.getItem("id");
   const today = new Date();
   const year = today.getFullYear().toString();
   const month = (today.getMonth() + 1).toString();
@@ -17,7 +16,7 @@ function AccountPage() {
   const [daily, setDaily] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [memberData, setMemberData] = useState([]);
-  
+
   const fetchAccountList = (userId, bookId, startTime) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}&startTime=${startTime}`
@@ -36,7 +35,7 @@ function AccountPage() {
 
   const fetchChartData = (bookId) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleDaily?bookId=${bookId}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`
     )
       .then((response) => {
         return response.json();
@@ -47,12 +46,11 @@ function AccountPage() {
   };
   useEffect(() => {
     fetchChartData(bookId);
-    fetchMemberData(bookId);
   }, [bookId]);
 
-  const fetchMemberData = (bookId) => {
+  const fetchMemberData = (bookId, startTime) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/members?bookId=${bookId}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`
     )
       .then((response) => {
         return response.json();
@@ -62,15 +60,37 @@ function AccountPage() {
       });
   };
 
+  useEffect(() => {
+    fetchMemberData(bookId, startTime);
+  }, [bookId, startTime]);
+  console.log(chartData);
   const dates = chartData.map((item, index) => item.date);
+  console.log(dates);
+  const totals = [];
+  console.log(memberData);
 
-  const totals = chartData.map((item, index) => item.total);
-
+  for (let i = 0; i < memberData.length; i++) {
+    let member = memberData[i];
+    console.log(member.id);
+    let tmps = chartData.map((item, idx) => {
+      console.log(item);
+      return Object.values(item.total[i])[0];
+    });
+    totals.push(tmps);
+  }
+  console.log(totals);
   return (
     <div>
       <Menu />
       <Nav />
-      <Account daily={daily} data={data} dates={dates} totals={totals} memberData={memberData} setMemberData={setMemberData}/>
+      <Account
+        daily={daily}
+        data={data}
+        dates={dates}
+        totals={totals}
+        memberData={memberData}
+        setMemberData={setMemberData}
+      />
     </div>
   );
 }

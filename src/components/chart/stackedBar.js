@@ -1,0 +1,80 @@
+import React from "react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+const StackedDailyChart = (props) => {
+  const { dates, totals, memberData } = props;
+  const background = [
+    {
+      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+    },
+    {
+      borderColor: "rgb(75, 192, 192)",
+      backgroundColor: "rgba(75, 192, 192, 0.5)",
+    },
+    {
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+    },
+  ];
+  const datasets = totals.map((item, idx) => {
+    return {
+      label: memberData[idx].name,
+      data: item,
+      borderColor: background[idx].borderColor,
+      backgroundColor: background[idx].backgroundColor,
+      borderWidth: 1,
+    };
+  });
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        stacked: true,
+      },
+
+      y: {
+        grid: {
+          drawBorder: false,
+          borderWidth: 1,
+        },
+        stacked: true,
+      },
+    },
+    plugins: {
+      legend: {
+        position: "right",
+      },
+    },
+  };
+
+  const labels = dates;
+  const data = {
+    labels,
+    datasets: datasets,
+  };
+  return <Bar options={options} data={data} updateMode="resize" />;
+};
+export default StackedDailyChart;

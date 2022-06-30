@@ -1,21 +1,28 @@
 import "./account.css";
 import AmountList from "../account-list/account-list";
 import React from "react";
-import SingleDailyChart from "../chart/chart";
+// import SingleDailyChart from "../chart/chart";
+import StackedDailyChart from "../chart/stackedBar";
 import user from "../../images/user.png";
 import { AddMemberModal } from "../modal/modal";
 const Account = (props) => {
   const { data, daily, dates, totals, memberData, setMemberData } = props;
-  
+
   return (
     <div className="account">
       <div className="left">
         <div className="chart">
           <div style={{ width: "80%", height: "80%" }}>
-            <SingleDailyChart
+            {/* <SingleDailyChart
               className="lineChart"
               dates={dates}
               totals={totals}
+            /> */}
+            <StackedDailyChart
+              className="lineChart"
+              dates={dates}
+              totals={totals}
+              memberData={memberData}
             />
           </div>
         </div>
@@ -52,19 +59,28 @@ const Account = (props) => {
         <div className="account-member">
           <div className="account-member-header">Member</div>
           <div className="account-member-lists">
-            {memberData.map((item, idx)=>{  
+            {memberData.map((item, idx) => {
               const picture = item.picture || user;
-              console.log(item.picture)
-              return(<div key={idx} className="account-member-list">
-                <div className="account-member-picture" style={{ backgroundImage: `url(${picture})` }}></div>
-                <div className="account-member-name">{item.name}</div>
-            </div>)})}
+              return (
+                <>
+                  <div key={idx} className="account-member-list">
+                    <div
+                      className="account-member-picture"
+                      style={{ backgroundImage: `url(${picture})` }}
+                    ></div>
+                    <div className="account-member-name">{item.name}</div>
+                  </div>
+                  <div>income: {item.income}</div>
+                  <div>expense: {item.expense}</div>
+                </>
+              );
+            })}
             <div className="account-member-footer">
               {/* <div className="account-add-member"></div> */}
-              <AddMemberModal setMemberData={setMemberData}/>
+              <AddMemberModal setMemberData={setMemberData} />
             </div>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   );

@@ -26,8 +26,8 @@
 }
 .lineChart{
 
-    width: 90% !important;
-    height: 90% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 .lists{
     display: flex;
@@ -36,13 +36,14 @@
     margin-top: 3%;
     width: 100%;
     height: 60%;
+    max-height: 60%;
 }
 .right{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 3%;
-    width: 25%;
+    width: 30%;
     height: 100%;
 }
 .account-overview{
@@ -90,7 +91,7 @@
     text-align: right;
 }
 .account-member{
-    height: 45%;
+    height: 55%;
     width: 70%;
     margin-top: 10%;
     background-color: white;
@@ -98,7 +99,7 @@
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
-    max-height: 40%;
+    max-height: 55%;
 }
 .account-member-header{
     height: 20%;

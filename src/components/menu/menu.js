@@ -20,9 +20,7 @@ const sidebarMenu = [
 ];
 const Menu = () => {
   const name = localStorage.getItem("username") || "name";
-  console.log(localStorage.getItem("picture"));
   const picture = JSON.parse(localStorage.getItem("picture")) || user;
-  console.log(picture);
 
   return (
     <div className="menu">

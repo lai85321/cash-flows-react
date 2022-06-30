@@ -1,5 +1,5 @@
 import "./App.css";
-
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./layouts/homePage";
 import BookPage from "./layouts/bookPage";
@@ -12,6 +12,9 @@ import SignUpPage from "./layouts/signUpPage";
 import SignInPage from "./layouts/signInPage";
 import SettingPage from "./layouts/settingPage";
 function App() {
+  useEffect(() => {
+    document.title = "Cash flows";
+  });
   return (
     <div>
       <Routes>

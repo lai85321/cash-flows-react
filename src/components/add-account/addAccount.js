@@ -5,41 +5,38 @@ import "react-datepicker/dist/react-datepicker.css";
 // import Select from "react-select";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { PaidModal, SplitModal } from "../modal/modal";
+// import { PaidModal } from "../modal/modal";
 const AddAccount = () => {
   let navigate = useNavigate();
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
   let { bookId } = useParams();
-  const userId = localStorage.getItem("id");
+  const username = localStorage.getItem("username");
   const typeBtns = ["Income", "Expense"];
   const tags = ["food", "cloth", "health"];
   const userOptions = [
-    { id: "1", label: "Andy" },
-    { id: "2", label: "Bella" },
-    { id: "3", label: "Cindy" },
+    { id: "1", name: "Andy" },
+    { id: "2", name: "Bella" },
+    { id: "3", name: "Cindy" },
   ];
-  const paidAmount = [0, 0, 0];
-  const splitOptions = [
-    { value: "equally", label: "equally" },
-    { value: "unequally", label: "unequally" },
-  ];
+
+  const paidAmount = Array(userOptions.length).fill(0);
   const [startDate, setStartDate] = useState(new Date());
   const [amount, setAmount] = useState("");
   const [tag, setTag] = useState("food");
   const [type, setType] = useState("Expense");
   const [note, setNote] = useState("");
   const [split, setSplit] = useState(0);
-  const [paidBtnShow, setPaidBtnShow] = useState("Person");
-  const [splitBtnShow, setSplitBtnShow] = useState("Split");
+  const [paidBtnShow, setPaidBtnShow] = useState(username);
+  // const [splitBtnShow, setSplitBtnShow] = useState("Split");
   const [paid, setPaid] = useState(paidAmount);
   const submitAccount = () => {
     const typeId = typeBtns.findIndex((item) => item === type);
     const tagId = tags.findIndex((item) => item === tag);
-    const paidIdx = userOptions.findIndex((item) => item.label === paidBtnShow);
+    const paidIdx = userOptions.findIndex((item) => item.name === paidBtnShow);
     const body = {
       bookId: bookId,
-      userId: userId,
+      userId: userOptions[paidIdx].id,
       typeId: typeId + 1,
       amount: amount,
       note: note,
@@ -106,8 +103,34 @@ const AddAccount = () => {
                 value={amount}
                 onChange={(e) => {
                   setAmount(e.target.value);
+                  let sum = 0;
+                  paidAmount.fill(
+                    Math.trunc(e.target.value / userOptions.length),
+                    0,
+                    userOptions.length - 1
+                  );
+                  for (let i = 0; i < paidAmount.length - 1; i++) {
+                    sum = sum + paidAmount[i];
+                  }
+                  paidAmount.fill(e.target.value - sum, userOptions.length - 1);
+                  setPaid(paidAmount);
                 }}
               />
+            </div>
+            <div className="add-account-input">
+              <label className="add-label">Paid by</label>
+              <select
+                className="add-note-input"
+                value={paidBtnShow}
+                defaultValue={paidBtnShow}
+                onChange={(e) => setPaidBtnShow(e.target.value)}
+              >
+                {userOptions.map((item, idx) => (
+                  <option key={idx} value={item.value}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="add-account-input">
               <label className="add-label">Note</label>
@@ -135,31 +158,50 @@ const AddAccount = () => {
                 </div>
               </div>
             </div>
-            <div style={{ marginTop: "10px" }}>
-              <label
-                className={`add-split ${split !== 0 && "chosenBtn"}`}
-                onClick={() => setSplit(split ^ 1)}
-              >
-                Split Account
+            {/* <div style={{ marginTop: "10px", marginLeft: "8%" }}> */}
+            <div style={{ display: "flex", alignItem: "center" }}>
+              <label className="add-split-label">Split Account</label>
+              <label className="switch" onChange={() => setSplit(split ^ 1)}>
+                <input type="checkbox" />
+                <span class="slider round"></span>
               </label>
+
               <div className={`split-detail ${split === 0 && "none"}`}>
-                <div style={{ margin: "2% 0%" }}>Paid by</div>{" "}
-                <PaidModal
-                  details={userOptions}
-                  paidBtnShow={paidBtnShow}
-                  setPaidBtnShow={setPaidBtnShow}
-                />
-                <div style={{ margin: "2% 0%" }}>and split </div>
-                <SplitModal
-                  amount={amount}
-                  users={userOptions}
-                  details={splitOptions}
-                  splitBtnShow={splitBtnShow}
-                  paid={paid}
-                  setPaid={setPaid}
-                  setSplitBtnShow={setSplitBtnShow}
-                />
+                {userOptions.map((item, idx) => (
+                  <div>
+                    <div
+                      style={{
+                        height: "36px",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <label
+                        style={{
+                          width: "48px",
+                          display: "inline-block",
+                        }}
+                      >
+                        {item.name}
+                      </label>
+                      <input
+                        style={{
+                          height: "40%",
+                          width: "48px",
+                          marginLeft: "10px",
+                        }}
+                        value={paid[idx]}
+                        onChange={(e) => {
+                          let newPaid = [...paid]; // copying the old datas array
+                          newPaid[idx] = e.target.value;
+                          setPaid(newPaid);
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
+              {/* </div> */}
             </div>
           </div>
           <div className="add-right">

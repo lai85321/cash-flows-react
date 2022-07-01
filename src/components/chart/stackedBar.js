@@ -52,7 +52,6 @@ const StackedDailyChart = (props) => {
         grid: {
           display: false,
         },
-        stacked: true,
       },
 
       y: {
@@ -60,7 +59,6 @@ const StackedDailyChart = (props) => {
           drawBorder: false,
           borderWidth: 1,
         },
-        stacked: true,
       },
     },
     plugins: {

@@ -1,9 +1,9 @@
-.list{
+.account-list-list{
     margin-top: 2%;
     width: 80%;
     background-color: white;
 }
-.header{
+.account-list-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,7 +12,7 @@
     margin-right: 20px;
     height: 30px;
 }
-.details{
+.account-list-details{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -21,18 +21,31 @@
     height: 25px;
     align-items: center;
 }
-.item{
+.account-list-item{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     width: 80%;
 }
-.tag{
+.account-list-tag{
     height: 20px;
     width: 10%;
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.account-list-amount{
+    width:40px;
+    text-align: right;
+}
+
+.account-list-status{
+    margin-left: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+}
+
 
 .food {
     background-image: url(../../images/food.png);
@@ -44,4 +57,7 @@
 
 .health {
     background-image: url(../../images/health.png);
+}
+.balanced {
+    background-image: url(../../images/account.png);
 }

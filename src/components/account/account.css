@@ -25,7 +25,6 @@
     justify-content: center;
 }
 .lineChart{
-
     width: 100% !important;
     height: 100% !important;
 }
@@ -55,7 +54,7 @@
     align-items: center;
 }
 .account-overview-header{
-    height: 20%;
+    height: 48px;
     padding: 2% 0%;
     width: 100%;
     font-weight: bolder;
@@ -102,7 +101,7 @@
     max-height: 55%;
 }
 .account-member-header{
-    height: 20%;
+    height: 48px;
     padding: 2% 0%;
     width: 100%;
     font-weight: bolder;

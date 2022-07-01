@@ -14,7 +14,6 @@ function AccountPage() {
   const startTime = year.concat("-", month);
   const [data, setData] = useState([]);
   const [daily, setDaily] = useState([]);
-  const [chartData, setChartData] = useState([]);
   const [memberData, setMemberData] = useState([]);
 
   const fetchAccountList = (userId, bookId, startTime) => {
@@ -33,21 +32,6 @@ function AccountPage() {
     fetchAccountList(userId, bookId, startTime);
   }, [userId, bookId, startTime]);
 
-  const fetchChartData = (bookId) => {
-    fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        setChartData(response.data);
-      });
-  };
-  useEffect(() => {
-    fetchChartData(bookId);
-  }, [bookId]);
-
   const fetchMemberData = (bookId, startTime) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`
@@ -63,31 +47,15 @@ function AccountPage() {
   useEffect(() => {
     fetchMemberData(bookId, startTime);
   }, [bookId, startTime]);
-  console.log(chartData);
-  const dates = chartData.map((item, index) => item.date);
-  console.log(dates);
-  const totals = [];
-  console.log(memberData);
 
-  for (let i = 0; i < memberData.length; i++) {
-    let member = memberData[i];
-    console.log(member.id);
-    let tmps = chartData.map((item, idx) => {
-      console.log(item);
-      return Object.values(item.total[i])[0];
-    });
-    totals.push(tmps);
-  }
-  console.log(totals);
   return (
     <div>
       <Menu />
       <Nav />
       <Account
         daily={daily}
+        bookId={bookId}
         data={data}
-        dates={dates}
-        totals={totals}
         memberData={memberData}
         setMemberData={setMemberData}
       />

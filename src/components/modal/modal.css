@@ -100,3 +100,30 @@
   height: 30%;
   align-items: center;
 }
+
+
+
+/*  */
+.modal-delete-book{
+  height: 100%;
+  width: 20px;
+  background-image: url(../../images/delete.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Clear floats */
+.delete-bookcheck-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.cancelbtn{
+  margin-right: 10px;
+}
+
+.deletebtn{
+  margin-right: 10px;
+}

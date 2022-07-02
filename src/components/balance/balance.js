@@ -14,6 +14,7 @@ const Balance = (props) => {
       <div className="balance-left">
         {balanceList.map((item, idx) => (
           <BalanceList
+            key={idx}
             bookId={bookId}
             date={item.date}
             details={item.details}

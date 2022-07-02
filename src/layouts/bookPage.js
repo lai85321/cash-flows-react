@@ -1,5 +1,5 @@
 import Menu from "../components/menu/menu";
-import Book from "../components/book/book"
+import Book from "../components/book/book";
 import { useEffect, useState } from "react";
 
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
@@ -23,7 +23,7 @@ function BookPage() {
   return (
     <div>
       <Menu />
-      <Book books={books}/>
+      <Book books={books} userId={userId} setBooks={setBooks} />
     </div>
   );
 }

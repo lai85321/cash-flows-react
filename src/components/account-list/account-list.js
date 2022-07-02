@@ -21,7 +21,7 @@ const AmountList = (props) => {
               cursor: item.tag === "balanced" ? "not-allowed" : "pointer",
             }}
           >
-            <div className="account-list-details">
+            <div key={index} className="account-list-details">
               <div className="account-list-item">
                 <div className={`account-list-tag ${item.tag}`}></div>
                 {item.note}

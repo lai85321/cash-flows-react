@@ -34,8 +34,8 @@ const Menu = () => {
       <div className="menu-lists">
         {sidebarMenu.map((item, index) => {
           return (
-            <Link to={item.link}>
-              <div key={index} className="menu-list">
+            <Link to={item.link} key={index}>
+              <div className="menu-list">
                 <div className={`menu-image ${item.icon}`}></div>
                 {item.id}
               </div>

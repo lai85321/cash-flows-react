@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./modal.css";
 
 const REACT_APP_HOST = process.env.REACT_APP_HOST;
@@ -127,7 +129,7 @@ const SplitModal = (props) => {
                 }}
               >
                 {users.map((item, idx) => (
-                  <div>
+                  <div key={idx}>
                     <div
                       style={{
                         height: "40px",
@@ -164,16 +166,16 @@ const SplitModal = (props) => {
   );
 };
 const AddMemberModal = (props) => {
-  const {setMemberData} = props
-  let {bookId} = useParams()
+  const { setMemberData } = props;
+  let { bookId } = useParams();
   const modalStyle = ["modal-none", "modal-block"];
   const [modalStyleIdx, setModalStyleIdx] = useState(0);
   const [email, setEmail] = useState("");
-  const addMember = (bookId, email)=>{
+  const addMember = (bookId, email) => {
     const body = {
       bookId: bookId,
-      email: email
-    }
+      email: email,
+    };
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/members`, {
       method: "POST",
       headers: {
@@ -186,9 +188,9 @@ const AddMemberModal = (props) => {
         console.log(json);
         setMemberData(json.data);
         setModalStyleIdx(0);
-        setEmail("")
+        setEmail("");
       });
-  }
+  };
   return (
     <>
       <div
@@ -196,8 +198,7 @@ const AddMemberModal = (props) => {
         onClick={() => {
           setModalStyleIdx(modalStyleIdx ^ 1);
         }}
-      >
-      </div>
+      ></div>
       <div className={`modal ${modalStyle[modalStyleIdx]}`}>
         <div className="modal-content">
           <span
@@ -212,22 +213,101 @@ const AddMemberModal = (props) => {
             <div>
               <p>Add Member</p>
               <div className="modal-add-member-container">
-              <input
-                className="modal-add-member-input"
-                placeholder="Enter an Email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-              <button className="modal-add-member-btn" onClick={()=>{addMember(bookId, email)}}>add</button>
+                <input
+                  className="modal-add-member-input"
+                  placeholder="Enter an Email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+                <button
+                  className="modal-add-member-btn"
+                  onClick={() => {
+                    addMember(bookId, email);
+                  }}
+                >
+                  add
+                </button>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
     </>
   );
 };
-export { PaidModal, SplitModal, AddMemberModal };
+
+const DeleteBookModal = (props) => {
+  let navigate = useNavigate();
+  const { bookId, userId, setBooks } = props;
+  const modalStyle = ["modal-none", "modal-block"];
+
+  const [modalStyleIdx, setModalStyleIdx] = useState(0);
+  const deleteBook = (userId, bookId) => {
+    fetch(
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/members?bookId=${bookId}&userId=${userId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        setModalStyleIdx(0);
+        setBooks(json.data);
+
+        navigate(`/book`, { replace: true });
+      });
+  };
+  return (
+    <>
+      <div
+        className="modal-delete-book"
+        onClick={() => {
+          setModalStyleIdx(modalStyleIdx ^ 1);
+        }}
+      ></div>
+      <div className={`modal ${modalStyle[modalStyleIdx]}`}>
+        <div className="modal-content">
+          <span
+            className="close"
+            onClick={() => {
+              setModalStyleIdx(0);
+            }}
+          >
+            &times;
+          </span>
+          <div className="modal-window">
+            <div>
+              <h3>Delete Account Book</h3>
+              <p>Are you sure you want to delete this Book?</p>
+
+              <div className="delete-bookcheck-btns">
+                <Link to="/book">
+                  <button
+                    onClick={() => {
+                      setModalStyleIdx(0);
+                    }}
+                    className="cancelbtn"
+                  >
+                    Cancel
+                  </button>
+                </Link>
+                <button
+                  onClick={() => deleteBook(userId, bookId)}
+                  className="deletebtn"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+export { PaidModal, SplitModal, AddMemberModal, DeleteBookModal };

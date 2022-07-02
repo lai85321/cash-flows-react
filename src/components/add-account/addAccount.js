@@ -47,11 +47,11 @@ const AddAccount = () => {
       splits: paid,
     };
 
-    console.log(body);
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
       body: JSON.stringify(body),
     })

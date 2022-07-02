@@ -16,7 +16,14 @@ function DashboardPage() {
   const [chartData, setChartData] = useState([]);
   const fetchPieChart = (bookId, startTime) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleTagPie?bookId=${bookId}&startTime=${startTime}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleTagPie?bookId=${bookId}&startTime=${startTime}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
     )
       .then((response) => {
         return response.json();
@@ -31,7 +38,14 @@ function DashboardPage() {
 
   const fetchMemberData = (bookId, startTime) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
     )
       .then((response) => {
         return response.json();
@@ -47,7 +61,14 @@ function DashboardPage() {
 
   const fetchChartData = (bookId) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
     )
       .then((response) => {
         return response.json();

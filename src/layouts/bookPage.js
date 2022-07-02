@@ -8,7 +8,14 @@ function BookPage() {
   const [books, setBooks] = useState([]);
   const fetchBookList = (userId) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/books?userId=${userId}}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/books?userId=${userId}}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
     )
       .then((response) => {
         return response.json();

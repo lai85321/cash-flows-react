@@ -12,7 +12,14 @@ function BalancePage() {
 
   const fetchBalanceList = (bookId, userId) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance?bookId=${bookId}&userId=${userId}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance?bookId=${bookId}&userId=${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
     )
       .then((response) => {
         return response.json();
@@ -24,7 +31,14 @@ function BalancePage() {
 
   const fetchGroupBalanceList = (bookId, userId) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance/group?&bookId=${bookId}&userId=${userId}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance/group?&bookId=${bookId}&userId=${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
     )
       .then((response) => {
         return response.json();
@@ -36,7 +50,14 @@ function BalancePage() {
 
   const fetchSettleUpResult = (bookId, splitId) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance/settle?&bookId=${bookId}&splitId=${splitId}`
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance/settle?&bookId=${bookId}&splitId=${splitId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
     )
       .then((response) => {
         return response.json();

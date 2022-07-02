@@ -13,7 +13,13 @@ const AddBook = () => {
   const [currencyData, setCurrencyData] = useState([]);
 
   const fetchCurrencyList = () => {
-    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/currency`)
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/currency`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+    })
       .then((response) => {
         return response.json();
       })
@@ -34,6 +40,7 @@ const AddBook = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
       body: JSON.stringify(body),
     })

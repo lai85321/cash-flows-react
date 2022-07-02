@@ -40,7 +40,7 @@ const AddBook = () => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        navigate("/account", { replace: true });
+        navigate(`/book/${json.id}`, { replace: true });
       });
   };
   const checkBtns = [

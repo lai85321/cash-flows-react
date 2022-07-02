@@ -1,9 +1,8 @@
 import "./account-list.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AmountList = (props) => {
   const { bookId, date, total, details } = props;
-  const navigate = useNavigate();
   const status = ["red", "green", "none"];
 
   return (
@@ -15,7 +14,13 @@ const AmountList = (props) => {
       <hr></hr>
       {details.map((item, index) => {
         return (
-          <Link to={`/account/detail/${item.id}`} state={{ bookId: bookId }}>
+          <Link
+            to={`/book/${bookId}/account/${item.id}`}
+            state={{ bookId: bookId }}
+            style={{
+              cursor: item.tag === "balanced" ? "not-allowed" : "pointer",
+            }}
+          >
             <div className="account-list-details">
               <div className="account-list-item">
                 <div className={`account-list-tag ${item.tag}`}></div>

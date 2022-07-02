@@ -1,16 +1,14 @@
-import "./addAccount.css";
+import "./editAccount.css";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import Select from "react-select";
-import { Link, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-// import { PaidModal } from "../modal/modal";
-const AddAccount = () => {
+import { Link, useNavigate, useLocation } from "react-router-dom";
+const EditAccount = () => {
+  const location = useLocation();
+  let { bookId } = location.state;
   let navigate = useNavigate();
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
-  let { bookId } = useParams();
   const username = localStorage.getItem("username");
   const typeBtns = ["Income", "Expense"];
   const tags = ["food", "cloth", "health"];
@@ -28,14 +26,12 @@ const AddAccount = () => {
   const [note, setNote] = useState("");
   const [split, setSplit] = useState(0);
   const [paidBtnShow, setPaidBtnShow] = useState(username);
-  // const [splitBtnShow, setSplitBtnShow] = useState("Split");
   const [paid, setPaid] = useState(paidAmount);
-  const submitAccount = () => {
+  const updateAccount = () => {
     const typeId = typeBtns.findIndex((item) => item === type);
     const tagId = tags.findIndex((item) => item === tag);
     const paidIdx = userOptions.findIndex((item) => item.name === paidBtnShow);
     const body = {
-      bookId: bookId,
       userId: userOptions[paidIdx].id,
       typeId: typeId + 1,
       amount: amount,
@@ -64,28 +60,28 @@ const AddAccount = () => {
   const checkBtns = [
     {
       text: "Cancel",
-      class: "add-check-cancel",
+      class: "edit-check-cancel",
       onClick: () => {},
     },
     {
-      text: "Save",
-      class: "add-check-save",
-      onClick: submitAccount,
+      text: "Update",
+      class: "edit-check-save",
+      onClick: updateAccount,
     },
   ];
   return (
-    <div className="add-container">
-      <div className="add-page">
-        <div className="add-header">
-          <div className="add-header-icon"></div>
-          <div className="add-header-text">Add New Account</div>
+    <div className="edit-container">
+      <div className="edit-page">
+        <div className="edit-header">
+          <div className="edit-header-icon"></div>
+          <div className="edit-header-text">Edit Account</div>
         </div>
         <hr></hr>
-        <div className="add-account-type">
+        <div className="edit-account-type">
           {typeBtns.map((item, index) => (
             <div
               key={index}
-              className={`add-account-type-button ${
+              className={`edit-account-type-button ${
                 type === item && "chosenBtn"
               }`}
               onClick={(e) => setType(e.target.textContent)}
@@ -94,12 +90,12 @@ const AddAccount = () => {
             </div>
           ))}
         </div>
-        <div className="add-body">
-          <div className="add-left">
-            <div className="add-account-input">
-              <label className="add-amount-label">Amount</label>
+        <div className="edit-body">
+          <div className="edit-left">
+            <div className="edit-account-input">
+              <label className="edit-amount-label">Amount</label>
               <input
-                className="add-amount-input"
+                className="edit-amount-input"
                 value={amount}
                 onChange={(e) => {
                   setAmount(e.target.value);
@@ -117,10 +113,10 @@ const AddAccount = () => {
                 }}
               />
             </div>
-            <div className="add-account-input">
-              <label className="add-label">Paid by</label>
+            <div className="edit-account-input">
+              <label className="edit-label">Paid by</label>
               <select
-                className="add-note-input"
+                className="edit-note-input"
                 value={paidBtnShow}
                 defaultValue={paidBtnShow}
                 onChange={(e) => setPaidBtnShow(e.target.value)}
@@ -132,10 +128,10 @@ const AddAccount = () => {
                 ))}
               </select>
             </div>
-            <div className="add-account-input">
-              <label className="add-label">Note</label>
+            <div className="edit-account-input">
+              <label className="edit-label">Note</label>
               <textarea
-                className="add-note-input"
+                className="edit-note-input"
                 value={note}
                 onChange={(e) => {
                   setNote(e.target.value);
@@ -143,13 +139,13 @@ const AddAccount = () => {
               ></textarea>
             </div>
             <div style={{ marginTop: "25px" }}>
-              <div className="add-account-input">
-                <label className="add-label">Tag</label>
-                <div className="add-tag-container">
+              <div className="edit-account-input">
+                <label className="edit-label">Tag</label>
+                <div className="edit-tag-container">
                   {tags.map((item, index) => (
                     <div
                       key={index}
-                      className={`add-tag ${tag === item && "chosenBtn"}`}
+                      className={`edit-tag ${tag === item && "chosenBtn"}`}
                       onClick={(e) => setTag(e.target.textContent)}
                     >
                       {item}
@@ -158,15 +154,16 @@ const AddAccount = () => {
                 </div>
               </div>
             </div>
-            {/* <div style={{ marginTop: "10px", marginLeft: "8%" }}> */}
-            <div style={{ display: "flex", alignItem: "center" }}>
-              <label className="add-split-label">Split Account</label>
+            <div
+              style={{ display: "flex", alignItem: "center", height: "35%" }}
+            >
+              <label className="edit-split-label">Split Account</label>
               <label className="switch" onChange={() => setSplit(split ^ 1)}>
                 <input type="checkbox" />
                 <span class="slider round"></span>
               </label>
 
-              <div className={`split-detail ${split === 0 && "none"}`}>
+              <div className={`edit-split-detail ${split === 0 && "none"}`}>
                 {userOptions.map((item, idx) => (
                   <div>
                     <div
@@ -201,12 +198,11 @@ const AddAccount = () => {
                   </div>
                 ))}
               </div>
-              {/* </div> */}
             </div>
           </div>
-          <div className="add-right">
-            <div className="add-date">
-              <label className="add-label">Date</label>
+          <div className="edit-right">
+            <div className="edit-date">
+              <label className="edit-label">Date</label>
               <DatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
@@ -214,10 +210,14 @@ const AddAccount = () => {
             </div>
           </div>
         </div>
-        <div className="add-btns">
-          <div className="add-btns-left"></div>
-          <div className="add-btns-right">
-            <div className="add-check">
+        <div className="edit-btns">
+          <div className="edit-btns-left">
+            <div className="edit-check-remove">
+              <Link to={`/book/${bookId}`}>Remove</Link>
+            </div>
+          </div>
+          <div className="edit-btns-right">
+            <div className="edit-check">
               {checkBtns.map((item, index) => (
                 <div key={index} className={item.class} onClick={item.onClick}>
                   {item.text === "Cancel" ? (
@@ -235,4 +235,4 @@ const AddAccount = () => {
   );
 };
 
-export default AddAccount;
+export default EditAccount;

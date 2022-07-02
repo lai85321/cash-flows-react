@@ -7,13 +7,13 @@ function Nav() {
       <div className="nav">
         <div className="book-icon"></div>
         <div className="nav-lists">
-          <Link to={`/account/${bookId}`}>
+          <Link to={`/book/${bookId}`}>
             <div className="nav-list">Account</div>
           </Link>
-          <Link to={`/balance/${bookId}`}>
+          <Link to={`/book/${bookId}/balance`}>
             <div className="nav-list">Balance</div>
           </Link>
-          <Link to={`/dashboard/${bookId}`}>
+          <Link to={`/book/${bookId}/dashboard`}>
             <div className="nav-list">Dashboard</div>
           </Link>
         </div>

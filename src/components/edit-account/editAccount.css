@@ -190,7 +190,6 @@
     display: inline-block;
 }
 .edit-btns{
-   
     height: 10%;
     display: flex;
     flex-direction: row;
@@ -202,6 +201,7 @@
 .edit-btns-right{
    
     width: 50%;
+    
 }
 
 

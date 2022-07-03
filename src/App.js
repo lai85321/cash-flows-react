@@ -11,7 +11,9 @@ import DashBoardPage from "./layouts/dashboardPage";
 import SignUpPage from "./layouts/signUpPage";
 import SignInPage from "./layouts/signInPage";
 import SettingPage from "./layouts/settingPage";
-import EditAccountPage from "./layouts/editAccountPage";
+//import EditAccountPage from "./layouts/editAccountPage";
+// import AccountDetail from "./components/account-detail/accountDetail";
+import AccountDetailPage from "./layouts/accountDetailPage";
 function App() {
   useEffect(() => {
     document.title = "Cash flows";
@@ -24,7 +26,10 @@ function App() {
         <Route path="/signIn" element={<SignInPage />} />
         <Route path="/book" element={<BookPage />} />
         <Route path="/addBook" element={<AddBookPage />} />
-        <Route path="/book/:bookId/account/:id" element={<EditAccountPage />} />
+        <Route
+          path="/book/:bookId/account/:id"
+          element={<AccountDetailPage />}
+        />
         <Route path="/book/:bookId" element={<AccountPage />} />
         <Route path="/addAccount/:bookId" element={<AddAccountPage />} />
         <Route path="/book/:bookId/balance" element={<BalancePage />} />

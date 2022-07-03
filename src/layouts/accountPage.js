@@ -45,32 +45,32 @@ function AccountPage() {
     fetchAccountList(userId, bookId, startTime);
   }, [userId, bookId, startTime, navigate]);
 
-  const fetchMemberData = (bookId, startTime) => {
-    fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      }
-    )
-      .then((response) => {
-        if (response.status === 401) {
-          alert("Please log in");
-          navigate(`/signIn`, { replace: true });
-        }
-        return response.json();
-      })
-      .then((response) => {
-        setMemberData(response.data);
-      });
-  };
-
   useEffect(() => {
+    const fetchMemberData = (bookId, startTime) => {
+      fetch(
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
+        .then((response) => {
+          if (response.status === 401) {
+            alert("Please log in");
+            navigate(`/signIn`, { replace: true });
+          }
+          return response.json();
+        })
+        .then((response) => {
+          setMemberData(response.data);
+        });
+    };
+
     fetchMemberData(bookId, startTime);
-  });
+  }, [bookId, startTime, navigate]);
 
   return (
     <div>

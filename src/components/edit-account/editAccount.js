@@ -50,7 +50,13 @@ const EditAccount = () => {
       },
       body: JSON.stringify(body),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 401) {
+          alert("Please log in");
+          navigate(`/signIn`, { replace: true });
+        }
+        return response.json();
+      })
       .then((json) => {
         console.log(json);
         navigate(`/book/${bookId}`, { replace: true });

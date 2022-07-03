@@ -2,10 +2,11 @@ import Menu from "../components/menu/menu";
 import Nav from "../components/nav/nav";
 import Account from "../components/account/account";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 function AccountPage() {
+  let navigate = useNavigate();
   let { bookId } = useParams();
   const userId = localStorage.getItem("id");
   const today = new Date();
@@ -16,28 +17,33 @@ function AccountPage() {
   const [daily, setDaily] = useState([]);
   const [memberData, setMemberData] = useState([]);
 
-  const fetchAccountList = (userId, bookId, startTime) => {
-    fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}&startTime=${startTime}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      }
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        setData(response.data);
-        setDaily(response.data.daily);
-      });
-  };
   useEffect(() => {
+    const fetchAccountList = (userId, bookId, startTime) => {
+      fetch(
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}&startTime=${startTime}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
+        .then((response) => {
+          if (response.status === 401) {
+            alert("Please log in");
+            navigate(`/signIn`, { replace: true });
+          }
+          return response.json();
+        })
+        .then((response) => {
+          setData(response.data);
+          setDaily(response.data.daily);
+        });
+    };
+
     fetchAccountList(userId, bookId, startTime);
-  }, [userId, bookId, startTime]);
+  }, [userId, bookId, startTime, navigate]);
 
   const fetchMemberData = (bookId, startTime) => {
     fetch(
@@ -51,6 +57,10 @@ function AccountPage() {
       }
     )
       .then((response) => {
+        if (response.status === 401) {
+          alert("Please log in");
+          navigate(`/signIn`, { replace: true });
+        }
         return response.json();
       })
       .then((response) => {
@@ -60,7 +70,7 @@ function AccountPage() {
 
   useEffect(() => {
     fetchMemberData(bookId, startTime);
-  }, [bookId, startTime]);
+  });
 
   return (
     <div>

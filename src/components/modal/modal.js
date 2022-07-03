@@ -166,6 +166,7 @@ const SplitModal = (props) => {
   );
 };
 const AddMemberModal = (props) => {
+  let navigate = useNavigate();
   const { setMemberData } = props;
   let { bookId } = useParams();
   const modalStyle = ["modal-none", "modal-block"];
@@ -184,7 +185,13 @@ const AddMemberModal = (props) => {
       },
       body: JSON.stringify(body),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 401) {
+          alert("Please log in");
+          navigate(`/signIn`, { replace: true });
+        }
+        return response.json();
+      })
       .then((json) => {
         console.log(json);
         setMemberData(json.data);
@@ -256,11 +263,16 @@ const DeleteBookModal = (props) => {
         },
       }
     )
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 401) {
+          alert("Please log in");
+          navigate(`/signIn`, { replace: true });
+        }
+        return response.json();
+      })
       .then((json) => {
         setModalStyleIdx(0);
         setBooks(json.data);
-
         navigate(`/book`, { replace: true });
       });
   };

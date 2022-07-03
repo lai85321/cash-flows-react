@@ -2,10 +2,11 @@ import Menu from "../components/menu/menu";
 import Nav from "../components/nav/nav";
 import Dashboard from "../components/dashboard/dashboard";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 
 function DashboardPage() {
+  let navigate = useNavigate();
   let { bookId } = useParams();
   const today = new Date();
   const year = today.getFullYear().toString();
@@ -14,72 +15,86 @@ function DashboardPage() {
   const [pieData, setPieData] = useState([]);
   const [memberData, setMemberData] = useState([]);
   const [chartData, setChartData] = useState([]);
-  const fetchPieChart = (bookId, startTime) => {
-    fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleTagPie?bookId=${bookId}&startTime=${startTime}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      }
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        setPieData(response.data);
-      });
-  };
+
   useEffect(() => {
+    const fetchPieChart = (bookId, startTime) => {
+      fetch(
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleTagPie?bookId=${bookId}&startTime=${startTime}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
+        .then((response) => {
+          if (response.status === 401) {
+            alert("Please log in");
+            navigate(`/signIn`, { replace: true });
+          }
+          return response.json();
+        })
+        .then((response) => {
+          setPieData(response.data);
+        });
+    };
+
     fetchPieChart(bookId, startTime);
-  }, [bookId, startTime]);
-
-  const fetchMemberData = (bookId, startTime) => {
-    fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      }
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        setMemberData(response.data);
-      });
-  };
+  }, [bookId, startTime, navigate]);
 
   useEffect(() => {
+    const fetchMemberData = (bookId, startTime) => {
+      fetch(
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
+        .then((response) => {
+          if (response.status === 401) {
+            alert("Please log in");
+            navigate(`/signIn`, { replace: true });
+          }
+          return response.json();
+        })
+        .then((response) => {
+          setMemberData(response.data);
+        });
+    };
     fetchMemberData(bookId, startTime);
-  }, [bookId, startTime]);
+  }, [bookId, startTime, navigate]);
 
-  const fetchChartData = (bookId) => {
-    fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      }
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        setChartData(response.data);
-      });
-  };
   useEffect(() => {
+    const fetchChartData = (bookId) => {
+      fetch(
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
+        .then((response) => {
+          if (response.status === 401) {
+            alert("Please log in");
+            navigate(`/signIn`, { replace: true });
+          }
+          return response.json();
+        })
+        .then((response) => {
+          setChartData(response.data);
+        });
+    };
+
     fetchChartData(bookId);
-  }, [bookId]);
+  }, [bookId, navigate]);
   const dates = chartData.map((item, index) => item.date);
   const totals = [];
 

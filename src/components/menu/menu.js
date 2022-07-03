@@ -1,6 +1,6 @@
 import "./menu.css";
 import user from "../../images/user.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const sidebarMenu = [
   {
     id: "Book",
@@ -19,9 +19,13 @@ const sidebarMenu = [
   },
 ];
 const Menu = () => {
+  let navigate = useNavigate();
   const name = localStorage.getItem("username") || "name";
   const picture = JSON.parse(localStorage.getItem("picture")) || user;
-
+  const logout = () => {
+    localStorage.clear();
+    navigate(`/`, { replace: true });
+  };
   return (
     <div className="menu">
       <div className="user">
@@ -42,6 +46,10 @@ const Menu = () => {
             </Link>
           );
         })}
+      </div>
+      <div className="logout" onClick={() => logout()}>
+        <div className="logout-image"></div>
+        logout
       </div>
     </div>
   );

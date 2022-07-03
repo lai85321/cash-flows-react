@@ -75,3 +75,20 @@
 .settings-icon {
     background-image: url(../../images/settings.png);
 }
+
+.logout{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.logout-image {
+    width: 18px;
+    height: 18px;
+    background-image: url(../../images/logout.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 15px;
+}

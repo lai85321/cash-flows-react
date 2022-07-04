@@ -61,3 +61,15 @@
 .balanced {
     background-image: url(../../images/account.png);
 }
+.groceies {
+    background-image: url(../../images/grocery-cart.png);
+}
+.fare {
+    background-image: url(../../images/bus.png);
+}
+.entertainment {
+    background-image: url(../../images/dancer.png);
+}
+.hotel {
+    background-image: url(../../images/accomodation.png);
+}

@@ -5,7 +5,6 @@ import user from "../../images/user.png";
 import { AddMemberModal } from "../modal/modal";
 const Account = (props) => {
   const { data, bookId, daily, memberData, setMemberData } = props;
-
   return (
     <div className="account">
       <div className="left">
@@ -24,21 +23,17 @@ const Account = (props) => {
       {/* 用頁面判斷(多本or單一)決定要不要顯示右邊 */}
       <div className="right">
         <div className="account-overview">
-          <div className="account-overview-header">Expense</div>
+          <div className="account-overview-header">Overview</div>
           <div className="account-overview-contents">
-            {/* <div className="account-overview-content">
-              <div className="account-overview-title">Income</div>
-              <div className="account-overview-amount">{data.income}</div>
-            </div> */}
-            <div className="account-overview-content">{data.expense}</div>
-            {/* <div className="account-overview-content">
-              <div className="account-overview-title">Expense</div>
-              <div className="account-overview-amount">{data.expense}</div>
-            </div> */}
-            {/* <div className="account-overview-content">
-              <div className="account-overview-title">Balance</div>
-              <div className="account-overview-amount">{data.balance}</div>
-            </div> */}
+            <div className="account-overview-content">
+              <div>Income:</div> <div>{data.income}</div>
+            </div>
+            <div className="account-overview-content">
+              <div>Expense:</div> <div>{data.expense}</div>
+            </div>
+            <div className="account-overview-content">
+              <div>Balance:</div> <div>{data.balance}</div>
+            </div>
           </div>
         </div>
         <div className="account-member">
@@ -57,15 +52,17 @@ const Account = (props) => {
                   </div>
 
                   <div style={{ margin: "5px 0px" }}>
-                    expense: {item.expense}
+                    payment: {item.payment}
                   </div>
                 </>
               );
             })}
-            <div className="account-member-footer">
-              {/* <div className="account-add-member"></div> */}
+            {/* <div className="account-member-footer">
               <AddMemberModal setMemberData={setMemberData} />
-            </div>
+            </div> */}
+          </div>
+          <div className="account-member-footer">
+            <AddMemberModal setMemberData={setMemberData} />
           </div>
         </div>
       </div>

@@ -77,7 +77,10 @@
     height: 20%;
     margin: 5% 0% 5% 0% ;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    text-align: center;
+    font-size: 18px;
+    justify-content: space-between;
 }
 .account-overview-title{
     margin-left: 2%;
@@ -120,8 +123,7 @@
     margin-top: 2%;
 }
 .account-member-list{
-    height: 40px;
-    margin: 3% 0% 3% 0% ;
+    height: 36px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -142,8 +144,8 @@
 }
 .account-member-footer{
     height: 30px;
-    width: 100%;
-    margin-top: 20px;
+    width: 80%;
+    margin-top: 15px;
     font-weight: bolder;
     display: flex;
     flex-direction: row;

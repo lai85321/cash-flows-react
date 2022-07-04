@@ -14,26 +14,42 @@ const AmountList = (props) => {
       <hr></hr>
       {details.map((item, index) => {
         return (
-          <Link
-            to={`/book/${bookId}/account/${item.id}`}
-            state={{ bookId: bookId }}
+          <div
             style={{
-              cursor: item.tag === "balanced" ? "not-allowed" : "pointer",
+              cursor:
+                item.status !== 2 || item.tag === "balanced"
+                  ? "not-allowed"
+                  : "pointer",
             }}
           >
-            <div key={index} className="account-list-details">
-              <div className="account-list-item">
-                <div className={`account-list-tag ${item.tag}`}></div>
-                {item.note}
+            <Link
+              to={`/book/${bookId}/account/${item.id}`}
+              state={{ bookId: bookId }}
+              style={{
+                pointerEvents:
+                  item.status !== 2 || item.tag === "balanced"
+                    ? "none"
+                    : "auto",
+                // cursor:
+                //   item.status !== 2 || item.tag === "balanced"
+                //     ? "not-allowed"
+                //     : "pointer",
+              }}
+            >
+              <div key={index} className="account-list-details">
+                <div className="account-list-item">
+                  <div className={`account-list-tag ${item.tag}`}></div>
+                  {item.note}
+                </div>
+                <div>{item.name}</div>
+                <div className="account-list-amount">{item.amount}</div>
+                <div
+                  className="account-list-status"
+                  style={{ backgroundColor: `${status[item.status]}` }}
+                ></div>
               </div>
-              <div>{item.name}</div>
-              <div className="account-list-amount">{item.amount}</div>
-              <div
-                className="account-list-status"
-                style={{ backgroundColor: `${status[item.status]}` }}
-              ></div>
-            </div>
-          </Link>
+            </Link>
+          </div>
         );
       })}
     </div>

@@ -1,3 +1,36 @@
+.setting-nav-container{
+    margin-left: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 82vw;
+    height: 8vh;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color:white;
+    border-bottom:solid 1px;
+    border-color: gainsboro;
+}
+.setting-nav{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.setting-page-logo{
+    width: 85px;
+    height: 45px;
+    margin-left: 50px;
+    background-image: url(../../images/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 .setting-container{
     margin-top: 10vh;
     margin-left: 20vw;

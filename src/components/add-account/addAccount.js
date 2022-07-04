@@ -2,25 +2,32 @@ import "./addAccount.css";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import Select from "react-select";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import { PaidModal } from "../modal/modal";
-const AddAccount = () => {
+
+const AddAccount = (props) => {
+  const { member } = props;
   let navigate = useNavigate();
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
   let { bookId } = useParams();
   const username = localStorage.getItem("username");
   const typeBtns = ["Income", "Expense"];
-  const tags = ["food", "cloth", "health"];
-  const userOptions = [
-    { id: "1", name: "Andy" },
-    { id: "2", name: "Bella" },
-    { id: "3", name: "Cindy" },
+  const tags = [
+    { id: 1, tag: "food" },
+    { id: 2, tag: "cloth" },
+    { id: 3, tag: "health" },
+    { id: 5, tag: "groceies" },
+    { id: 6, tag: "fare" },
+    { id: 7, tag: "entertainment" },
+    { id: 8, tag: "hotel" },
   ];
-
-  const paidAmount = Array(userOptions.length).fill(0);
+  // const userOptions = [
+  //   { id: "1", name: "Andy" },
+  //   { id: "2", name: "Bella" },
+  //   { id: "3", name: "Cindy" },
+  // ];
+  const paidAmount = Array(member?.length).fill(0);
   const [startDate, setStartDate] = useState(new Date());
   const [amount, setAmount] = useState("");
   const [tag, setTag] = useState("food");
@@ -32,21 +39,20 @@ const AddAccount = () => {
   const [paid, setPaid] = useState(paidAmount);
   const submitAccount = () => {
     const typeId = typeBtns.findIndex((item) => item === type);
-    const tagId = tags.findIndex((item) => item === tag);
-    const paidIdx = userOptions.findIndex((item) => item.name === paidBtnShow);
+    const tagId = tags.findIndex((item) => item.tag === tag);
+    const paidIdx = member.findIndex((item) => item.name === paidBtnShow);
     const body = {
       bookId: bookId,
-      userId: userOptions[paidIdx].id,
+      userId: member[paidIdx].id,
       typeId: typeId + 1,
       amount: amount,
       note: note,
-      tagId: tagId + 1,
+      tagId: tags[tagId].id,
       date: startDate,
       split: split,
-      paidId: split && +userOptions[paidIdx].id,
+      paidId: split && +member[paidIdx].id,
       splits: paid,
     };
-
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
       method: "POST",
       headers: {
@@ -110,14 +116,14 @@ const AddAccount = () => {
                   setAmount(e.target.value);
                   let sum = 0;
                   paidAmount.fill(
-                    Math.trunc(e.target.value / userOptions.length),
+                    Math.trunc(e.target.value / member.length),
                     0,
-                    userOptions.length - 1
+                    member.length - 1
                   );
                   for (let i = 0; i < paidAmount.length - 1; i++) {
                     sum = sum + paidAmount[i];
                   }
-                  paidAmount.fill(e.target.value - sum, userOptions.length - 1);
+                  paidAmount.fill(e.target.value - sum, member.length - 1);
                   setPaid(paidAmount);
                 }}
               />
@@ -130,7 +136,7 @@ const AddAccount = () => {
                 defaultValue={paidBtnShow}
                 onChange={(e) => setPaidBtnShow(e.target.value)}
               >
-                {userOptions.map((item, idx) => (
+                {member?.map((item, idx) => (
                   <option key={idx} value={item.value}>
                     {item.name}
                   </option>
@@ -154,10 +160,10 @@ const AddAccount = () => {
                   {tags.map((item, index) => (
                     <div
                       key={index}
-                      className={`add-tag ${tag === item && "chosenBtn"}`}
+                      className={`add-tag ${tag === item.tag && "chosenBtn"}`}
                       onClick={(e) => setTag(e.target.textContent)}
                     >
-                      {item}
+                      {item.tag}
                     </div>
                   ))}
                 </div>
@@ -168,11 +174,11 @@ const AddAccount = () => {
               <label className="add-split-label">Split Account</label>
               <label className="switch" onChange={() => setSplit(split ^ 1)}>
                 <input type="checkbox" />
-                <span class="slider round"></span>
+                <span className="slider round"></span>
               </label>
 
               <div className={`split-detail ${split === 0 && "none"}`}>
-                {userOptions.map((item, idx) => (
+                {member?.map((item, idx) => (
                   <div>
                     <div
                       style={{

@@ -165,7 +165,7 @@ const EditAccount = () => {
               <label className="edit-split-label">Split Account</label>
               <label className="switch" onChange={() => setSplit(split ^ 1)}>
                 <input type="checkbox" />
-                <span class="slider round"></span>
+                <span className="slider round"></span>
               </label>
 
               <div className={`edit-split-detail ${split === 0 && "none"}`}>

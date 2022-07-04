@@ -104,11 +104,12 @@
     width: 65%;
     display: flex;
     flex-wrap: wrap;
+    max-height: 70px;
 }
 .add-tag{
-    margin: 0% 6% 4% 0%;
+    margin: 4px 8px 10px 4px;
     background-color: #fef4de;
-    padding: 2% 4%;
+    padding: 3px 5px;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -133,6 +134,7 @@
     border: solid 1px rgba(128, 128, 128, 0.808);
     border-radius: 8px;
     overflow-y: auto;
+    height: 90px;
 }
 .none{
     display: none;

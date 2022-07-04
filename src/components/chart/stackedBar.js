@@ -34,6 +34,22 @@ const StackedDailyChart = (props) => {
       borderColor: "rgb(53, 162, 235)",
       backgroundColor: "rgba(53, 162, 235, 0.5)",
     },
+    {
+      borderColor: "rgb(255, 206, 86)",
+      backgroundColor: "rgba(255, 206, 86, 0.5)",
+    },
+    {
+      borderColor: "rgb(7153, 102, 255)",
+      backgroundColor: "rgba(153, 102, 255, 0.5)",
+    },
+    {
+      borderColor: "rgb(255, 159, 64)",
+      backgroundColor: "rgba(255, 159, 64, 0.5)",
+    },
+    {
+      borderColor: "rgb(188, 184, 138)",
+      backgroundColor: "rgba(188, 184, 138, 0.5)",
+    },
   ];
   const datasets = totals.map((item, idx) => {
     return {

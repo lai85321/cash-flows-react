@@ -13,8 +13,10 @@ function DashboardPage() {
   const month = (today.getMonth() + 1).toString();
   const startTime = year.concat("-", month);
   const [pieData, setPieData] = useState([]);
-  const [memberData, setMemberData] = useState([]);
-  const [chartData, setChartData] = useState([]);
+  // const [memberData, setMemberData] = useState([]);
+  // const [chartData, setChartData] = useState([]);
+  const [days, setDays] = useState([]);
+  const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
     const fetchPieChart = (bookId, startTime) => {
@@ -43,10 +45,59 @@ function DashboardPage() {
     fetchPieChart(bookId, startTime);
   }, [bookId, startTime, navigate]);
 
+  // useEffect(() => {
+  //   const fetchMemberData = (bookId, startTime) => {
+  //     fetch(
+  //       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+  //         },
+  //       }
+  //     )
+  //       .then((response) => {
+  //         if (response.status === 401) {
+  //           alert("Please log in");
+  //           navigate(`/signIn`, { replace: true });
+  //         }
+  //         return response.json();
+  //       })
+  //       .then((response) => {
+  //         setMemberData(response.data);
+  //       });
+  //   };
+  //   fetchMemberData(bookId, startTime);
+  // }, [bookId, startTime, navigate]);
+
   useEffect(() => {
-    const fetchMemberData = (bookId, startTime) => {
+    // const fetchChartData = (bookId) => {
+    //   fetch(
+    //     `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`,
+    //     {
+    //       method: "GET",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    //       },
+    //     }
+    //   )
+    //     .then((response) => {
+    //       if (response.status === 401) {
+    //         alert("Please log in");
+    //         navigate(`/signIn`, { replace: true });
+    //       }
+    //       return response.json();
+    //     })
+    //     .then((response) => {
+    //       setChartData(response.data);
+    //     });
+    // };
+
+    const fetchMonthBalanceData = (bookId) => {
       fetch(
-        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/monthBalance?bookId=${bookId}`,
         {
           method: "GET",
           headers: {
@@ -63,61 +114,32 @@ function DashboardPage() {
           return response.json();
         })
         .then((response) => {
-          setMemberData(response.data);
-        });
-    };
-    fetchMemberData(bookId, startTime);
-  }, [bookId, startTime, navigate]);
-
-  useEffect(() => {
-    const fetchChartData = (bookId) => {
-      fetch(
-        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        }
-      )
-        .then((response) => {
-          if (response.status === 401) {
-            alert("Please log in");
-            navigate(`/signIn`, { replace: true });
-          }
-          return response.json();
-        })
-        .then((response) => {
-          setChartData(response.data);
+          setDays(response.data.days);
+          setExpenses(response.data.expenses);
         });
     };
 
-    fetchChartData(bookId);
+    //fetchChartData(bookId);
+    fetchMonthBalanceData(bookId);
   }, [bookId, navigate]);
-  const dates = chartData.map((item, index) => item.date);
-  const totals = [];
+  // const dates = chartData.map((item, index) => item.date);
+  // const totals = [];
 
-  for (let i = 0; i < memberData.length; i++) {
-    let member = memberData[i];
-    console.log(member.id);
-    let tmps = chartData.map((item, idx) => {
-      console.log(item);
-      return Object.values(item.total[i])[0];
-    });
-    totals.push(tmps);
-  }
-  console.log(totals);
+  // for (let i = 0; i < memberData.length; i++) {
+  //   let member = memberData[i];
+  //   console.log(member.id);
+  //   let tmps = chartData.map((item, idx) => {
+  //     console.log(item);
+  //     return Object.values(item.total[i])[0];
+  //   });
+  //   totals.push(tmps);
+  // }
+  // console.log(totals);
   return (
     <div>
       <Menu />
       <Nav />
-      <Dashboard
-        pieData={pieData}
-        dates={dates}
-        totals={totals}
-        memberData={memberData}
-      />
+      <Dashboard pieData={pieData} days={days} expenses={expenses} />
     </div>
   );
 }

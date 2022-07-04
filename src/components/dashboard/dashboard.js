@@ -1,9 +1,9 @@
 import "./dashboard.css";
 import React from "react";
 import SingleTagPie from "../chart/pieChart";
-import StackedDailyChart from "../chart/stackedBar";
+import MonthBalanceChart from "../chart/lineChart";
 const Dashboard = (props) => {
-  const { pieData, dates, totals, memberData } = props;
+  const { pieData, days, expenses } = props;
   const pieLabels = pieData.map((item, idx) => item.tag);
   const pieTotals = pieData.map((item, idx) => item.total);
 
@@ -13,7 +13,7 @@ const Dashboard = (props) => {
         <div className="dashboard-chart">
           <SingleTagPie pieLabels={pieLabels} pieTotals={pieTotals} />
         </div>
-        {/* <div className="dashboard-details">
+        <div className="dashboard-details">
           <div className="dashboard-header">Detail</div>
           {pieData.map((item, idx) => {
             return (
@@ -25,16 +25,17 @@ const Dashboard = (props) => {
               </div>
             );
           })}
-        </div> */}
+        </div>
       </div>
       <div className="dashboard-container">
         <div className="dashboard-chart">
-          <StackedDailyChart
+          {/* <StackedDailyChart
             className="lineChart"
             dates={dates}
             totals={totals}
             memberData={memberData}
-          />
+          /> */}
+          <MonthBalanceChart days={days} expenses={expenses} />
         </div>
         {/* <div className="dashboard-details">
           <div className="dashboard-header">Detail</div>

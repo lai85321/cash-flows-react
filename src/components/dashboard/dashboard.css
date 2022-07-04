@@ -48,8 +48,8 @@
     height: 10%;
     padding: 2% 0%;
     width: 100%;
-    font-weight: bolder;
-    font-size: 22px;
+    font-weight: 500;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,11 +64,11 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    font-size: 18px;
+    font-size: 14px;
     margin: 2% 5%;
 }
 .dashboard-detail-title{
-    font-weight: 800;
+    font-weight: 500;
     margin-right: 50px;
     width: 20%;
     text-align: left;

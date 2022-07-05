@@ -8,7 +8,7 @@ const AccountDetail = (props) => {
   let navigate = useNavigate();
   let { id } = useParams();
   const userId = localStorage.getItem("id");
-  const { account } = props;
+  const { account, isLoading } = props;
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
 
@@ -34,18 +34,7 @@ const AccountDetail = (props) => {
         navigate(`/book/${bookId}`, { replace: true });
       });
   };
-  const checkBtns = [
-    {
-      text: "Cancel",
-      class: "account-detail-check-cancel",
-      onClick: () => {},
-    },
-    {
-      text: "Remove",
-      class: "account-detail-check-remove",
-      onClick: deleteAccount,
-    },
-  ];
+
   return (
     <div className="account-detail-page">
       <div className="account-detail-container">
@@ -96,18 +85,31 @@ const AccountDetail = (props) => {
             </div>
           </div>
         </div>
-
-        <div className="account-detail-btns">
-          {checkBtns.map((item, index) => (
-            <div key={index} className={item.class} onClick={item.onClick}>
-              {item.text === "Cancel" ? (
-                <Link to={`/book/${bookId}`}>{item.text}</Link>
-              ) : (
-                item.text
-              )}
+        {!isLoading ? (
+          account?.splits === undefined ? (
+            <div className="account-detail-btns">
+              <div className="account-detail-check-cancel" onClick={() => {}}>
+                <Link to={`/book/${bookId}`}>Cancal</Link>
+              </div>
+              <div
+                className="account-detail-check-remove"
+                onClick={() => {
+                  deleteAccount();
+                }}
+              >
+                Remove
+              </div>
             </div>
-          ))}
-        </div>
+          ) : (
+            <div className="account-detail-btns">
+              <div className="account-detail-check-cancel" onClick={() => {}}>
+                <Link to={`/book/${bookId}`}>Cancal</Link>
+              </div>
+            </div>
+          )
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -17,24 +17,14 @@ const AmountList = (props) => {
           <div
             key={index}
             style={{
-              cursor:
-                item.status !== 2 || item.tag === "balanced"
-                  ? "not-allowed"
-                  : "pointer",
+              cursor: item.tag === "balanced" ? "not-allowed" : "pointer",
             }}
           >
             <Link
               to={`/book/${bookId}/account/${item.id}`}
               state={{ bookId: bookId }}
               style={{
-                pointerEvents:
-                  item.status !== 2 || item.tag === "balanced"
-                    ? "none"
-                    : "auto",
-                // cursor:
-                //   item.status !== 2 || item.tag === "balanced"
-                //     ? "not-allowed"
-                //     : "pointer",
+                pointerEvents: item.tag === "balanced" ? "none" : "auto",
               }}
             >
               <div key={index} className="account-list-details">

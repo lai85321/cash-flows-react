@@ -7,9 +7,11 @@ function AccountDetailPage() {
   let { id } = useParams();
   let navigate = useNavigate();
   const [account, setAccount] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchAccountDetail = (id) => {
+      setIsLoading(true);
       fetch(
         `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/detail?id=${id}`,
         {
@@ -29,6 +31,7 @@ function AccountDetailPage() {
         })
         .then((response) => {
           setAccount(response.data);
+          setIsLoading(false);
         });
     };
 
@@ -37,7 +40,7 @@ function AccountDetailPage() {
 
   return (
     <div>
-      <AccountDetail account={account} />
+      <AccountDetail account={account} isLoading={isLoading} />
     </div>
   );
 }

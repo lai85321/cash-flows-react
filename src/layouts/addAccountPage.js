@@ -34,7 +34,6 @@ function AddAccountPage() {
     };
     fetchMember(bookId);
   }, [bookId, navigate]);
-  console.log(member);
   return (
     <div>
       <Menu />

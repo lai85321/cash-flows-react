@@ -23,8 +23,6 @@ ChartJS.register(
 
 const MonthBalanceChart = (props) => {
   const { days, expenses } = props;
-  console.log(days);
-  console.log(expenses);
   const options = {
     responsive: true,
     maintainAspectRatio: false,

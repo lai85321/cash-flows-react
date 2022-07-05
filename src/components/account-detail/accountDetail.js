@@ -11,7 +11,6 @@ const AccountDetail = (props) => {
   const { account } = props;
   const REACT_APP_HOST = process.env.REACT_APP_HOST;
   const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
-  console.log(account);
 
   const deleteAccount = () => {
     fetch(
@@ -32,7 +31,6 @@ const AccountDetail = (props) => {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
         navigate(`/book/${bookId}`, { replace: true });
       });
   };

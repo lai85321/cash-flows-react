@@ -28,7 +28,6 @@ function BookPage() {
           return response.json();
         })
         .then((response) => {
-          console.log(response);
           setBooks(response.data);
         });
     };

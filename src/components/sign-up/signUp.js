@@ -25,7 +25,6 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         if (!json.error) {
           localStorage.setItem("id", json.data.user.id);
           localStorage.setItem("username", json.data.user.name);

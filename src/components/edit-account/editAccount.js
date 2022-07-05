@@ -58,7 +58,6 @@ const EditAccount = () => {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
         navigate(`/book/${bookId}`, { replace: true });
       });
   };

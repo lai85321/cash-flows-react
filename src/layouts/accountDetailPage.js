@@ -7,7 +7,7 @@ function AccountDetailPage() {
   let { id } = useParams();
   let navigate = useNavigate();
   const [account, setAccount] = useState(null);
-  //console.log(id);
+
   useEffect(() => {
     const fetchAccountDetail = (id) => {
       fetch(
@@ -35,7 +35,6 @@ function AccountDetailPage() {
     fetchAccountDetail(id);
   }, [id, navigate]);
 
-  //console.log(account);
   return (
     <div>
       <AccountDetail account={account} />

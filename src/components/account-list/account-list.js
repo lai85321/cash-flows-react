@@ -15,6 +15,7 @@ const AmountList = (props) => {
       {details.map((item, index) => {
         return (
           <div
+            key={index}
             style={{
               cursor:
                 item.status !== 2 || item.tag === "balanced"

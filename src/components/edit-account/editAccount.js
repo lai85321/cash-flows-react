@@ -170,7 +170,7 @@ const EditAccount = () => {
 
               <div className={`edit-split-detail ${split === 0 && "none"}`}>
                 {userOptions.map((item, idx) => (
-                  <div>
+                  <div key={idx}>
                     <div
                       style={{
                         height: "36px",

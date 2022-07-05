@@ -38,39 +38,43 @@ const AddAccount = (props) => {
   // const [splitBtnShow, setSplitBtnShow] = useState("Split");
   const [paid, setPaid] = useState(paidAmount);
   const submitAccount = () => {
-    const typeId = typeBtns.findIndex((item) => item === type);
-    const tagId = tags.findIndex((item) => item.tag === tag);
-    const paidIdx = member.findIndex((item) => item.name === paidBtnShow);
-    const body = {
-      bookId: bookId,
-      userId: member[paidIdx].id,
-      typeId: typeId + 1,
-      amount: amount,
-      note: note,
-      tagId: tags[tagId].id,
-      date: startDate,
-      split: split,
-      paidId: split && +member[paidIdx].id,
-      splits: paid,
-    };
-    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
-      body: JSON.stringify(body),
-    })
-      .then((response) => {
-        if (response.status === 401) {
-          alert("Please log in");
-          navigate(`/signIn`, { replace: true });
-        }
-        return response.json();
+    if (amount === "" || amount === "0") {
+      alert("Please type an valid number in amount field");
+    } else {
+      const typeId = typeBtns.findIndex((item) => item === type);
+      const tagId = tags.findIndex((item) => item.tag === tag);
+      const paidIdx = member.findIndex((item) => item.name === paidBtnShow);
+      const body = {
+        bookId: bookId,
+        userId: member[paidIdx].id,
+        typeId: typeId + 1,
+        amount: amount,
+        note: note === "" ? tag : note,
+        tagId: tags[tagId].id,
+        date: startDate,
+        split: split,
+        paidId: split && +member[paidIdx].id,
+        splits: paid,
+      };
+      fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+        body: JSON.stringify(body),
       })
-      .then((json) => {
-        navigate(`/book/${bookId}`, { replace: true });
-      });
+        .then((response) => {
+          if (response.status === 401) {
+            alert("Please log in");
+            navigate(`/signIn`, { replace: true });
+          }
+          return response.json();
+        })
+        .then((json) => {
+          navigate(`/book/${bookId}`, { replace: true });
+        });
+    }
   };
   const checkBtns = [
     {
@@ -110,9 +114,14 @@ const AddAccount = (props) => {
             <div className="add-account-input">
               <label className="add-amount-label">Amount</label>
               <input
+                min="0"
+                type="number"
                 className="add-amount-input"
                 value={amount}
                 onChange={(e) => {
+                  if (e.target.value < 0) {
+                    e.target.value = 0;
+                  }
                   setAmount(e.target.value);
                   let sum = 0;
                   paidAmount.fill(
@@ -179,7 +188,7 @@ const AddAccount = (props) => {
 
               <div className={`split-detail ${split === 0 && "none"}`}>
                 {member?.map((item, idx) => (
-                  <div>
+                  <div key={idx}>
                     <div
                       style={{
                         height: "36px",

@@ -36,6 +36,7 @@ const PaidModal = (props) => {
             {details.map((item, index) => {
               return (
                 <div
+                  key={index}
                   className="paid-option"
                   onClick={(e) => {
                     setPaidBtnShow(e.target.textContent);

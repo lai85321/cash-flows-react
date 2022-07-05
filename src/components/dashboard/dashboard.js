@@ -17,7 +17,7 @@ const Dashboard = (props) => {
           <div className="dashboard-header">Detail</div>
           {pieData.map((item, idx) => {
             return (
-              <div className="dashboard-detail">
+              <div className="dashboard-detail" key={idx}>
                 <div className="dashboard-detail-title">
                   {item.tag.toUpperCase()}
                 </div>

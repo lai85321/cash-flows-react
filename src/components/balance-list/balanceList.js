@@ -9,8 +9,8 @@ const BalanceList = (props) => {
       <hr></hr>
       {details.map((item, idx) => {
         return (
-          <>
-            <div className="balance-list-details" key={idx}>
+          <div key={idx}>
+            <div className="balance-list-details">
               <div className="balance-list-detail">{item.detail}</div>
               <button
                 className="balance-list-settle"
@@ -19,7 +19,7 @@ const BalanceList = (props) => {
                 settle up
               </button>
             </div>
-          </>
+          </div>
         );
       })}
     </div>

@@ -3,6 +3,7 @@ import AmountList from "../account-list/account-list";
 import React from "react";
 import user from "../../images/user.png";
 import { AddMemberModal } from "../modal/modal";
+const { REACT_APP_CLOUDFRONT_PATH } = process.env;
 const Account = (props) => {
   const { data, bookId, daily, memberData, setMemberData } = props;
   return (
@@ -40,7 +41,9 @@ const Account = (props) => {
           <div className="account-member-header">Member</div>
           <div className="account-member-lists">
             {memberData.map((item, idx) => {
-              const picture = item.picture || user;
+              const picture = item.picture
+                ? `${REACT_APP_CLOUDFRONT_PATH}/user/${item.id}/${item.picture}`
+                : user;
               return (
                 <>
                   <div key={idx} className="account-member-list">
@@ -50,7 +53,6 @@ const Account = (props) => {
                     ></div>
                     <div className="account-member-name">{item.name}</div>
                   </div>
-
                   <div style={{ margin: "5px 0px" }}>
                     payment: {item.payment}
                   </div>

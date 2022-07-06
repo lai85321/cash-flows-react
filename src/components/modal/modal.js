@@ -194,7 +194,11 @@ const AddMemberModal = (props) => {
         return response.json();
       })
       .then((json) => {
-        setMemberData(json.data);
+        if (json.error) {
+          alert(json.error);
+        } else {
+          setMemberData(json.data);
+        }
         setModalStyleIdx(0);
         setEmail("");
       });

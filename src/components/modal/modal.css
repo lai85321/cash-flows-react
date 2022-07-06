@@ -127,3 +127,15 @@
 .deletebtn{
   margin-right: 10px;
 }
+
+.name-edit{
+  width:60px;
+  height:24px;
+  background-color: #ffe397aa;
+  border: solid 1px #ffe497;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}

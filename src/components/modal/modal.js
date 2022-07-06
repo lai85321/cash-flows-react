@@ -6,7 +6,7 @@ import "./modal.css";
 
 const REACT_APP_HOST = process.env.REACT_APP_HOST;
 const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
-
+const REACT_APP_CLOUDFRONT_PATH = process.env.REACT_APP_CLOUDFRONT_PATH;
 const PaidModal = (props) => {
   const { details, paidBtnShow, setPaidBtnShow } = props;
   const modalStyle = ["modal-none", "modal-block"];
@@ -324,4 +324,194 @@ const DeleteBookModal = (props) => {
     </>
   );
 };
-export { PaidModal, SplitModal, AddMemberModal, DeleteBookModal };
+
+const EditNameModel = (props) => {
+  let navigate = useNavigate();
+  const { userId, name, setName, setShowName } = props;
+  const modalStyle = ["modal-none", "modal-block"];
+
+  const [modalStyleIdx, setModalStyleIdx] = useState(0);
+  const editName = (userId) => {
+    const body = {
+      name: name,
+    };
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/user?id=${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          alert("Please log in");
+          navigate(`/signIn`, { replace: true });
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setShowName(name);
+        localStorage.setItem("username", name);
+        setModalStyleIdx(0);
+        navigate(`/settings`, { replace: true });
+      });
+  };
+  return (
+    <>
+      <div
+        className="name-edit"
+        onClick={() => {
+          setModalStyleIdx(modalStyleIdx ^ 1);
+        }}
+      >
+        edit
+      </div>
+      <div className={`modal ${modalStyle[modalStyleIdx]}`}>
+        <div className="modal-content">
+          <span
+            className="close"
+            onClick={() => {
+              setModalStyleIdx(0);
+            }}
+          >
+            &times;
+          </span>
+          <div className="modal-window">
+            <div>
+              <h3>Name</h3>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+
+              <div className="name-edit-btns">
+                <Link to="/settings">
+                  <button
+                    onClick={() => {
+                      setModalStyleIdx(0);
+                    }}
+                    className="name-cancel-btn"
+                  >
+                    Cancel
+                  </button>
+                </Link>
+                <button
+                  onClick={() => editName(userId)}
+                  className="name-save-btn"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const EditPictureModel = (props) => {
+  let navigate = useNavigate();
+  const { userId, setPicture } = props;
+  const [uploadFile, setUploadFile] = useState(null);
+  const modalStyle = ["modal-none", "modal-block"];
+
+  const [modalStyleIdx, setModalStyleIdx] = useState(0);
+  const editName = (userId) => {
+    console.log(uploadFile);
+    let formData = new FormData();
+    formData.append("picture", uploadFile);
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/user?id=${userId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          alert("Please log in");
+          navigate(`/signIn`, { replace: true });
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setPicture(
+          `${REACT_APP_CLOUDFRONT_PATH}/user/${userId}/${json.data.picture}`
+        );
+        localStorage.setItem(
+          "picture",
+          `${REACT_APP_CLOUDFRONT_PATH}/user/${userId}/${json.data.picture}`
+        );
+        setModalStyleIdx(0);
+        navigate(`/settings`, { replace: true });
+      });
+  };
+  return (
+    <>
+      <div
+        className="name-edit"
+        onClick={() => {
+          setModalStyleIdx(modalStyleIdx ^ 1);
+        }}
+      >
+        edit
+      </div>
+      <div className={`modal ${modalStyle[modalStyleIdx]}`}>
+        <div className="modal-content">
+          <span
+            className="close"
+            onClick={() => {
+              setModalStyleIdx(0);
+            }}
+          >
+            &times;
+          </span>
+          <div className="modal-window">
+            <div>
+              <h3>Picture</h3>
+              <input
+                type="file"
+                onChange={(e) => {
+                  setUploadFile(e.target.files[0]);
+                }}
+              />
+
+              <div className="name-edit-btns">
+                <Link to="/settings">
+                  <button
+                    onClick={() => {
+                      setModalStyleIdx(0);
+                    }}
+                    className="name-cancel-btn"
+                  >
+                    Cancel
+                  </button>
+                </Link>
+                <button
+                  onClick={() => editName(userId)}
+                  className="name-save-btn"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export {
+  PaidModal,
+  SplitModal,
+  AddMemberModal,
+  DeleteBookModal,
+  EditNameModel,
+  EditPictureModel,
+};

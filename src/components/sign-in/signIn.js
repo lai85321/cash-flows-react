@@ -2,7 +2,8 @@ import "./signIn.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
+const { REACT_APP_HOST, REACT_APP_API_VERSION, REACT_APP_CLOUDFRONT_PATH } =
+  process.env;
 const SignIn = () => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("andy@test.com");
@@ -14,6 +15,7 @@ const SignIn = () => {
       email: email,
       password: password,
     };
+    alert(REACT_APP_CLOUDFRONT_PATH);
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/user/signin`, {
       method: "POST",
       headers: {
@@ -26,7 +28,15 @@ const SignIn = () => {
         if (!json.error) {
           localStorage.setItem("id", json.data.user.id);
           localStorage.setItem("username", json.data.user.name);
-          localStorage.setItem("picture", json.data.user.picture);
+
+          localStorage.setItem(
+            "picture",
+            `${
+              json.data.user.picture === null
+                ? null
+                : `${REACT_APP_CLOUDFRONT_PATH}/user/${json.data.user.id}/${json.data.user.picture}`
+            }`
+          );
           localStorage.setItem("access_token", json.data.access_token);
           navigate("/book", { replace: true });
         } else {

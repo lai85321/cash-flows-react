@@ -34,7 +34,7 @@ function App() {
         <Route path="/addAccount/:bookId" element={<AddAccountPage />} />
         <Route path="/book/:bookId/balance" element={<BalancePage />} />
         <Route path="/book/:bookId/dashboard" element={<DashBoardPage />} />
-        <Route path="/setting" element={<SettingPage />} />
+        <Route path="/settings" element={<SettingPage />} />
       </Routes>
     </div>
   );

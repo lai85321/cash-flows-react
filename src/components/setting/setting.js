@@ -1,5 +1,11 @@
 import "./setting.css";
-const Setting = () => {
+import { useState } from "react";
+import { EditNameModel, EditPictureModel } from "../modal/modal";
+const Setting = (props) => {
+  const { userId, username, userPicture } = props;
+  const [name, setName] = useState(username);
+  const [showName, setShowName] = useState(username);
+  const [picture, setPicture] = useState(userPicture);
   return (
     <div>
       <div className="setting-nav-container">
@@ -13,13 +19,31 @@ const Setting = () => {
           <div className="setting-list-header">
             <div style={{ fontSize: "22px" }}>Setting</div>
           </div>
-          <hr></hr>
-          <>
-            <div className="setting-list-details">
-              <div className="setting-list-detail">name</div>
-              <button className="setting-list-settle">change</button>
+          <div className="setting-list-details">
+            <div className="setting-list-detail-key-name">Name: </div>
+            <div className="setting-list-detail-value">{showName}</div>
+            <div>
+              <EditNameModel
+                name={name}
+                userId={userId}
+                setName={setName}
+                setShowName={setShowName}
+              />
             </div>
-          </>
+          </div>
+
+          <div className="setting-list-details">
+            <div className="setting-list-detail-key-pic">Picture: </div>
+            <div className="setting-list-detail-value">
+              <div
+                className="setting-list-detail-pic"
+                style={{ backgroundImage: `url(${picture})` }}
+              ></div>
+            </div>
+            <div>
+              <EditPictureModel setPicture={setPicture} userId={userId} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

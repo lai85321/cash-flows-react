@@ -15,13 +15,13 @@ const sidebarMenu = [
   {
     id: "Settings",
     icon: `settings-icon`,
-    link: `/setting`,
+    link: `/settings`,
   },
 ];
 const Menu = () => {
   let navigate = useNavigate();
   const name = localStorage.getItem("username") || "name";
-  const picture = JSON.parse(localStorage.getItem("picture")) || user;
+  const picture = localStorage.getItem("picture") || `url(${user})`;
   const logout = () => {
     localStorage.clear();
     navigate(`/`, { replace: true });

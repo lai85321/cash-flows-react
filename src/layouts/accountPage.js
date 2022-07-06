@@ -12,15 +12,17 @@ function AccountPage() {
   const today = new Date();
   const year = today.getFullYear().toString();
   const month = (today.getMonth() + 1).toString();
-  const startTime = year.concat("-", month);
+  const startTime = year.concat("-", month < 10 ? "0" + month : month);
+  const [startMonth, setStartMonth] = useState(startTime);
   const [data, setData] = useState([]);
   const [daily, setDaily] = useState([]);
   const [memberData, setMemberData] = useState([]);
 
   useEffect(() => {
     const fetchAccountList = (userId, bookId, startTime) => {
+      const utcStart = new Date(startTime).toUTCString().slice(0, -4);
       fetch(
-        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}&startTime=${startTime}`,
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}&startTime=${utcStart}`,
         {
           method: "GET",
           headers: {
@@ -42,13 +44,14 @@ function AccountPage() {
         });
     };
 
-    fetchAccountList(userId, bookId, startTime);
-  }, [userId, bookId, startTime, navigate]);
+    fetchAccountList(userId, bookId, startMonth);
+  }, [userId, bookId, startMonth, navigate]);
 
   useEffect(() => {
     const fetchMemberData = (bookId, startTime) => {
+      const utcStart = new Date(startTime).toUTCString().slice(0, -4);
       fetch(
-        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${utcStart}`,
         {
           method: "GET",
           headers: {
@@ -69,8 +72,8 @@ function AccountPage() {
         });
     };
 
-    fetchMemberData(bookId, startTime);
-  }, [bookId, startTime, navigate]);
+    fetchMemberData(bookId, startMonth);
+  }, [bookId, startMonth, navigate]);
 
   return (
     <div>
@@ -82,6 +85,8 @@ function AccountPage() {
         data={data}
         memberData={memberData}
         setMemberData={setMemberData}
+        startMonth={startMonth}
+        setStartMonth={setStartMonth}
       />
     </div>
   );

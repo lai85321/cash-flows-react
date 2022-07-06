@@ -11,17 +11,17 @@ function DashboardPage() {
   const today = new Date();
   const year = today.getFullYear().toString();
   const month = (today.getMonth() + 1).toString();
-  const startTime = year.concat("-", month);
+  const startTime = year.concat("-", month < 10 ? "0" + month : month);
+  const [startMonth, setStartMonth] = useState(startTime);
   const [pieData, setPieData] = useState([]);
-  // const [memberData, setMemberData] = useState([]);
-  // const [chartData, setChartData] = useState([]);
   const [days, setDays] = useState([]);
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
     const fetchPieChart = (bookId, startTime) => {
+      const utcStart = new Date(startTime).toUTCString().slice(0, -4);
       fetch(
-        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleTagPie?bookId=${bookId}&startTime=${startTime}`,
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleTagPie?bookId=${bookId}&startTime=${utcStart}`,
         {
           method: "GET",
           headers: {
@@ -41,63 +41,11 @@ function DashboardPage() {
           setPieData(response.data);
         });
     };
+    const fetchMonthBalanceData = (bookId, startTime) => {
+      const utcStart = new Date(startTime).toUTCString().slice(0, -4);
 
-    fetchPieChart(bookId, startTime);
-  }, [bookId, startTime, navigate]);
-
-  // useEffect(() => {
-  //   const fetchMemberData = (bookId, startTime) => {
-  //     fetch(
-  //       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${startTime}`,
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-  //         },
-  //       }
-  //     )
-  //       .then((response) => {
-  //         if (response.status === 401) {
-  //           alert("Please log in");
-  //           navigate(`/signIn`, { replace: true });
-  //         }
-  //         return response.json();
-  //       })
-  //       .then((response) => {
-  //         setMemberData(response.data);
-  //       });
-  //   };
-  //   fetchMemberData(bookId, startTime);
-  // }, [bookId, startTime, navigate]);
-
-  useEffect(() => {
-    // const fetchChartData = (bookId) => {
-    //   fetch(
-    //     `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleMemberDaily?bookId=${bookId}`,
-    //     {
-    //       method: "GET",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    //       },
-    //     }
-    //   )
-    //     .then((response) => {
-    //       if (response.status === 401) {
-    //         alert("Please log in");
-    //         navigate(`/signIn`, { replace: true });
-    //       }
-    //       return response.json();
-    //     })
-    //     .then((response) => {
-    //       setChartData(response.data);
-    //     });
-    // };
-
-    const fetchMonthBalanceData = (bookId) => {
       fetch(
-        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/monthBalance?bookId=${bookId}`,
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/monthBalance?bookId=${bookId}&startTime=${utcStart}`,
         {
           method: "GET",
           headers: {
@@ -118,28 +66,20 @@ function DashboardPage() {
           setExpenses(response.data.expenses);
         });
     };
-
-    //fetchChartData(bookId);
-    fetchMonthBalanceData(bookId);
-  }, [bookId, navigate]);
-  // const dates = chartData.map((item, index) => item.date);
-  // const totals = [];
-
-  // for (let i = 0; i < memberData.length; i++) {
-  //   let member = memberData[i];
-  //   console.log(member.id);
-  //   let tmps = chartData.map((item, idx) => {
-  //     console.log(item);
-  //     return Object.values(item.total[i])[0];
-  //   });
-  //   totals.push(tmps);
-  // }
-  // console.log(totals);
+    fetchPieChart(bookId, startMonth);
+    fetchMonthBalanceData(bookId, startMonth);
+  }, [bookId, startMonth, navigate]);
   return (
     <div>
       <Menu />
       <Nav />
-      <Dashboard pieData={pieData} days={days} expenses={expenses} />
+      <Dashboard
+        pieData={pieData}
+        days={days}
+        expenses={expenses}
+        startMonth={startMonth}
+        setStartMonth={setStartMonth}
+      />
     </div>
   );
 }

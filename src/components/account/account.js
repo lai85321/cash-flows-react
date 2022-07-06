@@ -5,10 +5,28 @@ import user from "../../images/user.png";
 import { AddMemberModal } from "../modal/modal";
 const { REACT_APP_CLOUDFRONT_PATH } = process.env;
 const Account = (props) => {
-  const { data, bookId, daily, memberData, setMemberData } = props;
+  const {
+    data,
+    bookId,
+    daily,
+    memberData,
+    setMemberData,
+    startMonth,
+    setStartMonth,
+  } = props;
   return (
     <div className="account">
       <div className="left">
+        <input
+          type="month"
+          value={startMonth}
+          onChange={(e) => {
+            let year = e.target.value.slice(0, 4);
+            let month = parseInt(e.target.value.slice(5, 7));
+            let t = year.concat("-", month < 10 ? "0" + month : month);
+            setStartMonth(t);
+          }}
+        />
         <div className="lists">
           {daily.map((item, index) => (
             <AmountList

@@ -56,7 +56,8 @@ const AddBook = () => {
         return response.json();
       })
       .then((json) => {
-        navigate(`/book/${json.id}`, { replace: true });
+        console.log(json.data.bookId);
+        navigate(`/book/${json.data.bookId}`, { replace: true });
       });
   };
   const checkBtns = [

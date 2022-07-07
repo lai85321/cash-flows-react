@@ -15,7 +15,6 @@ const SignIn = () => {
       email: email,
       password: password,
     };
-    alert(REACT_APP_CLOUDFRONT_PATH);
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/user/signin`, {
       method: "POST",
       headers: {

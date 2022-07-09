@@ -15,23 +15,34 @@
     border-color: gainsboro;
 }
 .book-nav{
-    width: 95%;
+    width: 98%;
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
     height: 100%;
 }
+.book-nav-right{
+    display: flex;
+    flex-direction: row;
+}
 .add-book-btn{
     background-color: #ffe497;
-    margin-right:30px;
+    margin-right:35px;
     padding: 10px 15px;
     border-radius: 8px;
     font-size: 16px;
     letter-spacing: 1px;
     cursor: pointer;
 }
-
+.book-notice{
+    width: 36px;
+    height: 36px;
+    background-image: url(../../images/notification.png);
+    background-size: contain;
+    background-repeat: no-repeat; 
+    cursor: pointer;
+}
 .book-page-logo{
     width: 85px;
     height: 45px;
@@ -106,7 +117,35 @@
 }
 
 .book-more-container:hover{
-background-color: rgba(255, 51, 0, 0.65);
+background-color: #ffe497;
 border-radius: 50px;
 padding: 1px;
+}
+
+.book-notice .badge {
+    position: absolute;
+    height:8px;
+    width: 8px;
+    top: 6px;
+    right: 19px;
+    padding: 2px 3px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+}
+.book-notice-message{
+    z-index: 1;
+    position: fixed;
+    top:50px;
+    right:20px;
+    height: 320px;
+    width: 320px;
+    background-color: white;
+    border: 1px solid gray;
+}
+.book-notice-message-title{
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px 0px 0px 10px;
 }

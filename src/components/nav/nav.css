@@ -18,6 +18,7 @@
     flex-direction: row;
     height: 100%;
     margin-left:30px;
+    justify-content: space-between;
 }
 .book-icon{
     width: 85px;
@@ -38,6 +39,10 @@
     letter-spacing: 1px;
     margin-right: 35px;
 }
+.nav-right{
+    display: flex;
+    flex-direction: row;
+}
 .btn{
     background-color: #ffe497;
     margin-right:30px;
@@ -46,4 +51,66 @@
     font-size: 16px;
     letter-spacing: 1px;
     cursor: pointer;
+}
+.nav-notice{
+    width: 36px;
+    height: 36px;
+    background-image: url(../../images/notification.png);
+    background-size: contain;
+    background-repeat: no-repeat; 
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.nav-notice .badge {
+    position: absolute;
+    height:8px;
+    width: 8px;
+    top: 0px;
+    right: 0px;
+    padding: 2px 3px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+}
+.nav-notice-message{
+    z-index: 1;
+    position: fixed;
+    top:50px;
+    right:20px;
+    height: 320px;
+    width: 320px;
+    background-color: white;
+    border: 1px solid gray;
+}
+.nav-notice-message-title{
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px 0px 0px 0px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px gray;
+    letter-spacing: 2px;
+}
+.nav-notice-message-section{
+    height: 60px;
+    border-bottom: 1px solid darkgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+}
+.nav-notice-message-paidMsg{
+    font-size: 14px;
+
+}
+.nav-notice-message-settleMsg{
+    font-size: 14px;
+    
+}
+.nav-notice-message-time{
+    font-size: 12px;
 }

@@ -23,11 +23,11 @@
     height: 18vmin;
     width: 12vmin;
     border-radius: 50%;
-    border: solid;
-    background-size: 70%;
+    border: solid 1px;
+    background-size: 100%;
     background-repeat: no-repeat;
-    background-position: center;
-    background-color: white;
+    /* background-position: center; */
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .user-name {

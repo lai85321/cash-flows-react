@@ -10,6 +10,7 @@ function AccountPage() {
   let { bookId } = useParams();
   const userId = localStorage.getItem("id");
   const today = new Date();
+
   const year = today.getFullYear().toString();
   const month = (today.getMonth() + 1).toString();
   const startTime = year.concat("-", month < 10 ? "0" + month : month);
@@ -20,7 +21,9 @@ function AccountPage() {
 
   useEffect(() => {
     const fetchAccountList = (userId, bookId, startTime) => {
-      const utcStart = new Date(startTime).toUTCString().slice(0, -4);
+      const utcStart = new Date(startTime).setHours(
+        new Date(startTime).getHours() - 8
+      );
       fetch(
         `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts?userId=${userId}&bookId=${bookId}&startTime=${utcStart}`,
         {
@@ -49,7 +52,9 @@ function AccountPage() {
 
   useEffect(() => {
     const fetchMemberData = (bookId, startTime) => {
-      const utcStart = new Date(startTime).toUTCString().slice(0, -4);
+      const utcStart = new Date(startTime).setHours(
+        new Date(startTime).getHours() - 8
+      );
       fetch(
         `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts/member?bookId=${bookId}&startTime=${utcStart}`,
         {

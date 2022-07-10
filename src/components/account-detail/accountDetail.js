@@ -60,9 +60,7 @@ const AccountDetail = (props) => {
           </div>
           <div className="account-detail">
             <label className="account-detail-label">Date</label>
-            {new Date(account?.date).toLocaleString("zh-TW", {
-              timeZone: "Asia/Taipei",
-            })}
+            {new Date(account?.date).toString().slice(4, 25)}
           </div>
 
           <div

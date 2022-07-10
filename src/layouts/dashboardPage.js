@@ -19,7 +19,9 @@ function DashboardPage() {
 
   useEffect(() => {
     const fetchPieChart = (bookId, startTime) => {
-      const utcStart = new Date(startTime).toUTCString().slice(0, -4);
+      const utcStart = new Date(startTime).setHours(
+        new Date(startTime).getHours() - 8
+      );
       fetch(
         `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/singleTagPie?bookId=${bookId}&startTime=${utcStart}`,
         {
@@ -42,7 +44,9 @@ function DashboardPage() {
         });
     };
     const fetchMonthBalanceData = (bookId, startTime) => {
-      const utcStart = new Date(startTime).toUTCString().slice(0, -4);
+      const utcStart = new Date(startTime).setHours(
+        new Date(startTime).getHours() - 8
+      );
 
       fetch(
         `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/dashboard/monthBalance?bookId=${bookId}&startTime=${utcStart}`,

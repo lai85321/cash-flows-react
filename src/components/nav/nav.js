@@ -133,7 +133,8 @@ function Nav() {
                     className="nav-notice-message-paidMsg"
                     style={{ color: "red" }}
                   >
-                    {item.paid_name} received {item.amount} from you
+                    {item.paid_name} received {-1 * parseInt(item.amount)} from
+                    you
                   </div>
                   <div className="nav-notice-message-time">
                     {item.timestamp}

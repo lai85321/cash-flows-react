@@ -3,12 +3,15 @@ import book from "../../images/book.png";
 import { Link } from "react-router-dom";
 import { DeleteBookModal } from "../modal/modal";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 function Book(props) {
   let navigate = useNavigate();
   const { books, userId, setBooks } = props;
+  const [isLoading, setIsLoading] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
+  const [notice, setNotice] = useState(0);
+  const [message, setMessage] = useState([]);
   const updateOpenTIme = (bookId, userId) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/members/openTime?userId=${userId}&bookId=${bookId}`,
@@ -29,6 +32,55 @@ function Book(props) {
       })
       .then((response) => {});
   };
+  const updateNoticeStatus = (userId) => {
+    fetch(
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/message?userId=${userId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
+    )
+      .then((response) => {
+        if (response.status === 401) {
+          alert("Please log in");
+          navigate(`/signIn`, { replace: true });
+        }
+        return response.json();
+      })
+      .then((response) => {});
+  };
+  useEffect(() => {
+    const fetchNoticeMsg = (userId) => {
+      setIsLoading(true);
+      fetch(
+        `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/message?userId=${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
+        .then((response) => {
+          if (response.status === 401) {
+            alert("Please log in");
+            navigate(`/signIn`, { replace: true });
+          }
+          return response.json();
+        })
+        .then((response) => {
+          setNotice(response.data.notice);
+          setMessage(response.data.detail);
+          setIsLoading(false);
+        });
+    };
+
+    fetchNoticeMsg(userId);
+  }, [userId, navigate]);
   return (
     <div>
       <div className="book-nav-container">
@@ -42,12 +94,18 @@ function Book(props) {
               className="book-notice"
               onClick={() => {
                 setShowMessage(!showMessage);
+                if (notice === 0) {
+                  updateNoticeStatus(userId);
+                  setNotice(1);
+                }
               }}
             >
-              <span
-                className="badge"
-                // style={{ display: `${notice ? "block" : "none"}` }}
-              ></span>
+              {!isLoading && (
+                <span
+                  className="badge"
+                  style={{ display: `${notice === 0 ? "block" : "none"}` }}
+                ></span>
+              )}
             </div>
             <div
               className="book-notice-message"
@@ -56,6 +114,44 @@ function Book(props) {
               }}
             >
               <div className="book-notice-message-title">Notifications</div>
+              {message.map((item, idx) => {
+                if (item.amount > 0) {
+                  return (
+                    <div className="book-notice-message-section">
+                      <div className="book-notice-message-settleMsg">
+                        {item.settle_name} settle up a payment in {item.book}
+                      </div>
+                      <div
+                        className="book-notice-message-paidMsg"
+                        style={{ color: "green" }}
+                      >
+                        {item.paid_name} paid you {item.amount}
+                      </div>
+                      <div className="book-notice-message-time">
+                        {item.timestamp}
+                      </div>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="book-notice-message-section">
+                      <div className="book-notice-message-settleMsg">
+                        {item.settle_name} settle up a payment in {item.book}
+                      </div>
+                      <div
+                        className="book-notice-message-paidMsg"
+                        style={{ color: "red" }}
+                      >
+                        {item.paid_name} received {-1 * parseInt(item.amount)}{" "}
+                        from you
+                      </div>
+                      <div className="book-notice-message-time">
+                        {item.timestamp}
+                      </div>
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
         </div>

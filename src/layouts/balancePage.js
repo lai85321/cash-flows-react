@@ -36,7 +36,7 @@ function BalancePage() {
 
   const fetchSettleUpResult = (bookId, splitId) => {
     fetch(
-      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance/settle?&bookId=${bookId}&splitId=${splitId}`,
+      `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance/settle?userId=${userId}&bookId=${bookId}&splitId=${splitId}`,
       {
         method: "GET",
         headers: {

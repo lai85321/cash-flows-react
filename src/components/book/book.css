@@ -147,5 +147,28 @@ padding: 1px;
 .book-notice-message-title{
     font-size: 20px;
     font-weight: 400;
-    margin: 10px 0px 0px 10px;
+    margin: 10px 0px 0px 0px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px gray;
+    letter-spacing: 2px;
+}
+.book-notice-message-section{
+    height: 60px;
+    border-bottom: 1px solid darkgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+}
+.book-notice-message-paidMsg{
+    font-size: 14px;
+
+}
+.book-notice-message-settleMsg{
+    font-size: 14px;
+    
+}
+.book-notice-message-time{
+    font-size: 12px;
 }

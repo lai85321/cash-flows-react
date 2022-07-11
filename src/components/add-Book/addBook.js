@@ -80,12 +80,12 @@ const AddBook = () => {
             <div className="add-book-header-icon"></div>
             <div className="add-book-header-text">Add New Account</div>
           </div>
-          <label for="picture" className="add-book-upload-icon"></label>
+          {/* <label for="picture" className="add-book-upload-icon"></label>
           <input
             type="file"
             id="picture"
             style={{ display: "none", visibility: "none" }}
-          ></input>
+          ></input> */}
         </div>
         <hr></hr>
         <div className="add-account-type"></div>

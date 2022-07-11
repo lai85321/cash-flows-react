@@ -2,7 +2,8 @@ import "./signUp.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
+const { REACT_APP_HOST, REACT_APP_API_VERSION, REACT_APP_CLOUDFRONT_PATH } =
+  process.env;
 const SignUp = () => {
   let navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -28,7 +29,15 @@ const SignUp = () => {
         if (!json.error) {
           localStorage.setItem("id", json.data.user.id);
           localStorage.setItem("username", json.data.user.name);
-          localStorage.setItem("picture", json.data.user.picture);
+
+          localStorage.setItem(
+            "picture",
+            `${
+              json.data.user.picture === null
+                ? null
+                : `${REACT_APP_CLOUDFRONT_PATH}/user/${json.data.user.id}/${json.data.user.picture}`
+            }`
+          );
           localStorage.setItem("access_token", json.data.access_token);
           navigate("/book", { replace: true });
         } else {

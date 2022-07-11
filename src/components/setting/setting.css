@@ -94,10 +94,10 @@
 .setting-list-detail-pic{
     width: 60px;
     height: 60px;
-    border: solid;
+    border: 1px solid;
     border-radius: 50px;
-    background-position: center;
-    background-size: 80%;
+    /* background-position: center; */
+    background-size: 100%;
     background-repeat: no-repeat;
     
 }

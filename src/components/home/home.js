@@ -1,6 +1,7 @@
 import "./home.css";
 import { Link } from "react-router-dom";
-
+import landing1 from "../../images/landing1.png";
+import landing2 from "../../images/landing2.png";
 function Home() {
   return (
     <>
@@ -43,7 +44,10 @@ function Home() {
               Record and split payment at the same time
             </div>
           </div>
-          <div className="home-section-images"></div>
+          <div
+            className="home-section-images"
+            style={{ backgroundImage: `url(${landing1})` }}
+          ></div>
         </div>
       </div>
       <div className="home-section-container">
@@ -54,7 +58,10 @@ function Home() {
               Calculate the easiest way to settle up for you
             </div>
           </div>
-          <div className="home-section-images"></div>
+          <div
+            className="home-section-images"
+            style={{ backgroundImage: `url(${landing2})` }}
+          ></div>
         </div>
       </div>
       <div style={{ backgroundColor: "white", height: "60px" }}></div>

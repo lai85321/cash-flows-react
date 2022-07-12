@@ -130,11 +130,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 5px 8px 5px 5px;
+    padding: 12px 8px 5px 5px;
     border: solid 1px rgba(128, 128, 128, 0.808);
     border-radius: 8px;
     overflow-y: auto;
-    height: 90px;
+    max-height: 100px;
 }
 .none{
     display: none;

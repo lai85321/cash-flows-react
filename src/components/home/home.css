@@ -134,7 +134,7 @@
     flex-direction: row;
 }
 .home-section-texts{
-    width: 55%;
+    width: 50%;
     height: 85%;
     display: flex;
     flex-direction: column;
@@ -152,11 +152,14 @@
     font-weight: 400;
 }
 .home-section-images{
-    width: 45%;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
 }
 .home-footer-container{
     border-top:solid 1px;

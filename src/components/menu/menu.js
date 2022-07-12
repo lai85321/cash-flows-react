@@ -21,7 +21,11 @@ const sidebarMenu = [
 const Menu = () => {
   let navigate = useNavigate();
   const name = localStorage.getItem("username") || "name";
-  const picture = localStorage.getItem("picture") || `url(${user})`;
+  const picture =
+    localStorage.getItem("picture") === "null"
+      ? user
+      : localStorage.getItem("picture");
+  console.log(picture);
   const logout = () => {
     localStorage.clear();
     navigate(`/`, { replace: true });

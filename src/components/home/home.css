@@ -70,6 +70,9 @@
     justify-content: center;
     align-items: center;
 }
+.home-body{
+    overflow-y: auto;
+}
 .home-main{
     width:1100px;
     height: 410px;

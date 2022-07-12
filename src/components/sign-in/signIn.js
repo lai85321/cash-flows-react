@@ -6,7 +6,7 @@ const { REACT_APP_HOST, REACT_APP_API_VERSION, REACT_APP_CLOUDFRONT_PATH } =
   process.env;
 const SignIn = () => {
   let navigate = useNavigate();
-  const [email, setEmail] = useState("andy@test.com");
+  const [email, setEmail] = useState("tina@test.com");
   const [password, setPassword] = useState("test");
   const [errorMsg, setErrorMsg] = useState("");
   const submitSignIn = () => {
@@ -25,13 +25,14 @@ const SignIn = () => {
       .then((response) => response.json())
       .then((json) => {
         if (!json.error) {
+          console.log(json.data.picture);
           localStorage.setItem("id", json.data.user.id);
           localStorage.setItem("username", json.data.user.name);
 
           localStorage.setItem(
             "picture",
             `${
-              json.data.user.picture === null
+              !json.data.user.picture
                 ? null
                 : `${REACT_APP_CLOUDFRONT_PATH}/user/${json.data.user.id}/${json.data.user.picture}`
             }`

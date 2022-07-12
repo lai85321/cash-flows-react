@@ -20,51 +20,55 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="home-main-container">
-        <div className="home-main">
-          <div className="home-main-left">
-            <div className="home-main-slogan">Tracks every cash flows</div>
-            <div className="home-main-content">
-              Record and split payment at the same time
+      <div className="home-body">
+        <div className="home-main-container">
+          <div className="home-main">
+            <div className="home-main-left">
+              <div className="home-main-slogan">Tracks every cash flows</div>
+              <div className="home-main-content">
+                Record and split payment at the same time
+              </div>
+              <Link to="/signUp">
+                <div className="home-main-start-btn">Try it Now</div>
+              </Link>
             </div>
-            <Link to="/signUp">
-              <div className="home-main-start-btn">Try it Now</div>
-            </Link>
-          </div>
-          <div className="home-main-right">
-            <div className="home-main-image"></div>
-          </div>
-        </div>
-      </div>
-      <div className="home-section-container">
-        <div className="home-section">
-          <div className="home-section-texts">
-            <div className="home-section-header">Easy to record payment</div>
-            <div className="home-section-content">
-              Record and split payment at the same time
+            <div className="home-main-right">
+              <div className="home-main-image"></div>
             </div>
           </div>
-          <div
-            className="home-section-images"
-            style={{ backgroundImage: `url(${landing1})` }}
-          ></div>
         </div>
-      </div>
-      <div className="home-section-container">
-        <div className="home-section">
-          <div className="home-section-texts">
-            <div className="home-section-header">One click to get balanced</div>
-            <div className="home-section-content">
-              Calculate the easiest way to settle up for you
+        <div className="home-section-container">
+          <div className="home-section">
+            <div className="home-section-texts">
+              <div className="home-section-header">Easy to record payment</div>
+              <div className="home-section-content">
+                Record and split payment at the same time
+              </div>
             </div>
+            <div
+              className="home-section-images"
+              style={{ backgroundImage: `url(${landing1})` }}
+            ></div>
           </div>
-          <div
-            className="home-section-images"
-            style={{ backgroundImage: `url(${landing2})` }}
-          ></div>
         </div>
+        <div className="home-section-container">
+          <div className="home-section">
+            <div className="home-section-texts">
+              <div className="home-section-header">
+                One click to get balanced
+              </div>
+              <div className="home-section-content">
+                Calculate the easiest way to settle up for you
+              </div>
+            </div>
+            <div
+              className="home-section-images"
+              style={{ backgroundImage: `url(${landing2})` }}
+            ></div>
+          </div>
+        </div>
+        <div style={{ backgroundColor: "white", height: "60px" }}></div>
       </div>
-      <div style={{ backgroundColor: "white", height: "60px" }}></div>
       <div className="home-footer-container"></div>
     </>
   );

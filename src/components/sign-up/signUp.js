@@ -27,13 +27,13 @@ const SignUp = () => {
       .then((response) => response.json())
       .then((json) => {
         if (!json.error) {
+          console.log(json.data);
           localStorage.setItem("id", json.data.user.id);
           localStorage.setItem("username", json.data.user.name);
-
           localStorage.setItem(
             "picture",
             `${
-              json.data.user.picture === null
+              !json.data.user.picture
                 ? null
                 : `${REACT_APP_CLOUDFRONT_PATH}/user/${json.data.user.id}/${json.data.user.picture}`
             }`
@@ -46,59 +46,70 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="signup-page">
-      <div id="signup-container">
-        <div className="signup">
-          <h3 className="signup-title">Sign Up</h3>
-          <div className="signup">
-            <input
-              className="signup-input"
-              type="text"
-              id="fullname"
-              value={username}
-              placeholder="Your name"
-              required
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
-            <div className="tab"></div>
-            <input
-              className="signup-input"
-              type="text"
-              id="username"
-              value={email}
-              placeholder="Email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              required
-            />
-            <div className="tab"></div>
-            <input
-              className="signup-input"
-              type="password"
-              id="password"
-              value={password}
-              placeholder="Password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              required
-            />
-            <div className="tab"></div>
-            <div className="signup-error-msg">{errorMsg}</div>
-            <button
-              value="signUp"
-              className="signup-submit"
-              onClick={() => submitSignUp()}
-            >
-              Sign up
-            </button>
+    <div>
+      <div className="signup-nav-container">
+        <div className="signup-nav">
+          <div>
+            <Link to="/">
+              <div className="home-logo"></div>
+            </Link>
           </div>
-          <Link to="/signIn">
-            <h5 className="switch-to-signin"> Sign in</h5>
-          </Link>
+        </div>
+      </div>
+      <div className="signup-page">
+        <div id="signup-container">
+          <div className="signup">
+            <h3 className="signup-title">Sign Up</h3>
+            <div className="signup">
+              <input
+                className="signup-input"
+                type="text"
+                id="fullname"
+                value={username}
+                placeholder="Your name"
+                required
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
+              <div className="tab"></div>
+              <input
+                className="signup-input"
+                type="text"
+                id="username"
+                value={email}
+                placeholder="Email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                required
+              />
+              <div className="tab"></div>
+              <input
+                className="signup-input"
+                type="password"
+                id="password"
+                value={password}
+                placeholder="Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                required
+              />
+              <div className="tab"></div>
+              <div className="signup-error-msg">{errorMsg}</div>
+              <button
+                value="signUp"
+                className="signup-submit"
+                onClick={() => submitSignUp()}
+              >
+                Sign up
+              </button>
+            </div>
+            <Link to="/signIn">
+              <h5 className="switch-to-signin"> Sign in</h5>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

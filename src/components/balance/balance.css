@@ -6,6 +6,7 @@
     justify-content: space-around;
     width: 80vw;
     height: 90vh;
+    overflow-y: auto;
 }
 .balance-left{
     display: flex;

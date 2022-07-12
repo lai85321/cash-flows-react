@@ -39,7 +39,6 @@ const Account = (props) => {
           ))}
         </div>
       </div>
-      {/* 用頁面判斷(多本or單一)決定要不要顯示右邊 */}
       <div className="right">
         <div className="account-overview">
           <div className="account-overview-header">Overview</div>

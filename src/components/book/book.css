@@ -104,7 +104,7 @@
 
 .book-name{
     font-weight: 600;
-    font-size: 22px;
+    font-size: 20px;
     padding: 2px 0px;
 }
 
@@ -140,6 +140,8 @@ padding: 1px;
     top:50px;
     right:20px;
     height: 320px;
+    max-height: 320px;
+    overflow-y: auto;
     width: 320px;
     background-color: white;
     border: 1px solid gray;

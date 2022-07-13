@@ -23,6 +23,15 @@ const AddAccount = (props) => {
     { id: 8, tag: "hotel" },
     { id: 9, tag: "income" },
   ];
+  const expenseTags = [
+    { id: 1, tag: "food" },
+    { id: 2, tag: "cloth" },
+    { id: 3, tag: "health" },
+    { id: 5, tag: "groceies" },
+    { id: 6, tag: "fare" },
+    { id: 7, tag: "entertainment" },
+    { id: 8, tag: "hotel" },
+  ];
   const paidAmount = Array(member?.length).fill(0);
   const [startDate, setStartDate] = useState(new Date());
   const [amount, setAmount] = useState("");
@@ -184,7 +193,7 @@ const AddAccount = (props) => {
                   <div className="add-account-input">
                     <label className="add-label">Tag</label>
                     <div className="add-tag-container">
-                      {tags.map((item, index) => (
+                      {expenseTags.map((item, index) => (
                         <div
                           key={index}
                           className={`add-tag ${

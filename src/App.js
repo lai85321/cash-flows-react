@@ -11,6 +11,7 @@ import DashBoardPage from "./layouts/dashboardPage";
 import SignUpPage from "./layouts/signUpPage";
 import SignInPage from "./layouts/signInPage";
 import SettingPage from "./layouts/settingPage";
+import Error404Page from "./layouts/error404Page";
 //import EditAccountPage from "./layouts/editAccountPage";
 // import AccountDetail from "./components/account-detail/accountDetail";
 import AccountDetailPage from "./layouts/accountDetailPage";
@@ -35,6 +36,7 @@ function App() {
         <Route path="/book/:bookId/balance" element={<BalancePage />} />
         <Route path="/book/:bookId/dashboard" element={<DashBoardPage />} />
         <Route path="/settings" element={<SettingPage />} />
+        <Route path="*" element={<Error404Page />} />
       </Routes>
     </div>
   );

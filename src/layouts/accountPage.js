@@ -18,7 +18,7 @@ function AccountPage() {
   const [data, setData] = useState([]);
   const [daily, setDaily] = useState([]);
   const [memberData, setMemberData] = useState([]);
-
+  const [budget, setBudget] = useState(0);
   useEffect(() => {
     const fetchAccountList = (userId, bookId, startTime) => {
       const utcStart = new Date(startTime).setHours(
@@ -43,6 +43,7 @@ function AccountPage() {
         })
         .then((response) => {
           setData(response.data);
+          setBudget(response.data.budget);
           setDaily(response.data.daily);
         });
     };
@@ -92,6 +93,8 @@ function AccountPage() {
         setMemberData={setMemberData}
         startMonth={startMonth}
         setStartMonth={setStartMonth}
+        budget={budget}
+        setBudget={setBudget}
       />
     </div>
   );

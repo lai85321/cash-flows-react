@@ -139,3 +139,11 @@
   text-align: center;
   justify-content: center;
 }
+.budget-edit{
+  height: 12px;
+  width: 12px;
+  background-image: url(../../images/pencil.png);;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}

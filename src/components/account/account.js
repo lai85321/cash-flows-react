@@ -2,7 +2,7 @@ import "./account.css";
 import AmountList from "../account-list/account-list";
 import React from "react";
 import user from "../../images/user.png";
-import { AddMemberModal } from "../modal/modal";
+import { AddMemberModal, EditBudgetModel } from "../modal/modal";
 const { REACT_APP_CLOUDFRONT_PATH } = process.env;
 const Account = (props) => {
   const {
@@ -13,24 +13,28 @@ const Account = (props) => {
     setMemberData,
     startMonth,
     setStartMonth,
+    budget,
+    setBudget,
   } = props;
   return (
     <div className="account">
       <div className="left">
-        <input
-          type="month"
-          value={startMonth}
-          onChange={(e) => {
-            if (e.target.value === "") {
-              alert("Please select a valid date");
-            } else {
-              let year = e.target.value.slice(0, 4);
-              let month = parseInt(e.target.value.slice(5, 7));
-              let t = year.concat("-", month < 10 ? "0" + month : month);
-              setStartMonth(t);
-            }
-          }}
-        />
+        <div className="account-month">
+          <input
+            type="month"
+            value={startMonth}
+            onChange={(e) => {
+              if (e.target.value === "") {
+                alert("Please select a valid date");
+              } else {
+                let year = e.target.value.slice(0, 4);
+                let month = parseInt(e.target.value.slice(5, 7));
+                let t = year.concat("-", month < 10 ? "0" + month : month);
+                setStartMonth(t);
+              }
+            }}
+          />
+        </div>
         <div className="lists">
           {daily.map((item, index) => (
             <AmountList
@@ -44,6 +48,45 @@ const Account = (props) => {
         </div>
       </div>
       <div className="right">
+        <div className="account-budget">
+          <div className="account-budget-header">Budget</div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <div className="budget-amount">Budget: {budget}</div>
+            <div className="budget-change">
+              <EditBudgetModel
+                bookId={bookId}
+                budget={budget}
+                setBudget={setBudget}
+              />
+            </div>
+          </div>
+          <div className="budget-left">
+            Budget left: {parseInt(budget) + parseInt(data.expense)}
+          </div>
+          <div className="budget-container">
+            <div className="budget-bar-container">
+              <div
+                className="budget-bar budget-left-bar"
+                style={{
+                  width:
+                    parseInt(budget) + parseInt(data.expense) <= 0
+                      ? "100%"
+                      : `${
+                          ((parseInt(budget) + parseInt(data.expense)) /
+                            parseInt(budget)) *
+                          100
+                        }%`,
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
         <div className="account-overview">
           <div className="account-overview-header">Overview</div>
           <div className="account-overview-contents">

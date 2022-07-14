@@ -434,7 +434,7 @@ const EditPictureModel = (props) => {
   const modalStyle = ["modal-none", "modal-block"];
 
   const [modalStyleIdx, setModalStyleIdx] = useState(0);
-  const editName = (userId) => {
+  const editPic = (userId) => {
     if (uploadFile === null) {
       alert("Please select a picture to upload");
       return;
@@ -510,7 +510,7 @@ const EditPictureModel = (props) => {
                   </button>
                 </Link>
                 <button
-                  onClick={() => editName(userId)}
+                  onClick={() => editPic(userId)}
                   className="name-save-btn"
                 >
                   Save
@@ -524,6 +524,101 @@ const EditPictureModel = (props) => {
   );
 };
 
+const EditBudgetModel = (props) => {
+  let navigate = useNavigate();
+  const { bookId, budget, setBudget } = props;
+  const [showBudget, setShowBudget] = useState(parseInt(budget));
+  const modalStyle = ["modal-none", "modal-block"];
+
+  const [modalStyleIdx, setModalStyleIdx] = useState(0);
+  const editBudget = (bookId) => {
+    const body = {
+      budget: budget,
+    };
+    fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/books?id=${bookId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          alert("Please log in");
+          navigate(`/signIn`, { replace: true });
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setBudget(parseInt(showBudget));
+        setModalStyleIdx(0);
+        navigate(`/book/${bookId}`, { replace: true });
+      });
+  };
+  return (
+    <>
+      <div
+        className="budget-edit"
+        onClick={() => {
+          setModalStyleIdx(modalStyleIdx ^ 1);
+        }}
+      ></div>
+      <div className={`modal ${modalStyle[modalStyleIdx]}`}>
+        <div className="modal-content">
+          <span
+            className="close"
+            onClick={() => {
+              setModalStyleIdx(0);
+            }}
+          >
+            &times;
+          </span>
+          <div className="modal-window">
+            <div>
+              <h3>Budget</h3>
+              <input
+                min="0"
+                max="1000000"
+                type="number"
+                value={parseInt(showBudget)}
+                onChange={(e) => {
+                  if (e.target.value < 0) {
+                    e.target.value = 0;
+                    alert("Minimum number is 0");
+                  }
+                  if (e.target.value >= 1000000) {
+                    e.target.value = 1000000;
+                    alert("Maximum number is 1000000");
+                  }
+                  setShowBudget(e.target.value);
+                }}
+              />
+              <div className="budget-edit-btns">
+                <Link to={`/book/${bookId}`}>
+                  <button
+                    onClick={() => {
+                      setModalStyleIdx(0);
+                    }}
+                    className="budget-cancel-btn"
+                  >
+                    Cancel
+                  </button>
+                </Link>
+                <button
+                  onClick={() => editBudget(bookId)}
+                  className="budget-save-btn"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 export {
   PaidModal,
   SplitModal,
@@ -531,4 +626,5 @@ export {
   DeleteBookModal,
   EditNameModel,
   EditPictureModel,
+  EditBudgetModel,
 };

@@ -41,7 +41,7 @@ const SignUp = () => {
           localStorage.setItem("access_token", json.data.access_token);
           navigate("/book", { replace: true });
         } else {
-          setErrorMsg("Please try again");
+          setErrorMsg(json.error);
         }
       });
   };

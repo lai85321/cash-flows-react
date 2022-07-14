@@ -25,7 +25,6 @@ const Menu = () => {
     localStorage.getItem("picture") === "null"
       ? user
       : localStorage.getItem("picture");
-  console.log(picture);
   const logout = () => {
     localStorage.clear();
     navigate(`/`, { replace: true });

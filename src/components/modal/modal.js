@@ -426,7 +426,6 @@ const EditPictureModel = (props) => {
 
   const [modalStyleIdx, setModalStyleIdx] = useState(0);
   const editName = (userId) => {
-    console.log(uploadFile);
     let formData = new FormData();
     formData.append("picture", uploadFile);
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/user?id=${userId}`, {

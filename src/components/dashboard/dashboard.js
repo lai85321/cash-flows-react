@@ -14,10 +14,14 @@ const Dashboard = (props) => {
           type="month"
           value={startMonth}
           onChange={(e) => {
-            let year = e.target.value.slice(0, 4);
-            let month = parseInt(e.target.value.slice(5, 7));
-            let t = year.concat("-", month < 10 ? "0" + month : month);
-            setStartMonth(t);
+            if (e.target.value === "") {
+              alert("Please select a valid date");
+            } else {
+              let year = e.target.value.slice(0, 4);
+              let month = parseInt(e.target.value.slice(5, 7));
+              let t = year.concat("-", month < 10 ? "0" + month : month);
+              setStartMonth(t);
+            }
           }}
         />
       </div>

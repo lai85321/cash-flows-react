@@ -25,7 +25,6 @@ const SignIn = () => {
       .then((response) => response.json())
       .then((json) => {
         if (!json.error) {
-          console.log(json.data.picture);
           localStorage.setItem("id", json.data.user.id);
           localStorage.setItem("username", json.data.user.name);
 

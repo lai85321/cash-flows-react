@@ -61,7 +61,6 @@ const AddAccount = (props) => {
         paidId: split && +member[paidIdx].id,
         splits: paid,
       };
-      console.log(body);
       fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/accounts`, {
         method: "POST",
         headers: {

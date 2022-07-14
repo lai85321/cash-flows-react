@@ -27,7 +27,6 @@ const SignUp = () => {
       .then((response) => response.json())
       .then((json) => {
         if (!json.error) {
-          console.log(json.data);
           localStorage.setItem("id", json.data.user.id);
           localStorage.setItem("username", json.data.user.name);
           localStorage.setItem(

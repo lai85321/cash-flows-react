@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./modal.css";
+import getStrLength from "../../method/getStrLength";
 
 const REACT_APP_HOST = process.env.REACT_APP_HOST;
 const REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION;
@@ -336,6 +337,10 @@ const EditNameModel = (props) => {
 
   const [modalStyleIdx, setModalStyleIdx] = useState(0);
   const editName = (userId) => {
+    if (name === "") {
+      alert("Please type a valid name");
+      return;
+    }
     const body = {
       name: name,
     };
@@ -388,10 +393,14 @@ const EditNameModel = (props) => {
                 type="text"
                 value={name}
                 onChange={(e) => {
-                  setName(e.target.value);
+                  let len = getStrLength(e.target.value);
+                  if (len <= 16) {
+                    setName(e.target.value);
+                  } else {
+                    alert("You have received maximun number of this field");
+                  }
                 }}
               />
-
               <div className="name-edit-btns">
                 <Link to="/settings">
                   <button
@@ -426,6 +435,10 @@ const EditPictureModel = (props) => {
 
   const [modalStyleIdx, setModalStyleIdx] = useState(0);
   const editName = (userId) => {
+    if (uploadFile === null) {
+      alert("Please select a picture to upload");
+      return;
+    }
     let formData = new FormData();
     formData.append("picture", uploadFile);
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/user?id=${userId}`, {
@@ -479,6 +492,7 @@ const EditPictureModel = (props) => {
               <h3>Picture</h3>
               <input
                 type="file"
+                accept="image/*"
                 onChange={(e) => {
                   setUploadFile(e.target.files[0]);
                 }}

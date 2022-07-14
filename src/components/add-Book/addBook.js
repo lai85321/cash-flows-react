@@ -35,6 +35,10 @@ const AddBook = () => {
     fetchCurrencyList();
   });
   const submitBook = () => {
+    if (name === "") {
+      alert("Please type a book name");
+      return;
+    }
     const body = {
       userId: userId,
       currencyId: currencyId + 1,

@@ -77,7 +77,11 @@ const AddAccount = (props) => {
           return response.json();
         })
         .then((json) => {
-          navigate(`/book/${bookId}`, { replace: true });
+          if (!json.error) {
+            navigate(`/book/${bookId}`, { replace: true });
+          } else {
+            alert(json.error);
+          }
         });
     }
   };

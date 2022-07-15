@@ -8,7 +8,6 @@ const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 function SettingPage() {
   let navigate = useNavigate();
   const userId = localStorage.getItem("id");
-  console.log(userId);
   const username = localStorage.getItem("username");
   const userPicture =
     localStorage.getItem("picture") || `url(${userDefaultPic})`;

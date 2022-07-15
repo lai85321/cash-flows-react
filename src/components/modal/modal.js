@@ -337,7 +337,7 @@ const EditNameModel = (props) => {
 
   const [modalStyleIdx, setModalStyleIdx] = useState(0);
   const editName = (userId) => {
-    if (name === "") {
+    if (name.trim() === "") {
       alert("Please type a valid name");
       return;
     }
@@ -360,7 +360,6 @@ const EditNameModel = (props) => {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
         setShowName(name);
         localStorage.setItem("username", name);
         setModalStyleIdx(0);
@@ -392,8 +391,9 @@ const EditNameModel = (props) => {
               <h3>Name</h3>
               <input
                 type="text"
-                value={name}
+                value={name.trim()}
                 onChange={(e) => {
+                  e.target.value.trim();
                   let len = getStrLength(e.target.value);
                   if (len <= 16) {
                     setName(e.target.value);

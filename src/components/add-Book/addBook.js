@@ -60,7 +60,11 @@ const AddBook = () => {
         return response.json();
       })
       .then((json) => {
-        navigate(`/book/${json.data.bookId}`, { replace: true });
+        if (!json.error) {
+          navigate(`/book/${json.data.bookId}`, { replace: true });
+        } else {
+          alert(json.error);
+        }
       });
   };
   const checkBtns = [

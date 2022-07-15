@@ -42,6 +42,7 @@ function AccountPage() {
           return response.json();
         })
         .then((response) => {
+          console.log(response.data);
           setData(response.data);
           setBudget(response.data.budget);
           setDaily(response.data.daily);

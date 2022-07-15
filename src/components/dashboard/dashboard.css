@@ -15,7 +15,9 @@
     align-items: center;
     justify-content: center;
 }
-
+.dashboards-month-input{
+    cursor: pointer;
+}
 .dashboard-container{
     height: 40%;
     width: 85%;

@@ -105,44 +105,48 @@ function Nav() {
           }}
         >
           <div className="nav-notice-message-title">Notifications</div>
-          {message.map((item, idx) => {
-            if (item.amount > 0) {
-              return (
-                <div className="nav-notice-message-section">
-                  <div className="nav-notice-message-settleMsg">
-                    {item.settle_name} settle up a payment in {item.book}
+          {message.length === 0 ? (
+            <div style={{ padding: "2px 10px" }}>There is no notifications</div>
+          ) : (
+            message.map((item, idx) => {
+              if (item.amount > 0) {
+                return (
+                  <div className="nav-notice-message-section" key={idx}>
+                    <div className="nav-notice-message-settleMsg">
+                      {item.settle_name} settle up a payment in {item.book}
+                    </div>
+                    <div
+                      className="nav-notice-message-paidMsg"
+                      style={{ color: "green" }}
+                    >
+                      {item.paid_name} paid you {item.amount}
+                    </div>
+                    <div className="nav-notice-message-time">
+                      {item.timestamp}
+                    </div>
                   </div>
-                  <div
-                    className="nav-notice-message-paidMsg"
-                    style={{ color: "green" }}
-                  >
-                    {item.paid_name} paid you {item.amount}
+                );
+              } else {
+                return (
+                  <div className="nav-notice-message-section" key={idx}>
+                    <div className="nav-notice-message-settleMsg">
+                      {item.settle_name} settle up a payment in {item.book}
+                    </div>
+                    <div
+                      className="nav-notice-message-paidMsg"
+                      style={{ color: "red" }}
+                    >
+                      {item.paid_name} received {-1 * parseInt(item.amount)}{" "}
+                      from you
+                    </div>
+                    <div className="nav-notice-message-time">
+                      {item.timestamp}
+                    </div>
                   </div>
-                  <div className="nav-notice-message-time">
-                    {item.timestamp}
-                  </div>
-                </div>
-              );
-            } else {
-              return (
-                <div className="nav-notice-message-section">
-                  <div className="nav-notice-message-settleMsg">
-                    {item.settle_name} settle up a payment in {item.book}
-                  </div>
-                  <div
-                    className="nav-notice-message-paidMsg"
-                    style={{ color: "red" }}
-                  >
-                    {item.paid_name} received {-1 * parseInt(item.amount)} from
-                    you
-                  </div>
-                  <div className="nav-notice-message-time">
-                    {item.timestamp}
-                  </div>
-                </div>
-              );
-            }
-          })}
+                );
+              }
+            })
+          )}
         </div>
       </div>
     </div>

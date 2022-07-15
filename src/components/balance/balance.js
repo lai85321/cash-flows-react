@@ -12,15 +12,19 @@ const Balance = (props) => {
   return (
     <div className="balance">
       <div className="balance-left">
-        {balanceList.map((item, idx) => (
-          <BalanceList
-            key={idx}
-            bookId={bookId}
-            date={item.date}
-            details={item.details}
-            fetchSettleUpResult={fetchSettleUpResult}
-          />
-        ))}
+        {balanceList.length === 0 ? (
+          <h3>All payments have been settled up</h3>
+        ) : (
+          balanceList.map((item, idx) => (
+            <BalanceList
+              key={idx}
+              bookId={bookId}
+              date={item.date}
+              details={item.details}
+              fetchSettleUpResult={fetchSettleUpResult}
+            />
+          ))
+        )}
         <button
           className="balance-group-balance-btn"
           onClick={() => fetchGroupBalanceList(bookId, userId)}

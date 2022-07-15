@@ -114,77 +114,89 @@ function Book(props) {
               }}
             >
               <div className="book-notice-message-title">Notifications</div>
-              {message.map((item, idx) => {
-                if (item.amount > 0) {
-                  return (
-                    <div className="book-notice-message-section">
-                      <div className="book-notice-message-settleMsg">
-                        {item.settle_name} settle up a payment in {item.book}
+              {message.length === 0 ? (
+                <div style={{ padding: "2px 10px" }}>
+                  There is no notifications
+                </div>
+              ) : (
+                message.map((item, idx) => {
+                  if (item.amount > 0) {
+                    return (
+                      <div className="book-notice-message-section" key={idx}>
+                        <div className="book-notice-message-settleMsg">
+                          {item.settle_name} settle up a payment in {item.book}
+                        </div>
+                        <div
+                          className="book-notice-message-paidMsg"
+                          style={{ color: "green" }}
+                        >
+                          {item.paid_name} paid you {item.amount}
+                        </div>
+                        <div className="book-notice-message-time">
+                          {item.timestamp}
+                        </div>
                       </div>
-                      <div
-                        className="book-notice-message-paidMsg"
-                        style={{ color: "green" }}
-                      >
-                        {item.paid_name} paid you {item.amount}
+                    );
+                  } else {
+                    return (
+                      <div className="book-notice-message-section" key={idx}>
+                        <div className="book-notice-message-settleMsg">
+                          {item.settle_name} settle up a payment in {item.book}
+                        </div>
+                        <div
+                          className="book-notice-message-paidMsg"
+                          style={{ color: "red" }}
+                        >
+                          {item.paid_name} received {-1 * parseInt(item.amount)}{" "}
+                          from you
+                        </div>
+                        <div className="book-notice-message-time">
+                          {item.timestamp}
+                        </div>
                       </div>
-                      <div className="book-notice-message-time">
-                        {item.timestamp}
-                      </div>
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div className="book-notice-message-section">
-                      <div className="book-notice-message-settleMsg">
-                        {item.settle_name} settle up a payment in {item.book}
-                      </div>
-                      <div
-                        className="book-notice-message-paidMsg"
-                        style={{ color: "red" }}
-                      >
-                        {item.paid_name} received {-1 * parseInt(item.amount)}{" "}
-                        from you
-                      </div>
-                      <div className="book-notice-message-time">
-                        {item.timestamp}
-                      </div>
-                    </div>
-                  );
-                }
-              })}
+                    );
+                  }
+                })
+              )}
             </div>
           </div>
         </div>
       </div>
       <div className="book-container">
         <div className="book-lists">
-          {books.map((item, idx) => {
-            const image = book.image || book;
-            return (
-              <div key={idx} className="book-list">
-                <Link
-                  onClick={updateOpenTIme(item.id, userId)}
-                  to={`/book/${item.id}`}
-                >
-                  <div
-                    className="book-picture"
-                    style={{ backgroundImage: `url(${image})` }}
-                  ></div>
-                </Link>
-                <div className="book-content">
-                  <div className="book-space"></div>
-                  <div className="book-name">{item.name}</div>
-                  <div className="book-more-container">
-                    <DeleteBookModal
-                      bookId={item.id}
-                      userId={userId}
-                      setBooks={setBooks}
-                    />
+          {books.length === 0 ? (
+            <div style={{ width: "100%" }}>
+              <h3 style={{ textAlign: "center" }}>Let's add a new book</h3>
+            </div>
+          ) : (
+            books.map((item, idx) => {
+              const image = book.image || book;
+              return (
+                <div key={idx} className="book-list">
+                  <Link
+                    onClick={updateOpenTIme(item.id, userId)}
+                    to={`/book/${item.id}`}
+                  >
+                    <div
+                      className="book-picture"
+                      style={{ backgroundImage: `url(${image})` }}
+                    ></div>
+                  </Link>
+                  <div className="book-content">
+                    <div className="book-space"></div>
+                    <div className="book-name">{item.name}</div>
+                    <div className="book-more-container">
+                      <DeleteBookModal
+                        bookId={item.id}
+                        userId={userId}
+                        setBooks={setBooks}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ const Account = (props) => {
         <div className="account-month">
           <input
             type="month"
+            className="account-month-input"
             value={startMonth}
             onChange={(e) => {
               if (e.target.value === "") {
@@ -36,15 +37,21 @@ const Account = (props) => {
           />
         </div>
         <div className="lists">
-          {daily.map((item, index) => (
-            <AmountList
-              key={index}
-              bookId={bookId}
-              date={item.date}
-              total={item.total}
-              details={item.details}
-            />
-          ))}
+          {daily.length === 0 ? (
+            <>
+              <h3>There is no data for this month</h3>
+            </>
+          ) : (
+            daily.map((item, index) => (
+              <AmountList
+                key={index}
+                bookId={bookId}
+                date={item.date}
+                total={item.total}
+                details={item.details}
+              />
+            ))
+          )}
         </div>
       </div>
       <div className="right">
@@ -108,8 +115,8 @@ const Account = (props) => {
                 ? `${REACT_APP_CLOUDFRONT_PATH}/user/${item.id}/${item.picture}`
                 : user;
               return (
-                <>
-                  <div key={idx} className="account-member-list">
+                <div key={idx}>
+                  <div className="account-member-list">
                     <div
                       className="account-member-picture"
                       style={{ backgroundImage: `url(${picture})` }}
@@ -119,7 +126,7 @@ const Account = (props) => {
                   <div style={{ margin: "5px 0px" }}>
                     payment: {item.payment}
                   </div>
-                </>
+                </div>
               );
             })}
             {/* <div className="account-member-footer">

@@ -82,6 +82,7 @@
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 .modal-add-member-container{
   display: flex;
@@ -99,6 +100,7 @@
   margin: 2% 0 2% 8%;
   height: 30%;
   align-items: center;
+  cursor: pointer;
 }
 
 
@@ -122,10 +124,12 @@
 
 .cancelbtn{
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .deletebtn{
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .name-edit{
@@ -138,6 +142,20 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+  cursor: pointer;
+}
+.name-edit-btns{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.name-cancel-btn{
+  margin-right:5px ;
+  cursor: pointer;
+}
+.name-save-btn{
+  cursor: pointer;
 }
 .budget-edit{
   height: 12px;
@@ -146,4 +164,17 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+.budget-edit-btns{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.budget-cancel-btn{
+  margin-right:5px ;
+  cursor: pointer;
+}
+.budget-save-btn{
+  cursor: pointer;
 }

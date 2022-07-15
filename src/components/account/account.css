@@ -15,6 +15,9 @@
     align-items: center;
     justify-content: center;
 }
+.account-month-input{
+    cursor: pointer;
+}
 .left{
     display: flex;
     flex-direction: column;
@@ -69,6 +72,9 @@
     background-color: rgba(255, 99, 133, 0.47);
     border:rgba(255, 99, 133);  
     border-radius: 2px;
+}
+.budget-change{
+    cursor: pointer;
 }
 .budget-change:hover{
     background-color: #ffe497;
@@ -224,4 +230,5 @@
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }

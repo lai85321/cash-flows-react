@@ -14,6 +14,7 @@ function Home() {
             <Link to="/signIn">
               <button className="home-signin-btn">Sign in</button>
             </Link>
+            <div style={{ marginRight: "30px" }}></div>
             <Link to="/signUp">
               <button className="home-signup-btn">Sign up</button>
             </Link>
@@ -24,13 +25,14 @@ function Home() {
         <div className="home-main-container">
           <div className="home-main">
             <div className="home-main-left">
-              <div className="home-main-slogan">Tracks every cash flows</div>
+              <div className="home-main-slogan">Track every cash flows</div>
               <div className="home-main-content">
                 Record and split payment at the same time
               </div>
-              <Link to="/signUp">
-                <div className="home-main-start-btn">Try it Now</div>
-              </Link>
+
+              <div className="home-main-start-btn">
+                <Link to="/signUp">Try it Now </Link>
+              </div>
             </div>
             <div className="home-main-right">
               <div className="home-main-image"></div>

@@ -72,15 +72,14 @@ const Account = (props) => {
           <div className="budget-container">
             <div className="budget-bar-container">
               <div
-                className="budget-bar budget-left-bar"
+                className="budget-bar "
                 style={{
+                  backgroundColor: "#4CAF50",
                   width:
                     parseInt(budget) + parseInt(data.expense) <= 0
                       ? "100%"
                       : `${
-                          ((parseInt(budget) + parseInt(data.expense)) /
-                            parseInt(budget)) *
-                          100
+                          -1 * (parseInt(data.expense) / parseInt(budget)) * 100
                         }%`,
                 }}
               ></div>

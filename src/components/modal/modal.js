@@ -189,7 +189,7 @@ const AddMemberModal = (props) => {
     })
       .then((response) => {
         if (response.status === 401) {
-          alert("Please log in");
+          // alert("Please log in");
           navigate(`/signIn`, { replace: true });
         }
         return response.json();
@@ -270,7 +270,7 @@ const DeleteBookModal = (props) => {
     )
       .then((response) => {
         if (response.status === 401) {
-          alert("Please log in");
+          // alert("Please log in");
           navigate(`/signIn`, { replace: true });
         }
         return response.json();
@@ -355,11 +355,12 @@ const EditNameModel = (props) => {
       .then((response) => {
         if (response.status === 401) {
           alert("Please log in");
-          navigate(`/signIn`, { replace: true });
+          navigate(`/`, { replace: true });
         }
         return response.json();
       })
       .then((json) => {
+        console.log(json);
         setShowName(name);
         localStorage.setItem("username", name);
         setModalStyleIdx(0);
@@ -450,7 +451,7 @@ const EditPictureModel = (props) => {
     })
       .then((response) => {
         if (response.status === 401) {
-          alert("Please log in");
+          // alert("Please log in");
           navigate(`/signIn`, { replace: true });
         }
         return response.json();
@@ -533,7 +534,7 @@ const EditBudgetModel = (props) => {
   const [modalStyleIdx, setModalStyleIdx] = useState(0);
   const editBudget = (bookId) => {
     const body = {
-      budget: budget,
+      budget: parseInt(showBudget),
     };
     fetch(`${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/books?id=${bookId}`, {
       method: "PATCH",
@@ -545,7 +546,7 @@ const EditBudgetModel = (props) => {
     })
       .then((response) => {
         if (response.status === 401) {
-          alert("Please log in");
+          // alert("Please log in");
           navigate(`/signIn`, { replace: true });
         }
         return response.json();

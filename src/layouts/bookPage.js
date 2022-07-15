@@ -22,7 +22,7 @@ function BookPage() {
       )
         .then((response) => {
           if (response.status === 401) {
-            alert("Please log in");
+            // alert("Please log in");
             navigate(`/signIn`, { replace: true });
           }
           return response.json();

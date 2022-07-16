@@ -7,12 +7,13 @@ const Balance = (props) => {
     fetchSettleUpResult,
     bookId,
     userId,
+    isLoading,
   } = props;
 
   return (
     <div className="balance">
       <div className="balance-left">
-        {balanceList.length === 0 ? (
+        {!isLoading && balanceList.length === 0 ? (
           <h3>All payments have been settled up</h3>
         ) : (
           balanceList.map((item, idx) => (

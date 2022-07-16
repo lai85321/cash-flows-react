@@ -15,6 +15,7 @@ const Account = (props) => {
     setStartMonth,
     budget,
     setBudget,
+    isLoading,
   } = props;
   return (
     <div className="account">
@@ -37,7 +38,7 @@ const Account = (props) => {
           />
         </div>
         <div className="lists">
-          {daily.length === 0 ? (
+          {!isLoading && daily.length === 0 ? (
             <>
               <h3>There is no data for this month</h3>
             </>

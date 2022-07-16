@@ -3,7 +3,8 @@ import React from "react";
 import SingleTagPie from "../chart/pieChart";
 import MonthBalanceChart from "../chart/lineChart";
 const Dashboard = (props) => {
-  const { pieData, days, expenses, startMonth, setStartMonth } = props;
+  const { pieData, days, expenses, startMonth, setStartMonth, isLoading } =
+    props;
   const pieLabels = pieData.map((item, idx) => item.tag);
   const pieTotals = pieData.map((item, idx) => item.total);
   return (
@@ -27,7 +28,7 @@ const Dashboard = (props) => {
       </div>
 
       <div className="dashboard-container">
-        {pieData.length === 0 ? (
+        {!isLoading && pieData.length === 0 ? (
           <h3>There is no data for this month</h3>
         ) : (
           <>

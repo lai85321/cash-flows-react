@@ -7,9 +7,11 @@ function BookPage() {
   let navigate = useNavigate();
   const userId = localStorage.getItem("id");
   const [books, setBooks] = useState([]);
+  const [bookLoading, setBookLoading] = useState(true);
 
   useEffect(() => {
     const fetchBookList = (userId) => {
+      setBookLoading(true);
       fetch(
         `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/books?userId=${userId}}`,
         {
@@ -29,6 +31,7 @@ function BookPage() {
         })
         .then((response) => {
           setBooks(response.data);
+          setBookLoading(false);
         });
     };
 
@@ -37,7 +40,12 @@ function BookPage() {
   return (
     <div>
       <Menu />
-      <Book books={books} userId={userId} setBooks={setBooks} />
+      <Book
+        books={books}
+        userId={userId}
+        setBooks={setBooks}
+        bookLoading={bookLoading}
+      />
     </div>
   );
 }

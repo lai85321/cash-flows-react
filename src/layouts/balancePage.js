@@ -10,6 +10,7 @@ function BalancePage() {
   let { bookId } = useParams();
   const userId = localStorage.getItem("id");
   const [balanceList, setBalanceList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchGroupBalanceList = (bookId, userId) => {
     fetch(
@@ -58,6 +59,7 @@ function BalancePage() {
   };
   useEffect(() => {
     const fetchBalanceList = (bookId, userId) => {
+      setIsLoading(true);
       fetch(
         `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/balance?bookId=${bookId}&userId=${userId}`,
         {
@@ -77,6 +79,7 @@ function BalancePage() {
         })
         .then((response) => {
           setBalanceList(response.data);
+          setIsLoading(false);
         });
     };
 
@@ -92,6 +95,7 @@ function BalancePage() {
         balanceList={balanceList}
         fetchGroupBalanceList={fetchGroupBalanceList}
         fetchSettleUpResult={fetchSettleUpResult}
+        isLoading={isLoading}
       />
     </div>
   );

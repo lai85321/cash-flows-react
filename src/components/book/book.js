@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;
 function Book(props) {
   let navigate = useNavigate();
-  const { books, userId, setBooks } = props;
+  const { books, userId, setBooks, bookLoading } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
   const [notice, setNotice] = useState(0);
@@ -164,7 +164,7 @@ function Book(props) {
       </div>
       <div className="book-container">
         <div className="book-lists">
-          {books.length === 0 ? (
+          {!bookLoading && books.length === 0 ? (
             <div style={{ width: "100%" }}>
               <h3 style={{ textAlign: "center" }}>Let's add a new book</h3>
             </div>

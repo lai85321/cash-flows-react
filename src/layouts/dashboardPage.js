@@ -16,9 +16,11 @@ function DashboardPage() {
   const [pieData, setPieData] = useState([]);
   const [days, setDays] = useState([]);
   const [expenses, setExpenses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPieChart = (bookId, startTime) => {
+      setIsLoading(true);
       const utcStart = new Date(startTime).setHours(
         new Date(startTime).getHours() - 8
       );
@@ -41,6 +43,7 @@ function DashboardPage() {
         })
         .then((response) => {
           setPieData(response.data);
+          setIsLoading(false);
         });
     };
     const fetchMonthBalanceData = (bookId, startTime) => {
@@ -83,6 +86,7 @@ function DashboardPage() {
         expenses={expenses}
         startMonth={startMonth}
         setStartMonth={setStartMonth}
+        isLoading={isLoading}
       />
     </div>
   );

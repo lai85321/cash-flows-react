@@ -25,7 +25,7 @@ function Home() {
         <div className="home-main-container">
           <div className="home-main">
             <div className="home-main-left">
-              <div className="home-main-slogan">Track every cash flows</div>
+              <div className="home-main-slogan">Track every cash flow</div>
               <div className="home-main-content">
                 Record and split payment at the same time
               </div>

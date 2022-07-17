@@ -32,7 +32,7 @@ const AmountList = (props) => {
                   <div className={`account-list-tag ${item.tag}`}></div>
                   {item.note}
                 </div>
-                <div>{item.name}</div>
+                <div className="account-list-name">{item.name}</div>
                 <div className="account-list-amount">{item.amount}</div>
                 <div
                   className="account-list-status"

@@ -33,7 +33,10 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-
+.account-list-name{
+    width: 50px;
+    text-align: center;
+}
 .account-list-amount{
     width:40px;
     text-align: right;

@@ -40,7 +40,6 @@ const AddAccount = (props) => {
   const [note, setNote] = useState("");
   const [split, setSplit] = useState(0);
   const [paidBtnShow, setPaidBtnShow] = useState(username);
-  // const [splitBtnShow, setSplitBtnShow] = useState("Split");
   const [paid, setPaid] = useState(paidAmount);
   const submitAccount = () => {
     if (amount === "" || amount === "0") {

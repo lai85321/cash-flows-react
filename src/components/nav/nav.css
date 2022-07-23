@@ -1,39 +1,39 @@
 .nav-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    width: 82vw;
-    height: 8vh;
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    margin-left: 20vw;
-    background-color:white;
-    border-bottom:solid 1px;
-    border-color: gainsboro;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 82vw;
+  height: 8vh;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  margin-left: 20vw;
+  background-color:white;
+  border-bottom:solid 1px;
+  border-color: gainsboro;
 }
 .nav{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    height: 100%;
-    margin-left:30px;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  margin-left:30px;
+  justify-content: space-between;
 }
 .book-icon{
-    width: 85px;
-    height: 45px;
-    margin-right: 120px;
-    background-image: url(../../images/logo.png);
-    background-size: contain;
-    background-repeat: no-repeat;
+  width: 85px;
+  height: 45px;
+  margin-right: 120px;
+  background-image: url(../../images/logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .nav-lists{
-    display: flex;
-    width: 25vw;
-    flex-direction: row;
-    justify-content: space-evenly;
+  display: flex;
+  width: 25vw;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 .nav-list{
     font-size: 18px;
@@ -54,66 +54,64 @@
     cursor: pointer;
 }
 .nav-notice{
-    width: 36px;
-    height: 36px;
-    background-image: url(../../images/notification.png);
-    background-size: contain;
-    background-repeat: no-repeat; 
-    margin-right: 10px;
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    margin-right: 20px;
+  width: 36px;
+  height: 36px;
+  background-image: url(../../images/notification.png);
+  background-size: contain;
+  background-repeat: no-repeat; 
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 20px;
 }
 .nav-notice .badge {
-    position: absolute;
-    height:8px;
-    width: 8px;
-    top: 0px;
-    right: 0px;
-    padding: 2px 3px;
-    border-radius: 50%;
-    background-color: red;
-    color: white;
-    font-size: 12px;
+  position: absolute;
+  height:8px;
+  width: 8px;
+  top: 0px;
+  right: 0px;
+  padding: 2px 3px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  font-size: 12px;
 }
 .nav-notice-message{
-    z-index: 1;
-    position: fixed;
-    top:50px;
-    right:20px;
-    height: 320px;
-    max-height: 320px;
-    overflow-y: auto;
-    width: 320px;
-    background-color: white;
-    border: 1px solid gray;
+  z-index: 1;
+  position: fixed;
+  top:50px;
+  right:20px;
+  height: 320px;
+  max-height: 320px;
+  overflow-y: auto;
+  width: 320px;
+  background-color: white;
+  border: 1px solid gray;
 }
 .nav-notice-message-title{
-    font-size: 20px;
-    font-weight: 400;
-    margin: 10px 0px 0px 0px;
-    padding-left: 10px;
-    padding-bottom: 5px;
-    border-bottom: solid 1px gray;
-    letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: solid 1px gray;
+  letter-spacing: 2px;
 }
 .nav-notice-message-section{
-    height: 60px;
-    border-bottom: 1px solid darkgray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 10px;
+  height: 60px;
+  border-bottom: 1px solid darkgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
 }
 .nav-notice-message-paidMsg{
-    font-size: 14px;
-
+  font-size: 14px;
 }
 .nav-notice-message-settleMsg{
-    font-size: 14px;
-    
+  font-size: 14px;    
 }
 .nav-notice-message-time{
-    font-size: 12px;
+  font-size: 12px;
 }

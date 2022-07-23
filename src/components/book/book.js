@@ -12,27 +12,6 @@ function Book(props) {
   const [showMessage, setShowMessage] = useState(false);
   const [notice, setNotice] = useState(0);
   const [message, setMessage] = useState([]);
-  // const updateOpenTIme = (bookId, userId) => {
-  //   console.log(bookId, userId);
-  //   fetch(
-  //     `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/members/openTime?userId=${userId}&bookId=${bookId}`,
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-  //       },
-  //     }
-  //   )
-  //     .then((response) => {
-  //       if (response.status === 401) {
-  //         alert("Please log in");
-  //         navigate(`/signIn`, { replace: true });
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((response) => {});
-  // };
   const updateNoticeStatus = (userId) => {
     fetch(
       `${REACT_APP_HOST}/api/${REACT_APP_API_VERSION}/message?userId=${userId}`,

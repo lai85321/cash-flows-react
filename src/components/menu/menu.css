@@ -1,95 +1,81 @@
 .menu {
-    width: 18vw;
-    background-color: #ffe497;
-    height: 100vh;
-    position: fixed;
-    top: 0px;
-    left: 0px;
+  width: 18vw;
+  background-color: #ffe497;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
-
 .user {
-    display: flex;
-    flex-direction: column;
-    height: 20%;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  align-items: center;
 }
-
 .user-icon {
-    background-image: url(../../images/user.png);
+  background-image: url(../../images/user.png);
 }
-
 .user-image {
-    margin-top: 8%;
-    height: 18vmin;
-    width: 12vmin;
-    border-radius: 50%;
-    border: solid 1px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    /* background-position: center; */
-    background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 8%;
+  height: 18vmin;
+  width: 12vmin;
+  border-radius: 50%;
+  border: solid 1px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.5);
 }
-
 .user-name {
-    margin-top: 5%;
-    font-size: 25px;
+  margin-top: 5%;
+  font-size: 25px;
 }
-
 .menu-lists {
-    display: flex;
-    flex-direction: column;
-    height: 70%;
-    margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  margin-top: 15%;
 }
-
 .menu-list {
-    height: 7%;
-    margin: 10px 0px 10px 15px;
-    display: flex;
-    align-items: center;
-    font-weight: bolder;
-    font-size: 20px;
-    letter-spacing: 1px;
+  height: 7%;
+  margin: 10px 0px 10px 15px;
+  display: flex;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
-
 .menu-image {
-    width: 24px;
-    height: 24px;
-    margin-left: 15px;
-    margin-right: 25px;
-    background-size: contain;
-    background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  margin-left: 15px;
+  margin-right: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-
 .home-icon {
-    background-image: url(../../images/home.png);
+  background-image: url(../../images/home.png);
 }
-
 .account-icon {
-    background-image: url(../../images/books.png);
+  background-image: url(../../images/books.png);
 }
-
 .dashboard-icon {
-    background-image: url(../../images/account.png);
+  background-image: url(../../images/account.png);
 }
-
 .settings-icon {
-    background-image: url(../../images/settings.png);
+  background-image: url(../../images/settings.png);
 }
-
 .logout{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    opacity: 0.5;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  opacity: 0.5;
+  cursor: pointer;
 }
-
 .logout-image {
-    width: 18px;
-    height: 18px;
-    background-image: url(../../images/logout.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-right: 15px;
+  width: 18px;
+  height: 18px;
+  background-image: url(../../images/logout.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 15px;
 }

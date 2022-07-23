@@ -1,6 +1,6 @@
 import Menu from "../components/menu/menu";
 import Nav from "../components/nav/nav";
-import AddAccount from "../components/add-account/addAccount";
+import AddAccount from "../components/add_account/addAccount";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;

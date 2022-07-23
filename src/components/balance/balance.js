@@ -1,5 +1,5 @@
 import "./balance.css";
-import BalanceList from "../balance-list/balanceList";
+import BalanceList from "../balance_list/balanceList";
 const Balance = (props) => {
   const {
     balanceList,

@@ -7,11 +7,6 @@ const sidebarMenu = [
     icon: `account-icon`,
     link: `/book`,
   },
-  // {
-  //   id: "Overview",
-  //   icon: `dashboard-icon`,
-  //   link: `/book`,
-  // },
   {
     id: "Settings",
     icon: `settings-icon`,

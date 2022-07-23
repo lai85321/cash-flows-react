@@ -12,8 +12,6 @@ import SignUpPage from "./layouts/signUpPage";
 import SignInPage from "./layouts/signInPage";
 import SettingPage from "./layouts/settingPage";
 import Error404Page from "./layouts/error404Page";
-//import EditAccountPage from "./layouts/editAccountPage";
-// import AccountDetail from "./components/account-detail/accountDetail";
 import AccountDetailPage from "./layouts/accountDetailPage";
 function App() {
   useEffect(() => {

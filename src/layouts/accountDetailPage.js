@@ -1,4 +1,4 @@
-import AccountDetail from "../components/account-detail/accountDetail";
+import AccountDetail from "../components/account_detail/accountDetail";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 const { REACT_APP_HOST, REACT_APP_API_VERSION } = process.env;

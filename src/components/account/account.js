@@ -1,5 +1,5 @@
 import "./account.css";
-import AmountList from "../account-list/account-list";
+import AmountList from "../account_list/accountList";
 import React from "react";
 import user from "../../images/user.png";
 import { AddMemberModal, EditBudgetModel } from "../modal/modal";

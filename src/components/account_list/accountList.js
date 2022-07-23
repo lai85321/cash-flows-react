@@ -1,4 +1,4 @@
-import "./account-list.css";
+import "./accountList.css";
 import { Link } from "react-router-dom";
 
 const AmountList = (props) => {
@@ -16,16 +16,13 @@ const AmountList = (props) => {
         return (
           <div
             key={index}
-            style={{
-              cursor: item.tag === "balanced" ? "not-allowed" : "pointer",
-            }}
+            // style={{
+            //   cursor: item.tag === "balanced" ? "not-allowed" : "pointer",
+            // }}
           >
             <Link
               to={`/book/${bookId}/account/${item.id}`}
               state={{ bookId: bookId }}
-              style={{
-                pointerEvents: item.tag === "balanced" ? "none" : "auto",
-              }}
             >
               <div key={index} className="account-list-details">
                 <div className="account-list-item">

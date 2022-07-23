@@ -25,12 +25,11 @@ const AccountDetail = (props) => {
     )
       .then((response) => {
         if (response.status === 401) {
-          //alert("Please log in");
           navigate(`/signIn`, { replace: true });
         }
         return response.json();
       })
-      .then((json) => {
+      .then(() => {
         navigate(`/book/${bookId}`, { replace: true });
       });
   };
@@ -48,25 +47,26 @@ const AccountDetail = (props) => {
           </div>
           <div className="account-detail">
             <label className="account-detail-label">Paid by</label>
-            {account?.paidName}
+            {!isLoading && account?.paidName}
           </div>
           <div className="account-detail">
             <label className="account-detail-label">Note</label>
-            {account?.note}
+            {!isLoading && account?.note}
           </div>
           <div className="account-detail">
             <label className="account-detail-label">Tag</label>
-            {account?.tag}
+            {!isLoading && account?.tag}
           </div>
           <div className="account-detail">
             <label className="account-detail-label">Date</label>
-            {new Date(account?.date).toString().slice(4, 25)}
+            {!isLoading && new Date(account?.date).toString().slice(4, 25)}
           </div>
-
           <div
             className="account-detail-split-container"
             style={{
-              display: `${account?.splits === undefined ? "none" : "flex"}`,
+              display: `${
+                !isLoading && account?.splits === undefined ? "none" : "flex"
+              }`,
             }}
           >
             <label className="account-detail-label">Split</label>
@@ -83,8 +83,9 @@ const AccountDetail = (props) => {
             </div>
           </div>
         </div>
-        {!isLoading ? (
-          account?.splits === undefined ? (
+
+        {!isLoading &&
+          (account?.splits === undefined ? (
             <div className="account-detail-btns">
               <div className="account-detail-check-cancel" onClick={() => {}}>
                 <Link to={`/book/${bookId}`}>Cancal</Link>
@@ -104,10 +105,7 @@ const AccountDetail = (props) => {
                 <Link to={`/book/${bookId}`}>Cancal</Link>
               </div>
             </div>
-          )
-        ) : (
-          ""
-        )}
+          ))}
       </div>
     </div>
   );

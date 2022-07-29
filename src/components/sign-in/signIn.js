@@ -6,7 +6,7 @@ const { REACT_APP_HOST, REACT_APP_API_VERSION, REACT_APP_CLOUDFRONT_PATH } =
   process.env;
 const SignIn = () => {
   let navigate = useNavigate();
-  const [email, setEmail] = useState("tina@test.com");
+  const [email, setEmail] = useState("test1@test.com");
   const [password, setPassword] = useState("test");
   const [errorMsg, setErrorMsg] = useState("");
   const submitSignIn = () => {

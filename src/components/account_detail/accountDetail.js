@@ -85,7 +85,7 @@ const AccountDetail = (props) => {
         </div>
 
         {!isLoading &&
-          (account?.splits === undefined ? (
+          (account?.splits === undefined && account?.tag !== "balanced" ? (
             <div className="account-detail-btns">
               <div className="account-detail-check-cancel" onClick={() => {}}>
                 <Link to={`/book/${bookId}`}>Cancal</Link>

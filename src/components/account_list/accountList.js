@@ -14,12 +14,7 @@ const AmountList = (props) => {
       <hr></hr>
       {details.map((item, index) => {
         return (
-          <div
-            key={index}
-            // style={{
-            //   cursor: item.tag === "balanced" ? "not-allowed" : "pointer",
-            // }}
-          >
+          <div key={index}>
             <Link
               to={`/book/${bookId}/account/${item.id}`}
               state={{ bookId: bookId }}

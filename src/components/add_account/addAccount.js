@@ -127,15 +127,15 @@ const AddAccount = (props) => {
             <div className="add-account-input">
               <label className="add-amount-label">Amount</label>
               <input
-                min="0"
+                min="1"
                 max="1000000"
                 type="number"
                 className="add-amount-input"
                 value={amount}
                 onChange={(e) => {
                   if (e.target.value < 0) {
-                    e.target.value = 0;
-                    alert("Minimum number is 0");
+                    e.target.value = 1;
+                    alert("Minimum number is 1");
                   }
                   if (e.target.value >= 1000000) {
                     e.target.value = 1000000;
